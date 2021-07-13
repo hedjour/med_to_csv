@@ -1,14 +1,14 @@
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-Module qui lit les fichiers du dossier IM pour être utilisé par main.py
+Module qui lit les fichiers d'expériences Med Associates pour être utilisé par main.py
 
 Fichiers lus:
 -------------
             \n
-            IM/session/RunningWheel/Registration.txt        pour la db  wheels     \n
-            IM/session/AntennaReader/Antenna.txt            pour la db  antenna_read     \n
-            IM/session/Animals/Animals.animals              pour la db  animals     \n
+            IM/session/RunningWheel/Registration.txt        pour la db wheels     \n
+            IM/session/AntennaReader/Antenna.txt            pour la db antenna_read     \n
+            IM/session/Animals/Animals.animals              pour la db animals     \n
 
 Attention!
 ----------
@@ -16,6 +16,7 @@ Ne pas exécuter ce fichier seul, la connexion n'y est pas définie,
 récupérez le modèle de main pour l'ouvrir et la fermer.
 """
 from sys import argv
+import main
 
 def read_file(path_to_file: str = "testfile.Subject 1"):
     "Fonction qui lit le fichier texte subject"
@@ -41,10 +42,7 @@ def read_file(path_to_file: str = "testfile.Subject 1"):
                 list_comp = [dic_letters[list_line_letter[0][:-1]].append(i) for i in list_comp]
                 num += 1
         num += 1
-
     print(dic_letters)
 
-
-
-
-read_file(*argv[:-1])
+if __name__=="__main__":
+    read_file(*argv[:-1])
