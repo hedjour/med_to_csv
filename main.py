@@ -79,7 +79,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
     grp = dfanimals["groupe"][0].value() #TODO Test this line
     # Import de toutes les données Imetronics :
     dfimet = IMET.group_import(
-        f"{path}/AA_PhW_G4", con, f"G{int(grp)+1}", dfanimals)
+        f"{path}/AA_PhW_G4", con, dfanimals)
     [].sort
     ld = os.listdir(path)
     if number_excel == None:
