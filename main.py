@@ -101,9 +101,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
     # On lit le fichier animals et charge les animaux en bdd ainsi que leur poids
     dfanimals = AW.main_weight(f"{path}", con=con)
     # Import de toutes les données Imetronics :
-    dfimet = IMET.group_import(
-        f"{path}/AA_PhW_G4", con, f"G{int(grp)+1}", dfanimals)
-    [].sort
+    IMET.group_import(f"{path}/AA_PhW_G4", con, dfanimals)
     ld = os.listdir(path)
     if number_excel == None:
         number_excel = input(
