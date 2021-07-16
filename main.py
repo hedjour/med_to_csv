@@ -59,10 +59,6 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
     if path == None:
         path = input(
             "Quel est le chemin qui amène au dossier? (ex:\"/home/user/fill_bdd_phenoworld/Groupe-1/\") ")
-    # if path != "":
-    #     grp = path.replace("/", "")[-1]
-    # else:
-    #     grp = __file__[-9]
     if con == None:
         engine = create_engine(bdd_links, echo=True)
         con = engine.connect()
@@ -76,11 +72,15 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
 
     # On lit le fichier animals et charge les animaux en bdd ainsi que leur poids
     dfanimals = AW.main_weight(f"{path}", con=con)
-    grp = dfanimals["groupe"][0].value() #TODO Test this line
+    grp = dfanimals["groupe"][0]
+    
     # Import de toutes les données Imetronics :
-    dfimet = IMET.group_import(
-        f"{path}/AA_PhW_G4", con, dfanimals)
-    [].sort
+    IMET.group_import(f"{path}/AA_PhW_G4", con, dfanimals)
+    #Import des données MedAssociate :
+    
+    #Import des données hotplate / openfield
+    
+    #Import des données du phenoworld
     ld = os.listdir(path)
     if number_excel == None:
         number_excel = input(
@@ -88,6 +88,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
                 len(ld))]}""")
     number_excel = int(number_excel)
     sessionsIC_infos = IC.getSessionsIC_info(f"{path}/{ld[number_excel]}", con)
+    #IM
     listd = os.listdir(f"{path}/IM")
     m = len(listd)
     dfanimalscopyIM = dfanimals[["RFID", "name", "groupe", "id"]]
@@ -107,6 +108,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
             if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
                 raise RuntimeError(
                     f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {e}")
+    #IC
     listd = os.listdir(f"{path}/IC")
     m = len(listd)
     for i in range(m):
@@ -126,5 +128,6 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
                 raise RuntimeError(
                     f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {e}")
     engine.dispose()
+
 if __name__ == "__main__":
     main(*argv[1:])
