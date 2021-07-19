@@ -6,14 +6,8 @@ Module qui lit les fichiers d'expériences Med Associates pour être utilisé pa
 Fichiers lus:
 -------------
             \n
-            IM/session/RunningWheel/Registration.txt        pour la db wheels     \n
-            IM/session/AntennaReader/Antenna.txt            pour la db antenna_read     \n
-            IM/session/Animals/Animals.animals              pour la db animals     \n
+            data med/*\n
 
-Attention!
-----------
-Ne pas exécuter ce fichier seul, la connexion n'y est pas définie,
-récupérez le modèle de main pour l'ouvrir et la fermer.
 """
 
 from os import listdir

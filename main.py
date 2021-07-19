@@ -59,6 +59,13 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
     if path == None:
         path = input(
             "Quel est le chemin qui amène au dossier? (ex:\"/home/user/fill_bdd_phenoworld/Groupe-1/\") ")
+    if path != "":
+        grp = path.replace("/", "")[-1]
+    else:
+        grp = __file__[-9]
+    print(grp)
+    if not(grp in ["1","2","3","4","5","6","7","8","9","0"]):
+        grp=int(input("Quel est le numéro du groupe? "))
     if con == None:
         engine = create_engine(bdd_links, echo=True)
         con = engine.connect()
@@ -70,17 +77,33 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
         notes = input("Y a t-il une session avec des notes ? ")
     notes = notes.replace(" ", "").lower() in ["oui", "yes", "o", "y"]
 
+    ############################    MED    ######################################
+
+    listd = os.listdir(f"{path}/med_associate")
+    m = len(listd)
+    for i in range(m):
+        da = time()-a
+        a = time()
+        chn = "\n"*5+f"\n\nMED : dossier {i} sur {m-1}      {listd[i]}\n"+"-"*i+"."*(
+            m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
+        print(chn+"\n"*5)
+        try:
+            MED.read_folder(f"{path}/med_associate/{listd[i]}/")
+        except Exception as e:
+            rep = input(
+                f"Un problème est survenu pendant le traitement des données: \n{e}\n \nVoulez-vous quand même continuer?")
+            if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
+                raise RuntimeError(
+                    f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {e}")
+
+    ############################    IMET    ######################################
+
     # On lit le fichier animals et charge les animaux en bdd ainsi que leur poids
     dfanimals = AW.main_weight(f"{path}", con=con)
-    grp = dfanimals["groupe"][0]
-    
     # Import de toutes les données Imetronics :
-    IMET.group_import(f"{path}/AA_PhW_G4", con, dfanimals)
-    #Import des données MedAssociate :
-    
-    #Import des données hotplate / openfield
-    
-    #Import des données du phenoworld
+    dfimet = IMET.group_import(
+        f"{path}/AA_PhW_G4", con, f"G{int(grp)+1}", dfanimals)
+    [].sort
     ld = os.listdir(path)
     if number_excel == None:
         number_excel = input(
@@ -88,7 +111,9 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
                 len(ld))]}""")
     number_excel = int(number_excel)
     sessionsIC_infos = IC.getSessionsIC_info(f"{path}/{ld[number_excel]}", con)
-    #IM
+
+    ############################    IM    ######################################
+
     listd = os.listdir(f"{path}/IM")
     m = len(listd)
     dfanimalscopyIM = dfanimals[["RFID", "name", "groupe", "id"]]
@@ -108,19 +133,21 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
             if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
                 raise RuntimeError(
                     f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {e}")
-    #IC
+
+    ############################    IC    ######################################
+
     listd = os.listdir(f"{path}/IC")
     m = len(listd)
     for i in range(m):
         da = time()-a
         a = time()
-        chn = "\n"*5+f"\n\nIC : dossier {i} sur {m-1}      {listd[i]}\n"+"-"*i+"."*(
+        chn = "\n"*5+f"\n\nIM : dossier {i} sur {m-1}      {listd[i]}\n"+"-"*i+"."*(
             m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
         print(chn+"\n"*5)
         try:
-            if IC.check_file_txt(f"{path}/IC/{listd[i]}/IntelliCage/Visits.txt"):
-                IC.read_folder_session_ic(
-                    sessionsIC_infos, f"{path}/IC/{listd[i]}/", con, 1, dfanimals, chn)
+            if IC.check_file_txt(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
+                dfanimalscopyIM = IM.readfoldersessionIM(
+                    f"{path}/IM/{listd[i]}/", con, grp, dfanimalscopyIM, chn, sortie, notes)
         except Exception as e:
             rep = input(
                 f"Un problème est survenu pendant le traitement des données: \n{e}\n \nVoulez-vous quand même continuer?")
