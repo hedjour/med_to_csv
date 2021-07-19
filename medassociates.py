@@ -37,12 +37,14 @@ def read_file(path_to_file: str = "testfile.Subject 1"):
         num += 1
     return dic_letters
 
-def read_folder(path:str=None):
+def read_folder(path: str = None):
+    "Fonction qui lance la lecture de chaque fichier texte du dossier"
     listd = listdir(f"{path}/")
-    m = len(listd)
-    for i in range(m):
-        dicexperience=read_file(f"{path}/{listd[i]}")
-        print(dicexperience)
+    listd = [i for i in listd if i[-9:-3] == "ubject"]
+    lenfolder = len(listd)
+    for i in range(lenfolder):
+        dicexperience = read_file(f"{path}/{listd[i]}")
+        yield dicexperience
 
-if __name__=="__main__":
+if __name__ == "__main__":
     read_file(*argv[:-1])

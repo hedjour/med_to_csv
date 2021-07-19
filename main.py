@@ -67,8 +67,9 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
     if not(grp in ["1","2","3","4","5","6","7","8","9","0"]):
         grp=int(input("Quel est le numéro du groupe? "))
     if con == None:
-        engine = create_engine(bdd_links, echo=True)
+        engine = create_engine(bdd_links, echo=False)
         con = engine.connect()
+    print("connecté! on commence à travailler")
     if sortie == None:
         sortie = input(
             "Y a t-il eu une session où les animaux ne sont pas sortis ? ")
@@ -80,6 +81,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
     ############################    MED    ######################################
 
     listd = os.listdir(f"{path}/med_associate")
+    listd = [i for i in listd if i[0]!="."]
     m = len(listd)
     for i in range(m):
         da = time()-a
@@ -88,7 +90,8 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
             m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
         print(chn+"\n"*5)
         try:
-            MED.read_folder(f"{path}/med_associate/{listd[i]}/")
+            for i in MED.read_folder(f"{path}/med_associate/{listd[i]}/"):
+                print(i)
         except Exception as e:
             rep = input(
                 f"Un problème est survenu pendant le traitement des données: \n{e}\n \nVoulez-vous quand même continuer?")
@@ -113,6 +116,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
     ############################    IM    ######################################
 
     listd = os.listdir(f"{path}/IM")
+    listd = [i for i in listd if i[0]!="."]
     m = len(listd)
     dfanimalscopyIM = dfanimals[["RFID", "name", "groupe", "id"]]
     for i in range(m):
@@ -135,6 +139,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
     ############################    IC    ######################################
 
     listd = os.listdir(f"{path}/IC")
+    listd = [i for i in listd if i[0]!="."]
     m = len(listd)
     for i in range(m):
         da = time()-a
