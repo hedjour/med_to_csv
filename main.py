@@ -54,7 +54,7 @@ import imetronic as IMET
 import animals_weight as AW
 import medassociates as MED
 
-def main(path: str = None, notes: str = None, sortie: str = None, number_excel: int = None, con: Connection = None):
+def main(path: str = None, notes: str = None, sortie: str = None, echo = True, number_excel: int = None, con: Connection = None):
     a = time()
     if path == None:
         path = input(
@@ -67,96 +67,107 @@ def main(path: str = None, notes: str = None, sortie: str = None, number_excel: 
     if not(grp in ["1","2","3","4","5","6","7","8","9","0"]):
         grp=int(input("Quel est le numéro du groupe? "))
     if con == None:
-        engine = create_engine(bdd_links, echo=False)
+        engine = create_engine(bdd_links, echo=(False if echo=="False" else True))
         con = engine.connect()
-    print("connecté! on commence à travailler")
+    print("connecté! on commence à travailler" if echo else "")
     if sortie == None:
-        sortie = input(
-            "Y a t-il eu une session où les animaux ne sont pas sortis ? ")
+        sortie = input("Y a t-il eu une session où les animaux ne sont pas sortis ? ")
     sortie = sortie.replace(" ", "").lower() in ["oui", "yes", "o", "y"]
     if notes == None:
         notes = input("Y a t-il une session avec des notes ? ")
     notes = notes.replace(" ", "").lower() in ["oui", "yes", "o", "y"]
 
-    ############################    MED    ######################################
+    ######################################    MED    ######################################
+    try:
+        listd = os.listdir(f"{path}/med_associate")
+        listd = [i for i in listd if i[0]!="."]
+        m = len(listd)
+        for i in range(m):
+            da = time()-a
+            a = time()
+            chn = "\n"*5+f"\n\nMED : dossier {i} sur {m-1}      {listd[i]}\n"+"-"*i+"."*(
+                m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
+            print(chn+"\n"*5)
+            try:
+                for obj in MED.read_folder(f"{path}/med_associate/{listd[i]}/"):
+                    pass
+                    print(obj)
+            except Exception as e:
+                rep = input(
+                    f"Un problème est survenu pendant le traitement des données: \n{e}\n \nVoulez-vous quand même continuer?")
+                if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
+                    raise RuntimeError(
+                        f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {e}")
+    except FileNotFoundError:
+        print("ATTENTION! PAS DE DOSSIER MED DÉTÉCTÉ!")
 
-    listd = os.listdir(f"{path}/med_associate")
-    listd = [i for i in listd if i[0]!="."]
-    m = len(listd)
-    for i in range(m):
-        da = time()-a
-        a = time()
-        chn = "\n"*5+f"\n\nMED : dossier {i} sur {m-1}      {listd[i]}\n"+"-"*i+"."*(
-            m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
-        print(chn+"\n"*5)
-        try:
-            for i in MED.read_folder(f"{path}/med_associate/{listd[i]}/"):
-                print(i)
-        except Exception as e:
-            rep = input(
-                f"Un problème est survenu pendant le traitement des données: \n{e}\n \nVoulez-vous quand même continuer?")
-            if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
-                raise RuntimeError(
-                    f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {e}")
-
-    ############################    IMET    ######################################
+    ######################################    IMET    ######################################
 
     # On lit le fichier animals et charge les animaux en bdd ainsi que leur poids
-    dfanimals = AW.main_weight(f"{path}", con=con)
-    # Import de toutes les données Imetronics :
-    IMET.imetronic_insert(f"{path}/AA_PhW_G4", dfanimals, con)
-    ld = os.listdir(path)
-    if number_excel == None:
-        number_excel = input(
-            f"""Quel fichier excel correspond au groupe {grp}?{[f"{i}:{ld[i]}" for i in range(
-                len(ld))]}""")
-    number_excel = int(number_excel)
-    sessionsIC_infos = IC.getSessionsIC_info(f"{path}/{ld[number_excel]}", con)
+    try:
+        dfanimals = AW.main_weight(f"{path}", con=con)
+        # Import de toutes les données Imetronics :
+        # IMET.imetronic_insert(f"{path}imetronic", dfanimals, con)
+        ld = os.listdir(path)
+        if number_excel == None:
+            number_excel = input(
+                f"""Quel fichier excel correspond au groupe {grp}?{[f"{i}:{ld[i]}" for i in range(
+                    len(ld))]}""")
+        number_excel = int(number_excel)
+        # sessionsIC_infos = IC.getSessionsIC_info(f"{path}/{ld[number_excel]}", con)
+    except FileNotFoundError:
+        print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
 
-    ############################    IM    ######################################
+    ######################################    IM    ######################################
 
-    listd = os.listdir(f"{path}/IM")
-    listd = [i for i in listd if i[0]!="."]
-    m = len(listd)
-    dfanimalscopyIM = dfanimals[["RFID", "name", "groupe", "id"]]
-    for i in range(m):
-        da = time()-a
-        a = time()
-        chn = "\n"*5+f"\n\nIM : dossier {i} sur {m-1}      {listd[i]}\n"+"-"*i+"."*(
-            m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
-        print(chn+"\n"*5)
-        try:
-            if IC.check_file_txt(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
-                dfanimalscopyIM = IM.readfoldersessionIM(
-                    f"{path}/IM/{listd[i]}/", con, grp, dfanimalscopyIM, chn, sortie, notes)
-        except Exception as e:
-            rep = input(
-                f"Un problème est survenu pendant le traitement des données: \n{e}\n \nVoulez-vous quand même continuer?")
-            if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
-                raise RuntimeError(
-                    f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {e}")
+    try:
+        listd = os.listdir(f"{path}/IM")
+        listd = [i for i in listd if i[0]!="."]
+        m = len(listd)
+        dfanimalscopyIM = dfanimals[["RFID", "name", "groupe", "id"]]
+        for i in range(m):
+            da = time()-a
+            a = time()
+            chn = "\n"*5+f"\n\nIM : dossier {i} sur {m-1}      {listd[i]}\n"+"-"*i+"."*(
+                m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
+            print(chn+"\n"*5)
+            try:
+                if IC.check_file_txt(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
+                    dfanimalscopyIM = IM.readfoldersessionIM(
+                        f"{path}/IM/{listd[i]}/", con, grp, dfanimalscopyIM, chn, sortie, notes)
+            except Exception as e:
+                rep = input(
+                    f"Un problème est survenu pendant le traitement des données: \n{e}\n \nVoulez-vous quand même continuer?")
+                if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
+                    raise RuntimeError(
+                        f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {e}")
+    except FileNotFoundError:
+        print("ATTENTION! PAS DE DOSSIER IM DÉTÉCTÉ!")
 
-    ############################    IC    ######################################
+    ######################################    IC    ######################################
 
-    listd = os.listdir(f"{path}/IC")
-    listd = [i for i in listd if i[0]!="."]
-    m = len(listd)
-    for i in range(m):
-        da = time()-a
-        a = time()
-        chn = "\n"*5+f"\n\nIM : dossier {i} sur {m-1}      {listd[i]}\n"+"-"*i+"."*(
-            m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
-        print(chn+"\n"*5)
-        try:
-            if IC.check_file_txt(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
-                dfanimalscopyIM = IM.readfoldersessionIM(
-                    f"{path}/IM/{listd[i]}/", con, grp, dfanimalscopyIM, chn, sortie, notes)
-        except Exception as e:
-            rep = input(
-                f"Un problème est survenu pendant le traitement des données: \n{e}\n \nVoulez-vous quand même continuer?")
-            if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
-                raise RuntimeError(
-                    f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {e}")
+    try:
+        listd = os.listdir(f"{path}/IC")
+        listd = [i for i in listd if i[0]!="."]
+        m = len(listd)
+        for i in range(m):
+            da = time()-a
+            a = time()
+            chn = "\n"*5+f"\n\nIM : dossier {i} sur {m-1}      {listd[i]}\n"+"-"*i+"."*(
+                m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
+            print(chn+"\n"*5)
+            try:
+                if IC.check_file_txt(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
+                    dfanimalscopyIM = IM.readfoldersessionIM(
+                        f"{path}/IM/{listd[i]}/", con, grp, dfanimalscopyIM, chn, sortie, notes)
+            except Exception as e:
+                rep = input(
+                    f"Un problème est survenu pendant le traitement des données: \n{e}\n \nVoulez-vous quand même continuer?")
+                if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
+                    raise RuntimeError(
+                        f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {e}")
+    except FileNotFoundError:
+        print("ATTENTION! PAS DE DOSSIER IC DÉTÉCTÉ!")
     engine.dispose()
 
 if __name__ == "__main__":

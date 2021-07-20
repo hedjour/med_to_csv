@@ -7,13 +7,13 @@ Fichiers lus:
 -------------
             \n
             data med/*\n
-
 """
 
 from os import listdir
 from sys import argv
+from typing import Generator
 
-def read_file(path_to_file: str = "testfile.Subject 1"):
+def read_file(path_to_file: str = "testfile.Subject 1") -> dict:
     "Fonction qui lit le fichier texte subject"
     file = open(path_to_file, "r")
     list_ligns = file.readlines()
@@ -37,7 +37,7 @@ def read_file(path_to_file: str = "testfile.Subject 1"):
         num += 1
     return dic_letters
 
-def read_folder(path: str = None):
+def read_folder(path: str = None) -> Generator[dict]:
     "Fonction qui lance la lecture de chaque fichier texte du dossier"
     listd = listdir(f"{path}/")
     listd = [i for i in listd if i[-9:-3] == "ubject"]
