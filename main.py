@@ -32,7 +32,7 @@ Vous pouvez utiliser ce programme de différentes façons:
              (sera demandé à la lecture de ce fichier, au début de l'exécution)
             - la connexion sqlalchemy si vous avez besoin de la définir dans un autre script
 
-    - Chargez ce programme avec votre IDE sur Windows ou Linux, puis exécutez-le
+    - Chargez ce programme avec votre IDE sur Windows, Linux, ou Mac, puis exécutez-le
 
 Dépendances:
 ------------
@@ -80,7 +80,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     ######################################    MED    ######################################
     try:
         listd = os.listdir(f"{path}/med_associate")
-        listd = [i for i in listd if i[0]!="."]
+        listd = [i for i in listd if i[0] != "."]
         m = len(listd)
         for i in range(m):
             da = time()-a
@@ -114,7 +114,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
                 f"""Quel fichier excel correspond au groupe {grp}?{[f"{i}:{ld[i]}" for i in range(
                     len(ld))]}""")
         number_excel = int(number_excel)
-        # sessionsIC_infos = IC.getSessionsIC_info(f"{path}/{ld[number_excel]}", con)
+        sessionsIC_infos = IC.get_sessions_ic_info(f"{path}/{ld[number_excel]}", con)
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
 
@@ -122,9 +122,10 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
 
     try:
         listd = os.listdir(f"{path}/IM")
-        listd = [i for i in listd if i[0]!="."]
+        listd = [i for i in listd if i[0] != "."]
         m = len(listd)
-        dfanimalscopyIM = dfanimals[["RFID", "name", "groupe", "id"]]
+        dfanimalscopyIM = dfanimals[["RFID", "animal_name", "groupe", "animal_id"]]
+        dfanimalscopyIM = dfanimalscopyIM.rename({"animal_name":"name","animal_id":"id"})
         for i in range(m):
             da = time()-a
             a = time()
@@ -148,7 +149,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
 
     try:
         listd = os.listdir(f"{path}/IC")
-        listd = [i for i in listd if i[0]!="."]
+        listd = [i for i in listd if i[0] != "."]
         m = len(listd)
         for i in range(m):
             da = time()-a
@@ -172,3 +173,4 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
 
 if __name__ == "__main__":
     main(*argv[1:])
+
