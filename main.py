@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
 """
+TODO FIXME REPRENDRE CE FICHIER DE FAÇON GLOBALE
 Module de lecture de données du PhénoWorld
 ------------------------------------------
 Permet la lecture des dossiers :
@@ -48,8 +49,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.engine.base import Connection
 from param import bdd_links
 
-import filesessionIC as IC
-import filesessionIM as IM
+import file_session_ic as IC
+import file_session_im as IM
 import imetronic as IMET
 import animals_weight as AW
 import medassociates as MED
@@ -133,7 +134,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
                 m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
             print(chn+"\n"*5)
             try:
-                if IC.check_file_txt(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
+                if IC.notempty_phw_file(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
                     dfanimalscopyIM = IM.readfoldersessionIM(
                         f"{path}/IM/{listd[i]}/", con, grp, dfanimalscopyIM, chn, sortie, notes)
             except Exception as e:
@@ -146,7 +147,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
         print("ATTENTION! PAS DE DOSSIER IM DÉTÉCTÉ!")
 
     ######################################    IC    ######################################
-
+#TODO FIXME REPRENDRE CETTE PARTIE
     try:
         listd = os.listdir(f"{path}/IC")
         listd = [i for i in listd if i[0] != "."]
@@ -158,7 +159,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
                 m-i-1)+f"         Temps restant estimé : {int(da*(m-i))//60} m  {int(da*(m-i))%60} s"+"\n"
             print(chn+"\n"*5)
             try:
-                if IC.check_file_txt(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
+                if IC.notempty_phw_file(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
                     dfanimalscopyIM = IM.readfoldersessionIM(
                         f"{path}/IM/{listd[i]}/", con, grp, dfanimalscopyIM, chn, sortie, notes)
             except Exception as e:
