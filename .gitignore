@@ -1,0 +1,11 @@
+*.xlsx
+*.csv
+test*
+.vscode
+.ipynb_checkpoints
+data*
+__*
+git
+Groupe*
+.gitignore
+*.old*
