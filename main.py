@@ -64,7 +64,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     else:
         grp = __file__[-9]
     print(grp)
-    if not(grp in ["1","2","3","4","5","6","7","8","9","0"]):
+    if not(grp in "1234567890"):
         grp=int(input("Quel est le numéro du groupe? "))
     if con == None:
         engine = create_engine(bdd_links, echo=(False if echo=="False" else True))
@@ -75,7 +75,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     sortie = sortie.replace(" ", "").lower() in ["oui", "yes", "o", "y"]
     if notes == None:
         notes = input("Y a t-il une session avec des notes ? ")
-    notes = notes.replace(" ", "").lower() in ["oui", "yes", "o", "y"]
+    notes = notes.replace(" ", "").lower() in "ouiyes"
 
     ######################################    MED    ######################################
     try:

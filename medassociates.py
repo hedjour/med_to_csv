@@ -43,6 +43,12 @@ def read_folder(path: str = None) -> Generator[dict, None, None]:
     listd = [i for i in listd if "ubject" in i]
     lenfolder = len(listd)
     for i in range(lenfolder):
+        file = open(f"{path}/{listd[i]}", "r")
+        a=file.readline()
+        print(a)
+        if "File" in a:
+            pass
+        file.close()
         dicexperience = read_file(f"{path}/{listd[i]}")
         yield dicexperience
 
