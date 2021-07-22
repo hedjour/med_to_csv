@@ -38,8 +38,8 @@ Vous pouvez utiliser ce programme de différentes façons:
 Dépendances:
 ------------
 Exécutez le script InstallDependencies.sh sur Linux; le script batch pour Windows viendra peut être plus tard.
-
 """
+
 from time import time
 import os
 # from posixpath import realpath
@@ -48,12 +48,12 @@ from sys import argv
 from sqlalchemy import create_engine
 from sqlalchemy.engine.base import Connection
 from param import bdd_links
-
 import file_session_ic as IC
 import file_session_im as IM
 import imetronic as IMET
 import animals_weight as AW
 import medassociates as MED
+
 
 def main(path: str = None, notes: str = None, sortie: str = None, echo = True, number_excel: int = None, con: Connection = None):
     a = time()
@@ -171,7 +171,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER IC DÉTÉCTÉ!")
     engine.dispose()
-
+#%%
 if __name__ == "__main__":
     main(*argv[1:])
 
