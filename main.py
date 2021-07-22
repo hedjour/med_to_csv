@@ -155,7 +155,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
         listd = os.ldir(f"{path}/IC")
         listd = [i for i in listd if i[0] != "."]
         nb_files = len(listd)
-        sessionsIC_infos = IC.get_sessions_ic_info(f"{path}/{ld[number_excel]}", con)
+        sessionsIC_infos = IC.get_sessions_ic_info(f"{path}/{listd[number_excel]}", con)
         for i in range(nb_files):
             dtsp = time()-tim_stamp
             tim_stamp = time()
