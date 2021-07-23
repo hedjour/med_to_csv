@@ -51,7 +51,7 @@ def read_folder(path: str, dfanimals: pd.DataFrame, con: Connection,
         file = open(f"{path}/{listd[number_file]}", "r")
         list_lines = file.readlines()
         if not list_lines[0][0].lower() in "abcdefghijklmnopqrstuvwxyz":
-            list_return = [listd[number_file].split(" ")[-1]] [f"{'/'.join([list_lines[i][:-1] for i in [0,1,2]])}",f"{':'.join([list_lines[i][:-1] for i in [10,11,12]])}"]+ [list_lines[i][:-1] for i in [70, 71, 74] + [i for i in range(80, len(list_lines))]]
+            list_return = [listd[number_file].split(" ")[-1]] + [f"{'/'.join([list_lines[i][:-1] for i in [0,1,2]])}",f"{':'.join([list_lines[i][:-1] for i in [10,11,12]])}"]+ [list_lines[i][:-1] for i in [70, 71, 74] + [i for i in range(80, len(list_lines))]]
         else:
             dicexperience = read_file(f"{path}/{listd[number_file]}")
             list_return = [listd[number_file].split(" ")[-1]] + [dicexperience["Start Date"], dicexperience["Start Time"]] + [dicexperience["Z"][i][:-1] for i in [0, 1, 4] + [i for i in range(10, len(dicexperience["Z"]))]]

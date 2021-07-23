@@ -82,7 +82,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     if notes == None:
         notes = input("Y a t-il une session avec des notes ? ")
     notes = notes.replace(" ", "").lower() in "ouiyes"
-    
+
     ################################      Info_animals     ################################
     try:
         dfanimals = AW.main_weight(f"{path}", id_xp, con=con)
