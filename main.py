@@ -38,8 +38,8 @@ Vous pouvez utiliser ce programme de différentes façons:
 Dépendances:
 ------------
 Exécutez le script InstallDependencies.sh sur Linux; le script batch pour Windows viendra peut être plus tard.
-
 """
+
 from time import time
 import os
 # from posixpath import realpath
@@ -55,6 +55,7 @@ import imetronic as IMET
 import animals_weight as AW
 import medassociates as MED
 import hotpopfield as HF
+
 
 def main(path: str = None, notes: str = None, sortie: str = None, echo = True, number_excel: int = None, con: Connection = None):
     # TODO Demander l'id d'experience
@@ -75,51 +76,58 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     print("connecté! on commence à travailler" if echo else "")
     if sortie == None:
         sortie = input("Y a t-il eu une session où les animaux ne sont pas sortis ? ")
-    sortie = sortie.replace(" ", "").lower() in ["oui", "yes", "o", "y"]
+    sortie = sortie.replace(" ", "").lower() in "ouiyes"
     if notes == None:
         notes = input("Y a t-il une session avec des notes ? ")
-    notes = notes.replace(" ", "").lower() in ["oui", "yes", "o", "y"]
+    notes = notes.replace(" ", "").lower() in "ouiyes"
     
-    ######################################    Info_animals    #############################
+    ################################      Info_animals     ################################
     try:
         dfanimals = AW.main_weight(f"{path}", con=con)
     except FileNotFoundError:
         print("ATTENTION! PAS DE Fichier Excel DÉTÉCTÉ!")
     
-    ##############################    HotPlate / Openfield    #############################
-    opfi = f"""{path}/{[file for file in ldir(f"{path}/openfield/") if file.endswith("XLS")][0]}"""
-    xlsx_file = f"""{path}/{[file for file in ldir(path) if file.endswith("xlsx")][0]}"""
-    HF.main(path_openfile= opfi, path_excel= xlsx_file, dfanimals=dfanimals, con=con)
+
     ######################################    MED    ######################################
     try:
-        listd = os.ldir(f"{path}/med_associate")
+        listd = ldir(f"{path}/med_associate")
         listd = [i for i in listd if i[0] != "."]
         nb_files = len(listd)
         for i in range(nb_files):
             dtsp = time()-tim_stamp
             tim_stamp = time()
-            chn = f"""\n\nMED : {listd[i]} dossier {i}/{nb_files-1}    {"-"*i} {"."*(nb_files-i-1)}
+            chn = f"""\n\nMED : {listd[i]} dossier {i}/{nb_files-1}    {"-"*i}{"."*(nb_files-i-1)}
             Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60} """
             print(chn+"\n"*5)
-            try:
-                for obj in MED.read_folder(f"{path}/med_associate/{listd[i]}/"):
-                    pass
-                    print(obj)
-            except Exception as err:
-                rep = input(
-                    f"Un problème est survenu pendant le traitement des données: \n{err}\n \nVoulez-vous quand même continuer?")
-                if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
-                    raise RuntimeError(
-                        f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {err}")
-    except FileNotFoundError:
-        print("ATTENTION! PAS DE DOSSIER MED DÉTÉCTÉ!")
+            listd2 = ldir(f"{path}/med_associate/{listd[i]}")
+            listd2 = [i for i in listd2 if i[0] != "."]
+            nb_files2 = len(listd2)
+            for j in range(nb_files2):
+                dtsp = time()-tim_stamp
+                tim_stamp = time()
+                test="""\n\nMED : {} dossier {}/{}    {}{}
+{} :  dossier {}/{}    {}{}
+Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_files-i-1),listd[i],
+                    j,nb_files2-1,"-"*j,"."*(nb_files2-j-1),int(dtsp*((nb_files2*nb_files)-i))//60,
+                    int(dtsp*((nb_files2*nb_files)-i))%60,"\n"*2)
+                print(test)
+                try:
+                    MED.read_folder(f"{path}/med_associate/{listd[i]}/{listd2[j]}",dfanimals,con,0)
+                except Exception as err:
+                    rep = input(
+                        f"Un problème est survenu pendant le traitement des données: \n{err}\n \nVoulez-vous quand même continuer?")
+                    if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
+                        raise RuntimeError(
+                            f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {err}")
+    except FileNotFoundError as e:
+        print(f"ATTENTION! PAS DE DOSSIER MED DÉTÉCTÉ!({e})")
 
-    ######################################    IMET    ######################################
+    ######################################    IMET   ######################################
     # On lit le fichier animals et charge les animaux en bdd ainsi que leur poids
     try:
         # Import de toutes les données Imetronics :
         IMET.imetronic_insert(f"{path}/imetronic", dfanimals, con)
-        ld = os.ldir(path)
+        ld = ldir(path)
         if number_excel == None:
             number_excel = input(
                 f"""Quel fichier excel correspond au groupe {grp}?{[f"{i}:{ld[i]}" for i in range(
@@ -128,9 +136,14 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
 
-    ######################################    IM    ######################################
+    #############################     HotPlate / Openfield    #############################
+    opfi = f"""{path}/{[file for file in ldir(f"{path}/openfield/") if file.endswith("XLS")][0]}"""
+    xlsx_file = f"""{path}/{[file for file in ldir(path) if file.endswith("xlsx")][0]}"""
+    HF.main(path_openfile= opfi, path_excel= xlsx_file, dfanimals=dfanimals, con=con)
+
+    ######################################     IM    ######################################
     try:
-        listd = os.ldir(f"{path}/IM")
+        listd = ldir(f"{path}/IM")
         listd = [i for i in listd if i[0] != "."]
         nb_files = len(listd)
         dfanimalscopyIM = dfanimals[["RFID", "animal_name", "groupe", "animal_id"]]
@@ -154,10 +167,10 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER IM DÉTÉCTÉ!")
 
-    ######################################    IC    ######################################
-#TODO FIXME REPRENDRE CETTE PARTIE
+    ######################################    IC     ######################################
+    #TODO FIXME REPRENDRE CETTE PARTIE
     try:
-        listd = os.ldir(f"{path}/IC")
+        listd = ldir(f"{path}/IC")
         listd = [i for i in listd if i[0] != "."]
         nb_files = len(listd)
         sessionsIC_infos = IC.get_sessions_ic_info(f"{path}/{ld[number_excel]}", con)
@@ -172,7 +185,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
                     #! NEED to be test
                     #HACK
                     dfanimalscopyIM = IC.read_folder_session_ic( sessions_infos= sessionsIC_infos,
-                        path = f"{path}/IC/{listd[i]}/", con = con, id_xp = , 
+                        path = f"{path}/IC/{listd[i]}/", con = con, id_xp = 1,
                         dfanimals = dfanimals, chn = chn)
             except Exception as err:
                 rep = input(
@@ -184,6 +197,6 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
         print("ATTENTION! PAS DE DOSSIER IC DÉTÉCTÉ!")
     engine.dispose()
 
+
 if __name__ == "__main__":
     main(*argv[1:])
-
