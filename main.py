@@ -125,21 +125,24 @@ Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_fi
         print(f"ATTENTION! PAS DE DOSSIER MED DÉTÉCTÉ!({e})")
 
     ######################################    IMET    ######################################
-    try:
-        IMET.imetronic_insert(f"{path}/imetronic", dfanimals, con)
-        ld = ldir(path)
-        if number_excel == None:
-            number_excel = input(
-                f"""Quel fichier excel correspond au groupe {grp}?{[f"{i}:{ld[i]}" for i in range(
-                    len(ld))]}""")
-        number_excel = int(number_excel)
-    except FileNotFoundError:
-        print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
+    # try:
+    #     IMET.imetronic_insert(f"{path}/imetronic", dfanimals, con)
+    #     ld = ldir(path)
+    #     if number_excel == None:
+    #         number_excel = input(
+    #             f"""Quel fichier excel correspond au groupe {grp}?{[f"{i}:{ld[i]}" for i in range(
+    #                 len(ld))]}""")
+    #     number_excel = int(number_excel)
+    # except FileNotFoundError:
+    #     print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
 
     #############################     HotPlate / Openfield    #############################
-    opfi = f"""{path}/{[file for file in ldir(f"{path}/openfield/") if file.endswith("XLS")][0]}"""
-    xlsx_file = f"""{path}/{[file for file in ldir(path) if file.endswith("xlsx")][0]}"""
-    HF.main(path_openfile= opfi, path_excel= xlsx_file, dfanimals=dfanimals, con=con)
+    try:
+        opfi = f"""{path}/openfield/{[file for file in ldir(f"{path}/openfield/") if file.endswith("XLS")][0]}"""
+        xlsx_file = f"""{path}/{[file for file in ldir(path) if file.endswith("xlsx")][0]}"""
+        HF.main(path_openfile= opfi, path_excel= xlsx_file, dfanimals=dfanimals, con=con)
+    except FileNotFoundError:
+        print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
 
     ######################################     IM    ######################################
     try:
