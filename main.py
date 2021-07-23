@@ -87,6 +87,8 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     ######################################    Info_animals    #############################
     try:
         dfanimals = AW.main_weight(f"{path}", con=con)
+        #!rename here dfanimals.id en dfanimals.animal_id
+        # dfanimals.rename(columns={"id":"animal_id"})
     except FileNotFoundError:
         print("ATTENTION! PAS DE Fichier Excel DÉTÉCTÉ!")
     
