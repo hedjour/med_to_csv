@@ -87,7 +87,6 @@ def read_folder(path: str, dfanimals: pd.DataFrame, con: Connection,
             listaa.append(aa_relapse)       #opti : sortir de la boucle, comme constante
             listname.append(list_return[0]) #opti : sortir de la boucle, comme constante
         df_return = pd.DataFrame(list(zip(listevents[0:], listaa[0:], listname[0:])), columns=["dateT",
-            "aa_relapse", "animal_name"]).merge(dfanimals,
-            on="animal_name").rename(columns={"ID":"animal_id"})
+            "aa_relapse", "animal_name"]).merge(dfanimals, on="animal_name")
         df_return[["animal_id", "dateT", "aa_relapse"]][1:].to_sql("aa_kinetics", con=con, if_exists="append",index=False)
         con.execute(f"""INSERT INTO aa_vars(animal_id, nb_inj, dateT, aa_relapse) VALUES ('{df_return.at[0, "animal_id"]}', '{list_return[3]}', '{listevents[0]}', '{aa_relapse}')""")
