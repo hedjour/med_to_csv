@@ -55,6 +55,7 @@ import imetronic as IMET
 import animals_weight as AW
 import medassociates as MED
 import hotpopfield as HF
+import experiment as EXP
 
 
 def main(path: str = None, notes: str = None, sortie: str = None, echo = True, number_excel: int = None, con: Connection = None):
@@ -63,9 +64,6 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     if path == None:
         path = input(
             "Quel est le chemin qui amène au dossier? (ex:\"/home/user/fill_bdd_phenoworld/Groupe-1/\") ")
-    #! Add id_xp
-    id_xp = 1 #!DELETE ME
-    
     if path != "":
         grp = path.replace("/", "")[-1]
     else:
@@ -77,6 +75,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
         engine = create_engine(bdd_links, echo=(False if echo=="False" else True))
         con = engine.connect()
     print("connecté! on commence à travailler" if echo else "")
+    id_xp = EXP.ask_exp_id(con)
     if sortie == None:
         sortie = input("Y a t-il eu une session où les animaux ne sont pas sortis ? ")
     sortie = sortie.replace(" ", "").lower() in ["oui", "yes", "o", "y"]
@@ -87,8 +86,8 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     ######################################    Info_animals    #############################
     try:
         dfanimals = AW.main_weight(f"{path}", con=con)
-        #!rename here dfanimals.id en dfanimals.animal_id
-        # dfanimals.rename(columns={"id":"animal_id"})
+        #!rename here dfanimals.ID en dfanimals.animal_id
+        # dfanimals.rename(columns={"ID":"animal_id"})
     except FileNotFoundError:
         print("ATTENTION! PAS DE Fichier Excel DÉTÉCTÉ!")
     
