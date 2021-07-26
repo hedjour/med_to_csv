@@ -48,14 +48,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.engine.base import Connection
 from param import bdd_links
 from os import listdir as ldir
-# ?Doit on importer que les fonctions dont on a besoin ?
 import file_session_ic as IC
-import file_session_im as IM
-import imetronic as IMET
-import animals_weight as AW
-import medassociates as MED
-import hotpopfield as HF
-import experiment as EXP
+from file_session_im import readfoldersessionIM
+from imetronic import imetronic_insert
+from animals_weight import main_weight
+from medassociates import read_folder
+from hotpopfield import insert_hp_of
+from experiment import ask_exp_id
 
 
 def main(path: str = None, notes: str = None, sortie: str = None, echo = True, number_excel: int = None, con: Connection = None):
@@ -75,7 +74,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
         engine = create_engine(bdd_links, echo=(False if echo=="False" else True))
         con = engine.connect()
     print("connecté! on commence à travailler" if echo else "")
-    id_xp = EXP.ask_exp_id(con)
+    id_xp = ask_exp_id(con)
     if sortie == None:
         sortie = input("Y a t-il eu une session où les animaux ne sont pas sortis ? ")
     sortie = sortie.replace(" ", "").lower() in "ouiyes"
@@ -85,7 +84,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
 
     ################################      Info_animals     ################################
     try:
-        dfanimals = AW.main_weight(f"{path}", id_xp, con=con)
+        dfanimals = main_weight(f"{path}", id_xp, con=con)
         dfanimals.rename(columns={"ID":"animal_id"},inplace=True)
     except FileNotFoundError:
         print("ATTENTION! PAS DE Fichier Excel DÉTÉCTÉ!")
@@ -114,7 +113,7 @@ Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_fi
                     int(dtsp*((nb_files2*nb_files)-i))%60,"\n"*2)
                 print(test)
                 try:
-                    MED.read_folder(f"{path}/med_associate/{listd[i]}/{listd2[j]}",dfanimals,con,0)
+                    read_folder(f"{path}/med_associate/{listd[i]}/{listd2[j]}",dfanimals,con,0)
                 except Exception as err:
                     rep = input(
                         f"Un problème est survenu pendant le traitement des données: \n{err}\n \nVoulez-vous quand même continuer?")
@@ -125,24 +124,24 @@ Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_fi
         print(f"ATTENTION! PAS DE DOSSIER MED DÉTÉCTÉ!({e})")
 
     ######################################    IMET    ######################################
-    # try:
-    #     IMET.imetronic_insert(f"{path}/imetronic", dfanimals, con)
+    try:
+        imetronic_insert(f"{path}/imetronic", dfanimals, con)
     #     ld = ldir(path)
     #     if number_excel == None:
     #         number_excel = input(
     #             f"""Quel fichier excel correspond au groupe {grp}?{[f"{i}:{ld[i]}" for i in range(
     #                 len(ld))]}""")
     #     number_excel = int(number_excel)
-    # except FileNotFoundError:
-    #     print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
+    except FileNotFoundError:
+        print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
 
     #############################     HotPlate / Openfield    #############################
     try:
         opfi = f"""{path}/openfield/{[file for file in ldir(f"{path}/openfield/") if file.endswith("XLS")][0]}"""
         xlsx_file = f"""{path}/{[file for file in ldir(path) if file.endswith("xlsx")][0]}"""
-        HF.main(path_openfile= opfi, path_excel= xlsx_file, dfanimals=dfanimals, con=con)
+        insert_hp_of(path_openfile= opfi, path_excel= xlsx_file, dfanimals=dfanimals, con=con)
     except FileNotFoundError:
-        print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
+        print("ATTENTION! PAS DE DOSSIER OPENFIELD DÉTÉCTÉ!")
 
     ######################################     IM    ######################################
     try:
@@ -159,7 +158,7 @@ Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_fi
             print(chn+"\n"*5)
             try:
                 if IC.notempty_phw_file(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
-                    dfanimalscopyIM = IM.readfoldersessionIM(
+                    dfanimalscopyIM = readfoldersessionIM(
                         f"{path}/IM/{listd[i]}/", con, grp, dfanimalscopyIM, chn, sortie, notes)
             except Exception as err:
                 rep = input(
