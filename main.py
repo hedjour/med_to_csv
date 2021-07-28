@@ -107,8 +107,8 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
                 dtsp = time()-tim_stamp
                 tim_stamp = time()
                 test="""\n\nMED : {} dossier {}/{}    {}{}
-{} :  dossier {}/{}    {}{}
-Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_files-i-1),listd[i],
+                            {} :  dossier {}/{}    {}{}
+                Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_files-i-1),listd[i],
                     j,nb_files2-1,"-"*j,"."*(nb_files2-j-1),int(dtsp*((nb_files2*nb_files)-i))//60,
                     int(dtsp*((nb_files2*nb_files)-i))%60,"\n"*2)
                 print(test)
@@ -149,7 +149,7 @@ Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_fi
         listd = [i for i in listd if i[0] != "."]
         nb_files = len(listd)
         dfanimalscopyIM = dfanimals[["RFID", "animal_name", "groupe", "animal_id"]]
-        dfanimalscopyIM = dfanimalscopyIM.rename({"animal_name":"name","animal_id":"id"}) #!DELETE THIS Later
+        #dfanimalscopyIM = dfanimalscopyIM.rename({"animal_name":"name","animal_id":"id"}) #!DELETE THIS Later
         for i in range(nb_files):
             dtsp = time()-tim_stamp
             tim_stamp = time()
@@ -159,7 +159,7 @@ Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_fi
             try:
                 if IC.notempty_phw_file(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
                     dfanimalscopyIM = readfoldersessionIM(
-                        f"{path}/IM/{listd[i]}/", con, grp, dfanimalscopyIM, chn, sortie, notes)
+                        f"{path}/IM/{listd[i]}/", con, dfanimalscopyIM, chn, sortie, notes)
             except Exception as err:
                 rep = input(
                     f"Un problème est survenu pendant le traitement des données: \n{err}\n \nVoulez-vous quand même continuer?")
