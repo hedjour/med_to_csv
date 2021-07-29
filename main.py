@@ -58,11 +58,11 @@ from experiment import ask_exp_id
 
 
 def main(path: str = None, notes: str = None, sortie: str = None, echo = True, number_excel: int = None, con: Connection = None):
-    # TODO Demander l'id d'experience
     tim_stamp = time()
     if path == None:
         path = input(
             "Quel est le chemin qui amène au dossier? (ex:\"/home/user/fill_bdd_phenoworld/Groupe-1/\") ")
+    #TODO remove group after making sure it is not used anymore
     if path != "":
         grp = path.replace("/", "")[-1]
     else:
