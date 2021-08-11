@@ -20,7 +20,7 @@ Vous pouvez utiliser ce programme de différentes façons:
      terminal python qui s'ouvrira pour les inputs
     - Lancez ce programme en lignes de commandes dans un terminal sur Linux. Selon votre
      installation, vous pourriez utiliser la commande suivante:
-     `$/usr/bin/python3 /home/mat/Documents/python/fill_bdd_phenoworld/main.py`
+     `$/usr/bin/python3 ./fill_bdd_phenoworld/main.py`
      suivie des paramètres.
         Les paramètres (optionnels) sont :
             - le chemin vers le dossier contenant les informations sur votre groupe de rats (de la
@@ -37,7 +37,7 @@ Vous pouvez utiliser ce programme de différentes façons:
 
 Dépendances:
 ------------
-Exécutez le script InstallDependencies.sh sur Linux; le script batch pour Windows viendra peut être plus tard.
+Exécutez le script InstallDependencies.sh sur Linux ou Mac (Une fois xcode installé); le script batch pour Windows viendra peut être plus tard.
 """
 
 from time import time
@@ -126,12 +126,6 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     ######################################    IMET    ######################################
     try:
         imetronic_insert(f"{path}/imetronic", dfanimals, con)
-    #     ld = ldir(path)
-    #     if number_excel == None:
-    #         number_excel = input(
-    #             f"""Quel fichier excel correspond au groupe {grp}?{[f"{i}:{ld[i]}" for i in range(
-    #                 len(ld))]}""")
-    #     number_excel = int(number_excel)
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
 
@@ -171,6 +165,17 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
 
     ######################################    IC    ######################################
     try:
+        ld = ldir(path)
+        if number_excel == None:
+            #!Ajouter ici un choix sur l'ensemble des xlsx du dossier si y en a plus d'un
+            xlsx_f = f"""{path}/{[file for file in ldir(path) if file.endswith("xlsx")][0]}"""
+            number_excel = 0 
+            if len(xlsx_f) > 1 :
+                number_excel = input(
+                    f"""Quel fichier excel correspond au groupe {grp}?{[f"{i}:{ld[i]}" for i in range(
+                        len(ld))]}""")
+        
+        number_excel = int(number_excel)
         listd = ldir(f"{path}/IC")
         listd = [i for i in listd if i[0] != "."]
         nb_files = len(listd)
