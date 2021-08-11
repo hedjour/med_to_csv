@@ -107,8 +107,8 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
                 dtsp = time()-tim_stamp
                 tim_stamp = time()
                 test="""\n\nMED : {} dossier {}/{}    {}{}
-                            {} :  dossier {}/{}    {}{}
-                Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_files-i-1),listd[i],
+{} :  dossier {}/{}    {}{}
+Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_files-i-1),listd[i],
                     j,nb_files2-1,"-"*j,"."*(nb_files2-j-1),int(dtsp*((nb_files2*nb_files)-i))//60,
                     int(dtsp*((nb_files2*nb_files)-i))%60,"\n"*2)
                 print(test)
