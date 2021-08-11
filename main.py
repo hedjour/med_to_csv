@@ -62,14 +62,6 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     if path == None:
         path = input(
             "Quel est le chemin qui amène au dossier? (ex:\"/home/user/fill_bdd_phenoworld/Groupe-1/\") ")
-    #TODO remove group after making sure it is not used anymore
-    if path != "":
-        grp = path.replace("/", "")[-1]
-    else:
-        grp = __file__[-9]
-    print(grp)
-    if not(grp in "1234567890"):
-        grp=int(input("Quel est le numéro du groupe? "))
     if con == None:
         engine = create_engine(bdd_links, echo=not(echo=="False"))
         con = engine.connect()
@@ -84,7 +76,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
 
     ################################      Info_animals     ################################
     try:
-        dfanimals = main_weight(f"{path}", id_xp, con=con)
+        dfanimals, grp = main_weight(f"{path}", id_xp, con=con)
         dfanimals.rename(columns={"ID":"animal_id"},inplace=True)
     except FileNotFoundError:
         print("ATTENTION! PAS DE Fichier Excel DÉTÉCTÉ!")
