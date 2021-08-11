@@ -71,7 +71,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
     if not(grp in "1234567890"):
         grp=int(input("Quel est le numéro du groupe? "))
     if con == None:
-        engine = create_engine(bdd_links, echo=(False if echo=="False" else True))
+        engine = create_engine(bdd_links, echo=not(echo=="False"))
         con = engine.connect()
     print("connecté! on commence à travailler" if echo else "")
     id_xp = ask_exp_id(con)
@@ -154,7 +154,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
             dtsp = time()-tim_stamp
             tim_stamp = time()
             chn = f"""\n\nIM : {listd[i]} dossier {i}/{nb_files-1}    {"-"*i} {"."*(nb_files-i-1)}
-            Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60} """
+Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60} """
             print(chn+"\n"*5)
             try:
                 if IC.notempty_phw_file(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
