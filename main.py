@@ -158,16 +158,13 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
     ######################################    IC    ######################################
     try:
         ld = ldir(path)
-        if number_excel == None:
-            #!Ajouter ici un choix sur l'ensemble des xlsx du dossier si y en a plus d'un
-            xlsx_f = f"""{path}/{[file for file in ldir(path) if file.endswith("xlsx")][0]}"""
-            number_excel = 0 
+        if number_excel is None:
+            xlsx_f = [file for file in ldir(path) if file.endswith("xlsx")]
+            number_excel = 0
             if len(xlsx_f) > 1 :
-                number_excel = input(
-                    f"""Quel fichier excel correspond au groupe {grp}?{[f"{i}:{ld[i]}" for i in range(
-                        len(ld))]}""")
-        
-        number_excel = int(number_excel)
+                number_excel = int( input(
+                    f"""Quel fichier excel correspond au groupe {grp}?
+                    {[f"{i}:{ld[i]}" for i in range(len(ld))]}""") )
         listd = ldir(f"{path}/IC")
         listd = [i for i in listd if i[0] != "."]
         nb_files = len(listd)
