@@ -156,7 +156,6 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
 
     ######################################    IC    ######################################
     try:
-        ld = ldir(path)
         listd = ldir(f"{path}/IC")
         listd = [i for i in listd if i[0] != "."]
         nb_files = len(listd)
