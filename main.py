@@ -51,13 +51,12 @@ from os import listdir as ldir
 import file_session_ic as IC
 from file_session_im import readfoldersessionIM
 from imetronic import imetronic_insert
-from animals_weight import main_weight
+from animals_weight import main_weight, getexcelpath
 from medassociates import read_folder
 from hotpopfield import insert_hp_of
 from experiment import ask_exp_id
-
-
-def main(path: str = None, notes: str = None, sortie: str = None, echo = True, number_excel: int = None, con: Connection = None):
+    
+def main(path: str = None, notes: str = None, sortie: str = None, echo = True, con: Connection = None):
     tim_stamp = time()
     if path == None:
         path = input(
@@ -76,7 +75,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
 
     ################################      Info_animals     ################################
     try:
-        dfanimals, grp = main_weight(f"{path}", id_xp, con=con)
+        dfanimals, grp, xlspath = main_weight(f"{path}", id_xp, con=con)
         dfanimals.rename(columns={"ID":"animal_id"},inplace=True)
     except FileNotFoundError:
         print("ATTENTION! PAS DE Fichier Excel DÉTÉCTÉ!")
@@ -158,17 +157,10 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
     ######################################    IC    ######################################
     try:
         ld = ldir(path)
-        if number_excel is None:
-            xlsx_f = [file for file in ldir(path) if file.endswith("xlsx")]
-            number_excel = 0
-            if len(xlsx_f) > 1 :
-                number_excel = int( input(
-                    f"""Quel fichier excel correspond au groupe {grp}?
-                    {[f"{i}:{ld[i]}" for i in range(len(ld))]}""") )
         listd = ldir(f"{path}/IC")
         listd = [i for i in listd if i[0] != "."]
         nb_files = len(listd)
-        sessionsIC_infos = IC.get_sessions_ic_info(f"{path}/{listd[number_excel]}", con)
+        sessionsIC_infos = IC.get_sessions_ic_info( xlspath, con)
         for i in range(nb_files):
             dtsp = time()-tim_stamp
             tim_stamp = time()
