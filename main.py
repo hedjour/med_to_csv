@@ -63,7 +63,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, n
         path = input(
             "Quel est le chemin qui amène au dossier? (ex:\"/home/user/fill_bdd_phenoworld/Groupe-1/\") ")
     if con == None:
-        engine = create_engine(bdd_links, echo=not(echo=="False"))
+        engine = create_engine(bdd_links, echo=not(echo=="False")) #not: pour avoir un type bool
         con = engine.connect()
     print("connecté! on commence à travailler" if echo else "")
     id_xp = ask_exp_id(con)
