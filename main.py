@@ -83,7 +83,7 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, c
             raise Exception(f"USER Error : These directories : {infos} is not mentionned in XLSX file")
     except FileNotFoundError:
         print("ATTENTION! PAS DE Fichier Excel DÉTÉCTÉ!")
-
+    print(f"On attaque la saisie du groupe {grp}")
 #     ######################################    MED    ######################################
 #     try:
 #         listd = ldir(f"{path}/med_associate")
