@@ -129,6 +129,7 @@ Temps restant estimé: {}:{}{}""".format(listd[i], i, nb_files-1, "-"*i, "."*(nb
     clear_console()
 
     #############################     HotPlate / Openfield    #############################
+    print(f"Hotplate / Openfield")
     try:
         opfi = f"""{path}/openfield/{[file for file in ldir(f"{path}/openfield/") if file.endswith("XLS")][0]}"""
         xlsx_file = f"""{path}/{[file for file in ldir(path) if file.endswith("xlsx")][0]}"""
@@ -138,6 +139,7 @@ Temps restant estimé: {}:{}{}""".format(listd[i], i, nb_files-1, "-"*i, "."*(nb
     clear_console()
 
     ######################################     IM    ######################################
+    print("Intelimaze")
     try:
         listd = ldir(f"{path}/IM")
         listd = [i for i in listd if i[0] != "."]
@@ -166,6 +168,7 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
     clear_console()
 
     ######################################    IC    ######################################
+    print("IntelliCage")
     try:
         listd = ldir(f"{path}/IC")
         listd = [i for i in listd if i[0] != "."]
