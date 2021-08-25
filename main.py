@@ -41,46 +41,48 @@ Exécutez le script InstallDependencies.sh sur Linux ou Mac (Une fois xcode inst
 """
 
 from time import time
-import os
 # from posixpath import realpath
 from sys import argv
+from os import listdir as ldir, system, name
 from sqlalchemy import create_engine
 from sqlalchemy.engine.base import Connection
 from param import bdd_links
-from os import listdir as ldir
 import file_session_ic as IC
 from file_session_im import readfoldersessionIM
 from imetronic import imetronic_insert
-from animals_weight import main_weight, getexcelpath
+from animals_weight import main_weight
 from medassociates import read_folder
 from hotpopfield import insert_hp_of
 from experiment import ask_exp_id
-    
-def main(path: str = None, notes: str = None, sortie: str = None, echo = True, con: Connection = None):
+
+def clear_console():
+    """Clean the affichage"""
+    system('cls' if name in ('nt', 'dos') else 'clear')
+
+def main(path: str=None, notes: str=None, sortie: str=None, echo=True, con: Connection=None):
+    """main function"""
     tim_stamp = time()
-    if path == None:
-        path = input(
-            "Quel est le chemin qui amène au dossier? (ex:\"/home/user/fill_bdd_phenoworld/Groupe-1/\") ")
-    if con == None:
-        engine = create_engine(bdd_links, echo=not(echo=="False")) #not: pour avoir un type bool
+    if path is None:
+        path = input( f"""Quel est le chemin qui amène au dossier?
+            (ex:\"/home/user/fill_bdd_phenoworld/Groupe-1/\") """)
+    if con is None:
+        engine = create_engine(bdd_links, echo=echo != "False") #not: pour avoir un type bool
         con = engine.connect()
-    print("connecté! on commence à travailler" if echo else "")
+    print("Connecté! on commence à travailler" if echo else "")
     id_xp = ask_exp_id(con)
-    if sortie == None:
+    if sortie is None:
         sortie = input("Y a t-il eu une session où les animaux ne sont pas sortis ? ")
     sortie = sortie.replace(" ", "").lower() in "ouiyes"
-    if notes == None:
+    if notes is None:
         notes = input("Y a t-il une session avec des notes ? ")
     notes = notes.replace(" ", "").lower() in "ouiyes"
 
     ################################      Info_animals     ################################
     try:
         dfanimals, grp, xlspath = main_weight(f"{path}", id_xp, con=con)
-        dfanimals.rename(columns={"ID":"animal_id"},inplace=True)
-        sessions_infos = IC.get_sessions_ic_info( xlspath, con)
-        bol , infos = IC.check_ic_infos(sessions_infos, ld = ldir(f"{path}/IC"))
-        if bol:
-            raise Exception(f"USER Error : These directories : {infos} is not mentionned in XLSX file")
+        dfanimals.rename(columns={"ID":"animal_id"}, inplace=True)
+        sessions_infos = IC.get_sessions_ic_info(xlspath, con)
+        IC.check_clean_ic(path, sessions_infos)
     except FileNotFoundError:
         print("ATTENTION! PAS DE Fichier Excel DÉTÉCTÉ!")
     print(f"On attaque la saisie du groupe {grp}")
@@ -101,14 +103,14 @@ def main(path: str = None, notes: str = None, sortie: str = None, echo = True, c
             for j in range(nb_files2):
                 dtsp = time()-tim_stamp
                 tim_stamp = time()
-                test="""\n\nMED : {} dossier {}/{}    {}{}
+                test = """\n\nMED : {} dossier {}/{}    {}{}
 {} :  dossier {}/{}    {}{}
-Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_files-i-1),listd[i],
-                    j,nb_files2-1,"-"*j,"."*(nb_files2-j-1),int(dtsp*((nb_files2*nb_files)-i))//60,
-                    int(dtsp*((nb_files2*nb_files)-i))%60,"\n"*2)
+Temps restant estimé: {}:{}{}""".format(listd[i], i, nb_files-1, "-"*i, "."*(nb_files-i-1), listd[i],
+                    j, nb_files2-1, "-"*j, "."*(nb_files2-j-1), int(dtsp*((nb_files2*nb_files)-i))//60,
+                    int(dtsp*((nb_files2*nb_files)-i))%60, "\n"*2)
                 print(test)
                 try:
-                    read_folder(f"{path}/med_associate/{listd[i]}/{listd2[j]}",dfanimals,con,0)
+                    read_folder(f"{path}/med_associate/{listd[i]}/{listd2[j]}", dfanimals, con, 0)
                 except Exception as err:
                     rep = input(
                         f"Un problème est survenu pendant le traitement des données: \n{err}\n \nVoulez-vous quand même continuer?")
@@ -117,20 +119,23 @@ Temps restant estimé : {}:{}{}""".format(listd[i],i,nb_files-1,"-"*i,"."*(nb_fi
                             f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {err}")
     except FileNotFoundError as e:
         print(f"ATTENTION! PAS DE DOSSIER MED DÉTÉCTÉ!({e})")
+    clear_console()
 
     ######################################    IMET    ######################################
     try:
         imetronic_insert(f"{path}/imetronic", dfanimals, con)
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER IMET DÉTÉCTÉ!")
+    clear_console()
 
     #############################     HotPlate / Openfield    #############################
     try:
         opfi = f"""{path}/openfield/{[file for file in ldir(f"{path}/openfield/") if file.endswith("XLS")][0]}"""
         xlsx_file = f"""{path}/{[file for file in ldir(path) if file.endswith("xlsx")][0]}"""
-        insert_hp_of(path_openfile= opfi, path_excel= xlsx_file, dfanimals=dfanimals, con=con)
+        insert_hp_of(path_openfile=opfi, path_excel=xlsx_file, dfanimals=dfanimals, con=con)
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER OPENFIELD DÉTÉCTÉ!")
+    clear_console()
 
     ######################################     IM    ######################################
     try:
@@ -149,6 +154,7 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
                 if IC.notempty_phw_file(f"{path}/IM/{listd[i]}/AntennaReader/Antenna.txt"):
                     dfanimalscopyIM = readfoldersessionIM(
                         f"{path}/IM/{listd[i]}/", con, dfanimalscopyIM, chn, sortie, notes)
+                #TODO else remove directory maybe make this at start.
             except Exception as err:
                 rep = input(
                     f"Un problème est survenu pendant le traitement des données: \n{err}\n \nVoulez-vous quand même continuer?")
@@ -157,6 +163,7 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
                         f"Vous avez choisi d'arreter l'éxécution après l'erreur suivante:\n {err}")
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER IM DÉTÉCTÉ!")
+    clear_console()
 
     ######################################    IC    ######################################
     try:
@@ -170,9 +177,8 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
             Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60} """
             print(chn+"\n"*5)
             try:
-                if IC.notempty_phw_file(f"{path}/IC/{listd[i]}/IntelliCage/Visits.txt"):
-                    IC.read_folder_session_ic(sessions_infos=sessions_infos, con=con,
-                            path=f"{path}/IC/{listd[i]}/", dfanimals=dfanimals, chn=chn)
+                IC.read_folder_session_ic(sessions_infos=sessions_infos, con=con,
+                    path=f"{path}/IC/{listd[i]}/", dfanimals=dfanimals, chn=chn)
             except Exception as err:
                 rep = input(
                     f"Un problème est survenu pendant le traitement des données: \n{err}\n \nVoulez-vous quand même continuer?")
@@ -182,6 +188,7 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER IC DÉTÉCTÉ!")
     engine.dispose()
+    print("Tout c'est bien passé enjoy pour l'analyse moi je retourne me coucher.")
 
 
 if __name__ == "__main__":
