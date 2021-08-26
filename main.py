@@ -88,8 +88,7 @@ def main(path: str=None, notes: str=None, sortie: str=None, echo=True, con: Conn
     print(f"On attaque la saisie du groupe {grp}")
     ######################################    MED    ######################################
     try:
-        listd = ldir(f"{path}/med_associate")
-        listd = [i for i in listd if i[0] != "."]
+        listd = [i for i in ldir(f"{path}/med_associate") if i[0] != "."] #Listdir whithout dotfile
         nb_files = len(listd)
         for i in range(nb_files):
             dtsp = time()-tim_stamp
@@ -141,8 +140,7 @@ Temps restant estimé: {}:{}{}""".format(listd[i], i, nb_files-1, "-"*i, "."*(nb
     ######################################     IM    ######################################
     print("Intelimaze")
     try:
-        listd = ldir(f"{path}/IM")
-        listd = [i for i in listd if i[0] != "."]
+        listd = [i for i in ldir(f"{path}/IM") if i[0] != "."]
         nb_files = len(listd)
         dfanimalscopyIM = dfanimals[["RFID", "animal_name", "groupe", "animal_id"]]
         #dfanimalscopyIM = dfanimalscopyIM.rename({"animal_name":"name","animal_id":"id"}) #!DELETE THIS Later
@@ -170,8 +168,7 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
     ######################################    IC    ######################################
     print("IntelliCage")
     try:
-        listd = ldir(f"{path}/IC")
-        listd = [i for i in listd if i[0] != "."]
+        listd = [i for i in ldir(f"{path}/IC") if i[0] != "."]
         nb_files = len(listd)
         for i in range(nb_files):
             dtsp = time()-tim_stamp
