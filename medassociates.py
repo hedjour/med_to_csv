@@ -12,7 +12,6 @@ Fichiers lus:
 from os import listdir
 from typing import Generator
 from sqlalchemy.engine.base import Connection  # typage
-
 import pandas as pd
 
 def read_file(path_to_file: str = "testfile.Subject 1") -> dict:
@@ -41,20 +40,27 @@ def read_file(path_to_file: str = "testfile.Subject 1") -> dict:
         num += 1
     return dic_return
 
-def read_folder(path: str, dfanimals: pd.DataFrame, con: Connection,
+def read_folder(path_folder: str, dfanimals: pd.DataFrame, con: Connection,
                 aa_relapse: int = 0) -> Generator[dict, None, None]:
     "Fonction qui lance la lecture de chaque fichier texte du dossier"
-    listd = listdir(f"{path}/")
+    listd = listdir(f"{path_folder}/")
     listd = [i for i in listd if "ubject" in i]
     lenfolder = len(listd)
     for number_file in range(lenfolder):
-        file = open(f"{path}/{listd[number_file]}", "r")
+        print(f"File: {number_file}/{lenfolder}")
+        file = open(f"{path_folder}/{listd[number_file]}", "r")
         list_lines = file.readlines()
         if not list_lines[0][0].lower() in "abcdefghijklmnopqrstuvwxyz":
-            list_return = [listd[number_file].split(" ")[-1]] + [f"{'/'.join([list_lines[i][:-1] for i in [0,1,2]])}",f"{':'.join([list_lines[i][:-1] for i in [10,11,12]])}"]+ [list_lines[i][:-1] for i in [70, 71, 74] + [i for i in range(80, len(list_lines))]]
+            list_return = [listd[number_file].split(" ")[-1]] +\
+                        [f"{'/'.join([list_lines[i][:-1] for i in [0,1,2]])}",f"{':'.join([list_lines[i][:-1] for i in [10,11,12]])}"]+\
+                        [list_lines[i][:-1] for i in [70, 71, 74] +\
+                        [i for i in range(80, len(list_lines))]]
         else:
-            dicexperience = read_file(f"{path}/{listd[number_file]}")
-            list_return = [listd[number_file].split(" ")[-1]] + [dicexperience["Start Date"], dicexperience["Start Time"]] + [dicexperience["Z"][i][:-1] for i in [0, 1, 4] + [i for i in range(10, len(dicexperience["Z"]))]]
+            dicexperience = read_file(f"{path_folder}/{listd[number_file]}")
+            list_return = [listd[number_file].split(" ")[-1]] +\
+                        [dicexperience["Start Date"], dicexperience["Start Time"]] +\
+                        [dicexperience["Z"][i][:-1] for i in [0, 1, 4] +\
+                        [i for i in range(10, len(dicexperience["Z"]))]]
         file.close()
         while list_return[-1] in "0.000" and len(list_return) > 6:
             list_return = list_return[:-1]
