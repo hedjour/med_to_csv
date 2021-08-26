@@ -46,7 +46,7 @@ from sys import argv
 from os import listdir as ldir, system, name
 from sqlalchemy import create_engine
 from sqlalchemy.engine.base import Connection
-from param import bdd_links
+from param import BDD_LINKS
 import file_session_ic as IC
 from file_session_im import readfoldersessionIM
 from imetronic import imetronic_insert
@@ -66,7 +66,7 @@ def main(path: str=None, notes: str=None, sortie: str=None, echo=True, con: Conn
         path = input( f"""Quel est le chemin qui amène au dossier?
             (ex:\"/home/user/fill_bdd_phenoworld/Groupe-1/\") """)
     if con is None:
-        engine = create_engine(bdd_links, echo=echo != "False") #not: pour avoir un type bool
+        engine = create_engine(BDD_LINKS, echo=echo != "False") #not: pour avoir un type bool
         con = engine.connect()
     print("Connecté! on commence à travailler" if echo else "")
     id_xp = ask_exp_id(con)
