@@ -40,8 +40,8 @@ Dépendances:
 Exécutez le script InstallDependencies.sh sur Linux ou Mac (Une fois xcode installé); le script batch pour Windows viendra peut être plus tard.
 """
 
+import argparse
 from time import time
-# from posixpath import realpath
 from sys import argv
 from os import listdir as ldir, system, name
 from sqlalchemy import create_engine
@@ -59,23 +59,27 @@ def clear_console():
     """Clean the affichage"""
     system('cls' if name in ('nt', 'dos') else 'clear')
 
-def main(path: str=None, notes: str=None, sortie: str=None, echo=True, con: Connection=None):
+def main(path: str=None, notes: bool=None, sortie: bool=None, echo: bool=True):
     """main function"""
     tim_stamp = time()
     if path is None:
         path = input( f"""Quel est le chemin qui amène au dossier?
             (ex:\"/home/user/fill_bdd_phenoworld/Groupe-1/\") """)
-    if con is None:
-        engine = create_engine(BDD_LINKS, echo=echo != "False") #not: pour avoir un type bool
+    try :
+        engine = create_engine(BDD_LINKS, echo=echo)
         con = engine.connect()
+    except ConnectionError :
+        f"""Le liens avec la bdd : {BDD_LINKS.split("@")[1]} n'a pu être établi.
+        Veuillez le corriger dans param."""
     print("Connecté! on commence à travailler" if echo else "")
     id_xp = ask_exp_id(con)
-    if sortie is None:
-        sortie = input("Y a t-il eu une session où les animaux ne sont pas sortis ? ")
-    sortie = sortie.replace(" ", "").lower() in "ouiyes"
     if notes is None:
-        notes = input("Y a t-il une session avec des notes ? ")
-    notes = notes.replace(" ", "").lower() in "ouiyes"
+        notes = input("Avez vous des remarques sur une session IM ? ")
+        notes = notes.replace(" ", "").lower() in "ouiyes"
+    if sortie is None:
+        sortie = input("""Dois-je vous poser la question d'une sortie des animaux pour chaque session ?
+                       (Répondre : "Non" si les animaux ont été sortie à chaque session) """)
+        sortie = sortie.replace(" ", "").lower() in "ouiyes"
 
     ################################      Info_animals     ################################
     try:
@@ -192,4 +196,21 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
 
 
 if __name__ == "__main__":
-    main(*argv[1:])
+    parser = argparse.ArgumentParser(prog="fill_bdd_pheno",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("path", type=str,
+                        help="""Path to the groupe directory which contains data files from :
+                                - Medassociate
+                                - Imetronic
+                                - IC
+                                - IM""")
+    parser.add_argument("-n", "--notes", action="store_true",
+                        help= """Option to have a question to add notes for each IM sessions.""")
+    parser.add_argument("-s", "--sortie", action="store_true",
+                        help= """Option to have a question about the exit of animals
+    from phenoworld for each IM sessions.""")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help= """Increase the verbosity of the connexion with database.""")
+    args = parser.parse_args()
+    # print(f"path={args.path}, notes={args.notes}, sortie={args.sortie}, echo={args.verbose}")
+    main(path=args.path, notes=args.notes, sortie=args.sortie, echo=args.verbose)
