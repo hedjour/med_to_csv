@@ -145,6 +145,7 @@ Temps restant estimé: {}:{}{}""".format(listd[i], i, nb_files-1, "-"*i, "."*(nb
     print("Intelimaze")
     try:
         listd = [i for i in ldir(f"{path}/IM") if i[0] != "."]
+        listd.sort()
         nb_files = len(listd)
         dfanimalscopyIM = dfanimals[["RFID", "animal_name", "groupe", "animal_id"]]
         #dfanimalscopyIM = dfanimalscopyIM.rename({"animal_name":"name","animal_id":"id"}) #!DELETE THIS Later
