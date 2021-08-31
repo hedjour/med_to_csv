@@ -192,7 +192,8 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER IC DÉTÉCTÉ!")
     engine.dispose()
-    print("Tout s'est bien passé enjoy pour l'analyse moi je retourne me coucher.")
+    print(f"""Tout s'est bien passé pour le groupe {grp[0]}.
+          Enjoy pour l'analyse moi je retourne me coucher!""")
 
 
 if __name__ == "__main__":
