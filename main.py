@@ -42,7 +42,6 @@ Exécutez le script InstallDependencies.sh sur Linux ou Mac (Une fois xcode inst
 
 import argparse
 from time import time
-from sys import argv
 from os import listdir as ldir, system, name
 from sqlalchemy import create_engine
 from sqlalchemy.engine.base import Connection
