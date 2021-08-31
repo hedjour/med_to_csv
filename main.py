@@ -207,9 +207,10 @@ if __name__ == "__main__":
                                 - IM""")
     parser.add_argument("-n", "--notes", action="store_true",
                         help= """Option to have a question to add notes for each IM sessions.""")
-    parser.add_argument("-s", "--sortie", action="store_true",
+    parser.add_argument("-s", "--sortie", type=str, choices=["a", "m", "auto", "manual"],
                         help= """Option to have a question about the exit of animals
-    from phenoworld for each IM sessions.""")
+    from phenoworld for each IM sessions. Choices a/auto or m/manual.
+    Auto is based on weight table to détermine if animals is get out.""")
     parser.add_argument("-v", "--verbose", action="store_true",
                         help= """Increase the verbosity of the connexion with database.""")
     args = parser.parse_args()
