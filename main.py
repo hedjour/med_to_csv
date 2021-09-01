@@ -200,7 +200,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="fill_bdd_pheno",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("path", type=str,
-                        help="""Path to the groupe directory which contains data files from :
+                        help="""Path to the group directory which contains data files from :
                                 - Medassociate
                                 - Imetronic
                                 - IC
@@ -210,7 +210,7 @@ if __name__ == "__main__":
     parser.add_argument("-s", "--sortie", type=str, choices=["a", "m", "auto", "manual"],
                         help= """Option to have a question about the exit of animals
     from phenoworld for each IM sessions. Choices a/auto or m/manual.
-    Auto is based on weight table to détermine if animals is get out.""")
+    Auto is based on weight table to determine if animals are out.""")
     parser.add_argument("-v", "--verbose", action="store_true",
                         help= """Increase the verbosity of the connexion with database.""")
     args = parser.parse_args()
