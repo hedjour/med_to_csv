@@ -44,7 +44,7 @@ import argparse
 from time import time
 from os import listdir as ldir, system, name
 from sqlalchemy import create_engine
-from sqlalchemy.engine.base import Connection
+# from sqlalchemy.engine.base import Connection
 from param import BDD_LINKS
 import file_session_ic as IC
 from file_session_im import readfoldersessionIM
