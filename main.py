@@ -58,7 +58,7 @@ def clear_console():
     """Clean the affichage"""
     system('cls' if name in ('nt', 'dos') else 'clear')
 
-def main(path: str=None, notes: bool=None, sortie: bool=None, echo: bool=True):
+def main(path: str=None, notes: bool=None, sortie: str=None, echo: bool=True):
     """main function"""
     tim_stamp = time()
     if path is None:
@@ -76,9 +76,10 @@ def main(path: str=None, notes: bool=None, sortie: bool=None, echo: bool=True):
         notes = input("Avez vous des remarques sur une session IM ? ")
         notes = notes.replace(" ", "").lower() in "ouiyes"
     if sortie is None:
-        sortie = input("""Dois-je vous poser la question d'une sortie des animaux pour chaque session ?
-                       (Répondre : "Non" si les animaux ont été sortie à chaque session) """)
-        sortie = sortie.replace(" ", "").lower() in "ouiyes"
+        sortie = input("""Comment voulez-vous déterminer les sorties des animaux ? répondre :
+                        - a/auto pour une saisie automatique basé sur les poids saisies
+                        - m/manual pour avoir une question à chaque session.""")
+        sortie = sortie.replace(" ", "").lower()
 
     ################################      Info_animals     ################################
     try:
