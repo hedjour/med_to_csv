@@ -75,9 +75,10 @@ def read_folder(path_folder: str, dfanimals: pd.DataFrame, con: Connection,
             list_return[3] = int(list_return[3])
             list_return[0] = "Animal "+list_return[0]
             listevents = []
+            #TODO Rewrote bellow code with datetime object
             for secondes in ["0.0"] + list_return[6:]:
-                secondes = secondes.split(".")[0]
-                secondes = int(secondes)+int(list_return[2].split(":")[2])
+                secondes = secondes.split(".")[0] #Med associate enregistre des 10éme de s
+                secondes = (int(secondes)/10)+int(list_return[2].split(":")[2])
                 minutes = int(list_return[2].split(":")[1])
                 heures = int(list_return[2].split(":")[0])
                 while secondes >= 3600:
