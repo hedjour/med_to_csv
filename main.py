@@ -92,7 +92,7 @@ def main(path: str=None, notes: bool=None, sortie: str=None, echo: bool=True):
     print(f"On attaque la saisie du groupe {grp}")
     ######################################    MED    ######################################
     try:
-        listd = [i for i in ldir(f"{path}/med_associate") if i[0] != "."] #Listdir whithout dotfile
+        listd = [i for i in sorted(ldir(f"{path}/med_associate")) if i[0] != "."] #Listdir whithout dotfile
         nb_files = len(listd)
         for i in range(nb_files):
             dtsp = time()-tim_stamp
@@ -134,8 +134,8 @@ Temps restant estimé: {}:{}{}""".format(listd[i], i, nb_files-1, "-"*i, "."*(nb
     #############################     HotPlate / Openfield    #############################
     print(f"Hotplate / Openfield")
     try:
-        opfi = f"""{path}/openfield/{[file for file in ldir(f"{path}/openfield/") if file.endswith("XLS")][0]}"""
-        xlsx_file = f"""{path}/{[file for file in ldir(path) if file.endswith("xlsx")][0]}"""
+        opfi = f"""{path}/openfield/{[file for file in sorted(ldir(f"{path}/openfield/"))if file.endswith("XLS")][0]}"""
+        xlsx_file = f"""{path}/{[file for file in sorted(ldir(path)) if file.endswith("xlsx")][0]}"""
         insert_hp_of(path_openfile=opfi, path_excel=xlsx_file, dfanimals=dfanimals, con=con)
     except FileNotFoundError:
         print("ATTENTION! PAS DE DOSSIER OPENFIELD DÉTÉCTÉ!")
@@ -144,7 +144,7 @@ Temps restant estimé: {}:{}{}""".format(listd[i], i, nb_files-1, "-"*i, "."*(nb
     ######################################     IM    ######################################
     print("Intelimaze")
     try:
-        listd = [i for i in ldir(f"{path}/IM") if i[0] != "."]
+        listd = [i for i in sorted(ldir(f"{path}/IM")) if i[0] != "."]
         listd.sort()
         nb_files = len(listd)
         dfanimalscopyIM = dfanimals[["RFID", "animal_name", "groupe", "animal_id"]]
@@ -173,7 +173,7 @@ Temps restant estimé : {int(dtsp*(nb_files-i))//60}:{int(dtsp*(nb_files-i))%60}
     ######################################    IC    ######################################
     print("IntelliCage")
     try:
-        listd = [i for i in ldir(f"{path}/IC") if i[0] != "."]
+        listd = [i for i in sorted(ldir(f"{path}/IC")) if i[0] != "."]
         nb_files = len(listd)
         for i in range(nb_files):
             dtsp = time()-tim_stamp
