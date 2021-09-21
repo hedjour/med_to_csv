@@ -34,7 +34,7 @@ def col_selector(lst_dic, infos, path_file:str=None) :
             if not isinstance(val, list):
                 dic_selected[key] = [val] * n_listmax
             elif len(val) != n_listmax:
-                dic_selected[key] = val.append([nan] * (n_listmax - len(val)))
+                dic_selected[key] = val + [nan] * (n_listmax - len(val))
             else:
                 pass
         # We evaluate the keys eval and cut

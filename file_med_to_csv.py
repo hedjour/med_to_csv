@@ -22,11 +22,12 @@ def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
     infos_lab = opt_dic["infos_lab"] if "infos_lab" in opt_dic.keys() else None
     infos_col = opt_dic["infos_col"] if "infos_col" in opt_dic.keys() else None
     # TODO Add a summary of parameters to print to user
+    print(f"infos_lab : {infos_lab} \n infos_col = {infos_col} ")
     # charge(opt_path)
     if ptah.isdir(path):
         lst_res, lab = read_folder(path, infos_col)
     elif ptah.isfile(path):
-        lst_res , lab = read_file(path)
+        lst_res , lab = read_file(path, infos_col)
     else :
         raise RuntimeError("""Votre chemin n'est ni un fichier ni un directory oO
                            You must be a biologist only there can be this kind of stuff""")
@@ -53,7 +54,7 @@ def read_folder(path_folder: str, infos_col:Dict = None) -> List[Dict]:
         lab = read_file(f"{path_folder}/{listd[number_file]}", infos_col)[1]
     return list_return, lab
 
-def read_file(path_file:str, infos_col:Dict = None) -> List[Dict] or Dict :
+def read_file(path_file:str, infos_col:Dict = None) -> List[Dict]:
         # On lit le fichier
     file = open(path_file, "r")
     list_ligns = file.readlines()
@@ -70,6 +71,7 @@ def read_file(path_file:str, infos_col:Dict = None) -> List[Dict] or Dict :
                                And have no information about how read it""")
         res = parse_col(list_ligns, infos_col)
         lab = False
+    res = [res] if isinstance(res, Dict) else res
     return res, lab
 
 if __name__ == "__main__":
