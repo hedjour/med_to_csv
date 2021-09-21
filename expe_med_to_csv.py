@@ -7,7 +7,7 @@
 """
 import argparse
 import yaml
-from typing import Dict, List
+from typing import Dict
 import pandas as pd
 from time import time
 from os import listdir as ldir, path as p

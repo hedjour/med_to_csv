@@ -9,17 +9,14 @@ Fichiers lus:
             data med/*\n
 """
 import argparse
-from numpy.core.defchararray import index
-from pandas.core.frame import DataFrame
 import yaml
 import pandas as pd
 from os import path as ptah, listdir
-from typing import Dict, Generator, List
-from datetime import datetime, timedelta
+from typing import Dict, List
 from labelled_file import lab_selector, parse_labelled
 from column_file import col_selector, parse_col
 
-def read_path(path: str, opt_dic:Dict) -> DataFrame:
+def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
     """Fonction qui lit le fichier texte subject en format labelisé ou une cln et retourne un dict 
     ou une liste de dic"""
     infos_lab = opt_dic["infos_lab"] if "infos_lab" in opt_dic.keys() else None
@@ -41,7 +38,7 @@ def read_path(path: str, opt_dic:Dict) -> DataFrame:
     out_lst = out_lst + [pd.DataFrame(i)for i in sel_res]
     return pd.concat(out_lst)
 
-def read_folder(path_folder: str, infos_col:Dict = None) -> List[dict]:
+def read_folder(path_folder: str, infos_col:Dict = None) -> List[Dict]:
     "Fonction qui lance la lecture de chaque fichier texte du dossier"
     listd = listdir(f"{path_folder}/")
     listd = [i for i in listd if "ubject" in i]
