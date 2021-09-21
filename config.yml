@@ -1,0 +1,74 @@
+#! These file is for setting of xxx_med_to_csv program.
+# Two type of parameter infos_col and infos_lab for 1 col output or labelled output.
+# You need to indicate 
+# Keys : values
+# Keys are columns names in the output file
+# For infos_col values are row number - 1 (Start index :0)
+# For infos_lab values are letters used in medAssociate exercise
+# cut and eval Keys are special keys
+#! Warning to get an global array in a var set your key as :
+# mykey = ["LETTER",first-index start at "0", "end or number to last index"] 
+#* Cut for cutting and output or more on special character in 2 columns :
+#     The value must be a list, of list of 4 elements :
+#           - key to cut
+#           - separator generaly the dot character
+#           - Col names of first sub-element
+#           - Col names of second sub-element
+#* Eval for some column must be the result of a Python command line. It's necessary a python
+# dictionnary with Key as column name and value a short command line as a string.
+# For example this option is to get information in path file as (path_file)
+#* These Key are med associate keywords only usable with labelled file :
+#   - Start Date
+#   - End Date
+#   - Subject
+#   - Experiment
+#   - Group
+#   - Box
+#   - Start Time
+#   - End Time
+#   - MSN: Medassociate exercice names
+#! Notes: Start Date and Start Time are automaticaly added to the results.
+
+infos_col:
+  subject: 6
+  box: 9
+  delay: 66
+  step_at_endsess: 73
+  sk_dur_at_endsess: 88
+  reinforced_resp": 90
+  reinforcers: 91
+  res_during_reward_deliv: 92
+  to_resp: 93
+  delivery_s: 94
+  to_s: 95
+  shock_s: 96
+  resets_number: 97
+  reinforcers_max_sk_dur: 98
+  mn_left_non_resp: 99
+  resp_cur_sk_dur: 100
+  final_sk_dur: 101
+  base_value: [120,"end"]
+  cut : [["base_value", ".", "time_stamp", "code_event"]]
+  eval: {"prog":"path_file.split('/')[-3]"}
+
+infos_lab:
+  subject: "Subject"
+  box: "Box"
+  delay: "B"
+  step_at_endsess: "I"
+  sk_dur_at_endsess: "X"
+  reinforced_resp: ["Z", 0]
+  reinforcers: ["Z", 1]
+  res_during_reward_deliv: ["Z", 2]
+  to_resp: ["Z", 3]
+  delivery_s: ["Z", 4]
+  to_s: ["Z", 5]
+  shock_s: ["Z", 6]
+  resets_number: ["Z", 7]
+  reinforcers_max_sk_dur: ["Z", 8]
+  mn_left_non_resp: ["Z", 9]
+  resp_cur_sk_dur: ["Z", 10]
+  final_sk_dur: ["Z", 11]
+  base_value: ["Z", 30, "end"]
+  cut : [["base_value", ".", "time_stamp", "code_event"]]
+  eval: {"prog":"path_file.split('/')[-3]"}
