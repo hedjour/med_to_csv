@@ -61,7 +61,7 @@ def lab_selector(lst_dic:List[Dict], infos:dict, path_file:str=None) -> List[Dic
     for dic_file in lst_dic :
         dic_selected={}
         for key, val in infos.items():
-            print(f"make_dic_select key | val : {key} | {val} ")
+            # print(f"make_dic_select key | val : {key} | {val} ")
             if key in "cuteval":
                 pass
             elif not isinstance(val, list):
