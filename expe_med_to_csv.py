@@ -10,7 +10,7 @@ import yaml
 from typing import Dict
 import pandas as pd
 from time import time
-from os import listdir as ldir, path as p
+from os import listdir as ldir, path as ptah
 from file_med_to_csv import read_path
 
 def main(path: str, output_file: str, opt_dic:Dict)->pd.DataFrame:
@@ -18,18 +18,20 @@ def main(path: str, output_file: str, opt_dic:Dict)->pd.DataFrame:
     try:
         tim_stamp = time()
         listd = [i for i in ldir(f"{path}") if i[0] != "."] #Listdir whithout dotfile
-        listd = [i for i in listd if "PR" not in i]
-        listd = [i for i in listd if "sh"  in i]
+        # listd = [i for i in listd if "PR" not in i]
+        # listd = [i for i in listd if "sh"  in i]
         print(listd)
         nb_dirs = len(listd)
         output_lst=[]
+        if len(listd) < 1 :
+            raise SyntaxError("Be carreful your directory is empty")
         for i in range(nb_dirs):
             dtsp = time()-tim_stamp
             tim_stamp = time()
             chn = f"""\n\nMED : {listd[i]} dossier {i}/{nb_dirs-1}    {"-"*i}{"."*(nb_dirs-i-1)}
             Temps restant estimé : {int(dtsp*(nb_dirs-i))//60}:{int(dtsp*(nb_dirs-i))%60} """
             print(chn+"\n"*5)
-            if p.isdir(f"{path}/{listd[i]}") :
+            if ptah.isdir(f"{path}/{listd[i]}") :
                 try:
                     #+ and not .append to concatenate list and not make list of list of list of dic
                     # list_data = list_data + read_path(f"{path}/{listd[i]}", opt_dic)
