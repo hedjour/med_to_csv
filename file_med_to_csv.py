@@ -50,7 +50,7 @@ def read_folder(path_folder: str, infos_col:Dict = None) -> List[Dict]:
             print(f"File: {number_file+1}/{lenfolder}, \"Animal {listd[number_file].split()[1]}\"")
         except IndexError as error:
             raise "The file name must ending by subject 'animal name'" from error
-        list_return.append( read_file(f"{path_folder}/{listd[number_file]}", infos_col)[0])
+        list_return = list_return + read_file(f"{path_folder}/{listd[number_file]}", infos_col)[0]
         lab = read_file(f"{path_folder}/{listd[number_file]}", infos_col)[1]
     return list_return, lab
 
