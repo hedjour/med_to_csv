@@ -71,4 +71,5 @@ infos_lab:
   final_sk_dur: ["Z", 11]
   base_value: ["Z", 30, "end"]
   cut : [["base_value", ".", "time_stamp", "code_event"]]
-  eval: {"prog":"path_file.split('/')[-3]"}
+  eval: {"prog":"path_file.split('/')[-1]"}
+  # eval: {"prog":"path_file.split('/')[-2]"}
