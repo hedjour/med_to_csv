@@ -13,6 +13,7 @@ import yaml
 import pandas as pd
 from os import path as ptah, listdir
 from typing import Dict, List
+from pprint import pprint
 from labelled_file import lab_selector, parse_labelled
 from column_file import col_selector, parse_col
 
@@ -22,7 +23,8 @@ def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
     infos_lab = opt_dic["infos_lab"] if "infos_lab" in opt_dic.keys() else None
     infos_col = opt_dic["infos_col"] if "infos_col" in opt_dic.keys() else None
     # TODO Add a summary of parameters to print to user
-    print(f"infos_lab : {infos_lab} \n infos_col = {infos_col} ")
+    pprint(infos_lab)
+    pprint(infos_col)
     # charge(opt_path)
     if ptah.isdir(path):
         lst_res, lab = read_folder(path, infos_col)
