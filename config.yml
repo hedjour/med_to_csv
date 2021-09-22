@@ -50,6 +50,7 @@ infos_col:
   base_value: [120,"end"]
   cut : [["base_value", ".", "time_stamp", "code_event"]]
   eval: {"prog":"path_file.split('/')[-1]"}
+  
 
 infos_lab:
   subject: "Subject"
