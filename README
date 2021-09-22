@@ -24,7 +24,11 @@
   <h3 align="center">MedAssociates to CSV file</h3>
 
   <p align="center">
-    project_description
+    A simple way to parse MedAssociate output file in tidy data :
+    <ul>
+      <li> 1 row = 1 observation
+      <li> 1 col = 1 var
+    </ul>
     <br />
     <a href="	https://sourcesup.renater.fr/anonscm/git/medanalysis/medanalysis.git"><strong>View the code</strong></a>
     <!-- <a href="https://github.com/github_username/repo_name"><strong>Explore the docs</strong></a>
@@ -68,9 +72,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Here's a blank template to get started:
 **To avoid retyping too much info. Do a search and replace with your text editor for the following:**
 `github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
@@ -127,8 +128,8 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
 ## Roadmap
 
 <!-- See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues). -->
-Made a easy installable version
-
+* Made a easy installable version
+* Add possibility of filtering directories
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -152,8 +153,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
-Jean-Emmanuel Longueville - jean.emmanuel.longueville(@)univ-poitiers.fr
-Myriam Hanna - myriam.hanna(@)univ-poitiers.fr
+* Jean-Emmanuel Longueville - jean.emmanuel.longueville(@)univ-poitiers.fr
+* Myriam Hanna - myriam.hanna(@)univ-poitiers.fr
+* Marcello Solinas
 
 <!-- Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name) -->
 Project Link: [https://sourcesup.renater.fr/anonscm/git/medanalysis/medanalysis.git](
