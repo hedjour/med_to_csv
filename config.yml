@@ -49,7 +49,7 @@ infos_col:
   final_sk_dur: 101
   base_value: [120,"end"]
   cut : [["base_value", ".", "time_stamp", "code_event"]]
-  eval: {"prog":"path_file.split('/')[-3]"}
+  eval: {"prog":"path_file.split('/')[-1]"}
 
 infos_lab:
   subject: "Subject"

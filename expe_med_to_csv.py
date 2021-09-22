@@ -18,9 +18,8 @@ def main(path: str, output_file: str, opt_dic:Dict)->pd.DataFrame:
     try:
         tim_stamp = time()
         listd = [i for i in ldir(f"{path}") if i[0] != "."] #Listdir whithout dotfile
-        # listd = [i for i in listd if "PR" not in i]
-        # listd = [i for i in listd if "sh"  in i]
-        print(listd)
+        listd = [i for i in listd if "PR" not in i]
+        listd = [i for i in listd if "sh"  in i]
         nb_dirs = len(listd)
         output_lst=[]
         if len(listd) < 1 :
@@ -30,7 +29,7 @@ def main(path: str, output_file: str, opt_dic:Dict)->pd.DataFrame:
             tim_stamp = time()
             chn = f"""\n\nMED : {listd[i]} dossier {i}/{nb_dirs-1}    {"-"*i}{"."*(nb_dirs-i-1)}
             Temps restant estimé : {int(dtsp*(nb_dirs-i))//60}:{int(dtsp*(nb_dirs-i))%60} """
-            print(chn+"\n"*5)
+            print(chn+"\n"*1)
             if ptah.isdir(f"{path}/{listd[i]}") :
                 try:
                     #+ and not .append to concatenate list and not make list of list of list of dic
