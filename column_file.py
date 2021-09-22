@@ -5,7 +5,7 @@ from datetime import datetime
 from numpy import nan
 from global_parser_fun import global_selector
 
-def parse_col(list_ligns:List, info : Dict) -> Dict:
+def parse_col(list_ligns: List, info: Dict) -> Dict:
     dic_scallar={}
     # Fichier une colonne
     dic_scallar["start_date"] =datetime.strptime(f"""{'-'.join([list_ligns[i]
@@ -24,7 +24,7 @@ def parse_col(list_ligns:List, info : Dict) -> Dict:
     return dic_scallar
 
 
-def col_selector(lst_dic, infos, path_file:str=None) :
+def col_selector(lst_dic: List[Dict], infos: Dict, path_file:str=None)-> List[Dict]:
     lst_out=[]
     for dic_selected in lst_dic :
         # On cherche la taille de la liste la plus grande
