@@ -74,6 +74,9 @@ def lab_selector(lst_dic:List[Dict], infos:dict) -> List[Dict]:
                 raise SyntaxError(f"This value is not correctly defined : {val}")
         # On cherche la taille de la liste la plus grande
         n_listmax = max([len(i) if isinstance(i, list) else 1 for i in dic_selected.values()])
+        #Gestion de la date 
+        dic_selected["start_date"] = datetime.strptime(dic_file["Start Date"], "%m/%d/%y")
+        dic_selected["start_time"] = dic_file["Start Time"]
         # On alligne les key sur la taille de la liste la plus grande
         for key, val in dic_selected.items():
             if not isinstance(val, list):
@@ -82,9 +85,6 @@ def lab_selector(lst_dic:List[Dict], infos:dict) -> List[Dict]:
                 dic_selected[key] = val + [nan] * (n_listmax - len(val))
             else:
                 pass
-        #Gestion de la date 
-        dic_selected["start_date"] = datetime.strptime(dic_file["Start Date"], "%m/%d/%y")
-        dic_selected["start_time"] = dic_file["Start Time"]
         lst_out.append(dic_selected.copy())
     # end of for on dic list
     return lst_out

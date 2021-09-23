@@ -23,7 +23,7 @@ def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
     ou une liste de dic"""
     infos_lab = opt_dic["infos_lab"] if "infos_lab" in opt_dic.keys() else None
     infos_col = opt_dic["infos_col"] if "infos_col" in opt_dic.keys() else None
-    infos_opt = opt_dic["infos_opt"] if "infos_opt" in opt_dic.keys() else None
+    infos_opt = opt_dic["options"]   if "options" in opt_dic.keys() else {}
     infos_opt["path_file"] = path
     pprint(infos_lab)
     pprint(infos_col)
@@ -36,9 +36,9 @@ def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
         raise RuntimeError("""Your path is neither a file or a directory oO
                            You must be a biologist only there can be this kind of stuff""")
     if lab:
-        sel_res = lab_selector(lst_res, infos_lab, path)
+        sel_res = lab_selector(lst_res, infos_lab)
     else:
-        sel_res = col_selector(lst_res, infos_col, path)
+        sel_res = col_selector(lst_res)
     sel_res = global_selector(sel_res, infos_opt)
     out_lst = []
     out_lst = out_lst + [pd.DataFrame(i)for i in sel_res]
@@ -53,10 +53,11 @@ def read_folder(path_folder: str, infos_col:Dict = None) -> List[Dict]:
     for number_file in range(lenfolder):
         try:
             print(f"File: {number_file+1}/{lenfolder}, \"Animal {listd[number_file].split()[1]}\"")
+            list_return = list_return + read_file(f"{path_folder}/{listd[number_file]}",
+                                                  infos_col)[0]
+            lab = read_file(f"{path_folder}/{listd[number_file]}", infos_col)[1]
         except IndexError as error:
             raise "The file name must ending by subject 'animal name'" from error
-        list_return = list_return + read_file(f"{path_folder}/{listd[number_file]}", infos_col)[0]
-        lab = read_file(f"{path_folder}/{listd[number_file]}", infos_col)[1]
     return list_return, lab
 
 def read_file(path_file:str, infos_col:Dict = None) -> List[Dict]:
