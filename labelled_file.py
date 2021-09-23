@@ -4,7 +4,6 @@ from typing import Dict, Generator, List
 from datetime import datetime
 from string import ascii_uppercase as LETTERS
 from numpy import nan
-from global_parser_fun import global_selector
 
 
 def parse_labelled(list_ligns:List)-> Dict or List(Dict):
@@ -56,7 +55,7 @@ def parse_labelled(list_ligns:List)-> Dict or List(Dict):
     return dic_subject if len(list_res)<2 else list_res
 
 
-def lab_selector(lst_dic:List[Dict], infos:dict, path_file:str=None) -> List[Dict]:
+def lab_selector(lst_dic:List[Dict], infos:dict) -> List[Dict]:
     lst_out=[]
     for dic_file in lst_dic :
         dic_selected={}
@@ -83,8 +82,6 @@ def lab_selector(lst_dic:List[Dict], infos:dict, path_file:str=None) -> List[Dic
                 dic_selected[key] = val + [nan] * (n_listmax - len(val))
             else:
                 pass
-        # We evaluate the keys eval and cut
-        dic_selected = global_selector(dic_selected, infos, path_file)
         #Gestion de la date 
         dic_selected["start_date"] = datetime.strptime(dic_file["Start Date"], "%m/%d/%y")
         dic_selected["start_time"] = dic_file["Start Time"]

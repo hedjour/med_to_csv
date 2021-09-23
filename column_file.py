@@ -3,7 +3,6 @@
 from typing import Dict, List
 from datetime import datetime
 from numpy import nan
-from global_parser_fun import global_selector
 
 def parse_col(list_ligns: List, info: Dict) -> Dict:
     dic_scallar={}
@@ -24,7 +23,7 @@ def parse_col(list_ligns: List, info: Dict) -> Dict:
     return dic_scallar
 
 
-def col_selector(lst_dic: List[Dict], infos: Dict, path_file:str=None)-> List[Dict]:
+def col_selector(lst_dic: List[Dict])-> List[Dict]:
     lst_out=[]
     for dic_selected in lst_dic :
         # On cherche la taille de la liste la plus grande
@@ -37,8 +36,6 @@ def col_selector(lst_dic: List[Dict], infos: Dict, path_file:str=None)-> List[Di
                 dic_selected[key] = val + [nan] * (n_listmax - len(val))
             else:
                 pass
-        # We evaluate the keys eval and cut
-        dic_selected = global_selector(dic_selected, infos, path_file)
         lst_out.append(dic_selected.copy())
     # end of for on dic list
     return lst_out

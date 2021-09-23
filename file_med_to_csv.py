@@ -16,6 +16,7 @@ from typing import Dict, List
 from pprint import pprint
 from labelled_file import lab_selector, parse_labelled
 from column_file import col_selector, parse_col
+from global_parser_fun import global_selector
 
 def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
     """Fonction qui lit le fichier texte subject en format labelisé ou une cln et retourne un dict 
@@ -38,6 +39,7 @@ def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
         sel_res = lab_selector(lst_res, infos_lab, path)
     else:
         sel_res = col_selector(lst_res, infos_col, path)
+    sel_res = global_selector(sel_res, infos_opt)
     out_lst = []
     out_lst = out_lst + [pd.DataFrame(i)for i in sel_res]
     return pd.concat(out_lst)
