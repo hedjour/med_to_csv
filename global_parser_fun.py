@@ -3,15 +3,21 @@
 """Module used by the two selector"""
 
 from os import pathconf
-from typing import Dict
+from typing import Dict, List
 from numpy import nan
 
-def global_selector(dicexperience:Dict, infos:Dict, path_file:str)->Dict:
-    if "eval" in infos.keys() :
-        for key, val in infos["eval"].items() :
+def global_selector(dicexperience:Dict, infos:Dict, infos_opt:Dict)->Dict:
+    path_file = infos_opt["path_file"]
+    if infos_opt["no_zero_ending_array"] :
+        for key, val in dicexperience.items():
+            if isinstance(val, List) :
+                while val[-1] in "0" and len(val) > 1:
+                    val = val[:-1]
+    if "eval" in infos_opt.keys() :
+        for key, val in infos_opt["eval"].items() :
             dicexperience[key] = eval(val)
-    if "cut" in infos.keys() :
-        for lst_tmp in infos["cut"]:
+    if "cut" in infos_opt.keys() :
+        for lst_tmp in infos_opt["cut"]:
             keys=lst_tmp[0]
             sep=lst_tmp[1]
             sep_names = lst_tmp[2:]

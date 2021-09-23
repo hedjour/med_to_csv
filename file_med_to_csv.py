@@ -22,7 +22,8 @@ def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
     ou une liste de dic"""
     infos_lab = opt_dic["infos_lab"] if "infos_lab" in opt_dic.keys() else None
     infos_col = opt_dic["infos_col"] if "infos_col" in opt_dic.keys() else None
-    # TODO Add a summary of parameters to print to user
+    infos_opt = opt_dic["infos_opt"] if "infos_opt" in opt_dic.keys() else None
+    infos_opt["path_file"] = path
     pprint(infos_lab)
     pprint(infos_col)
     # charge(opt_path)
@@ -31,7 +32,7 @@ def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
     elif ptah.isfile(path):
         lst_res , lab = read_file(path, infos_col)
     else :
-        raise RuntimeError("""Votre chemin n'est ni un fichier ni un directory oO
+        raise RuntimeError("""Your path is neither a file or a directory oO
                            You must be a biologist only there can be this kind of stuff""")
     if lab:
         sel_res = lab_selector(lst_res, infos_lab, path)
@@ -42,7 +43,7 @@ def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
     return pd.concat(out_lst)
 
 def read_folder(path_folder: str, infos_col:Dict = None) -> List[Dict]:
-    "Fonction qui lance la lecture de chaque fichier texte du dossier"
+    "This function call read_file for each text file in the directory"
     listd = listdir(f"{path_folder}/")
     listd = [i for i in listd if "ubject" in i]
     lenfolder = len(listd)
@@ -57,10 +58,10 @@ def read_folder(path_folder: str, infos_col:Dict = None) -> List[Dict]:
     return list_return, lab
 
 def read_file(path_file:str, infos_col:Dict = None) -> List[Dict]:
-        # On lit le fichier
+        # Reading file
     file = open(path_file, "r")
     list_ligns = file.readlines()
-    list_ligns = [i[:-1] for i in list_ligns[:]] #on vire les retours à la ligne.
+    list_ligns = [i[:-1] for i in list_ligns[:]] #remove the \n ending lines
     file.close()
     if list_ligns[0][0].lower() in "abcdefghijklmnopqrstuvwxyz":
         #File labelled
@@ -89,9 +90,9 @@ if __name__ == "__main__":
                         help= """Path output of the csv file""")
 
     args = parser.parse_args()
-    #On charge les paramètre utilisateur
+    #Charge user's parameters
     with open(args.option, "r") as ymlfile:
         opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
-    # On lit le path
+    # Reading the path
     df_res = read_path(args.path, opt_dic)
     df_res.to_csv(args.file, index=False)
