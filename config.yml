@@ -1,23 +1,30 @@
-#! These file is for setting of xxx_med_to_csv program.
-# Two type of parameter infos_col and infos_lab for 1 col output or labelled output.
-# You need to indicate 
-# Keys : values
-# Keys are columns names in the output file
-# For infos_col values are row number - 1 (Start index :0)
-# For infos_lab values are letters used in medAssociate exercise
-# cut and eval Keys are special keys
-#! Warning to get an global array in a var set your key as :
-# mykey = ["LETTER",first-index start at "0", "end or number to last index"] 
-#* Cut for cutting and output or more on special character in 2 columns :
-#     The value must be a list, of list of 4 elements :
+#! This file is for the set up of xxx_med_to_csv program.
+#* Two types of parameters:
+#   - "infos_col" : for 1 column output 
+#   - "infos_lab" : for labelled output
+#   - "infos_opt" : for further options
+#* You need to indicate the information in this format:
+#   Keys : values , where : 
+#       - Keys are the column names that you want in the output file
+#       - Values are, for infos_col: row number - 1 (Start index :0)
+#                     for infos_lab: letters used in medAssociate exercise
+#                     for infos_opt: 
+#! Warning to get a global array in a var set your key as :
+#  Key : ["LETTER", first-index (start at 0), "number to last index"]
+#     example:  my_key : ["Z", 0, 120]
+#     Note: If the last index is the end of the array, write "end" instead of the number
+#     example: my_key : ["Z", 0, "end"]
+#* cut and eval Keys are special keys
+# - cut: for cutting an output on a special character usually a dot into 2 columns :
+#     The value must be a list of list of 4 elements :
 #           - key to cut
 #           - separator generaly the dot character
 #           - Col names of first sub-element
 #           - Col names of second sub-element
-#* Eval for some column must be the result of a Python command line. It's necessary a python
-# dictionnary with Key as column name and value a short command line as a string.
-# For example this option is to get information in path file as (path_file)
-#* These Key are med associate keywords only usable with labelled file :
+# - eval: for some column must be the result of a Python command line. It's necessarly a python
+#         dictionnary with Key as column name and value a short command line as a string.
+# For example this option can be used to get information in path (see examples below)
+#* The following Keys are med associate keywords only usable with labelled file :
 #   - Start Date
 #   - End Date
 #   - Subject
@@ -29,6 +36,7 @@
 #   - MSN: Medassociate exercice names
 #! Notes: Start Date and Start Time are automaticaly added to the results.
 
+#Here are two templates with arbitrary 
 infos_col:
   subject: 6
   box: 9
@@ -48,10 +56,7 @@ infos_col:
   resp_cur_sk_dur: 100
   final_sk_dur: 101
   base_value: [120,"end"]
-  cut : [["base_value", ".", "time_stamp", "code_event"]]
-  eval: {"prog":"path_file.split('/')[-1]"}
   
-
 infos_lab:
   subject: "Subject"
   box: "Box"
@@ -71,6 +76,8 @@ infos_lab:
   resp_cur_sk_dur: ["Z", 10]
   final_sk_dur: ["Z", 11]
   base_value: ["Z", 30, "end"]
+
+infos_opt:
+  no_last_zero : {}
   cut : [["base_value", ".", "time_stamp", "code_event"]]
   eval: {"prog":"path_file.split('/')[-1]"}
-  # eval: {"prog":"path_file.split('/')[-2]"}
