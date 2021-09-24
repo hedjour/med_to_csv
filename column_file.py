@@ -26,7 +26,6 @@ def parse_col(list_ligns: List, info: Dict, remove_zero_ending: bool) -> Dict:
             tmp_lst = list_ligns[val[0]:val[1]] if val[1] != "end" \
                 else list_ligns[val[0]:]
             if remove_zero_ending :
-                print(f"I delete some Zero ending : {type(tmp_lst[-1])} | {tmp_lst[-1]}")
                 while tmp_lst[-1] in "0." and len(tmp_lst) > 1:
                     tmp_lst = tmp_lst[:-1]
             dic_scallar[key] = tmp_lst
