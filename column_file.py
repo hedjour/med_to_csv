@@ -1,12 +1,19 @@
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
+"""
+Module that parse one column file
+"""
 from typing import Dict, List
 from datetime import datetime
 from numpy import nan
 
 def parse_col(list_ligns: List, info: Dict, remove_zero_ending: bool) -> Dict:
+    """
+    Function that parse one column files with 1 subject or more to a dictionary or to a list
+    of dictionaries where each key is a label of the file
+    """
     dic_scallar={}
-    # Fichier une colonne
+    # One column file
     dic_scallar["start_date"] =datetime.strptime(f"""{'-'.join([list_ligns[i]
                                                  for i in [2,0,1]])}""", "%y-%m-%d")
     dic_scallar["start_time"] = f"""{':'.join([list_ligns[i] for i in [10,11,12]])}"""
@@ -29,11 +36,12 @@ def parse_col(list_ligns: List, info: Dict, remove_zero_ending: bool) -> Dict:
 
 
 def col_selector(lst_dic: List[Dict])-> List[Dict]:
+    """Function that returns a list of dictionaries containing lists of equal size"""
     lst_out=[]
     for dic_selected in lst_dic :
-        # On cherche la taille de la liste la plus grande
+        # Search for the longest list
         n_listmax = max([len(i) if isinstance(i, list) else 1 for i in dic_selected.values()])
-        # On alligne les key sur la taille de la liste la plus grande
+        # Align keys on the longest list
         for key, val in dic_selected.items():
             if not isinstance(val, list):
                 dic_selected[key] = [val] * n_listmax

@@ -6,15 +6,15 @@
         experiment
 """
 import argparse
-import yaml
 from typing import Dict
-import pandas as pd
 from time import time
 from os import listdir as ldir, path as ptah
+import yaml
+import pandas as pd
 from file_med_to_csv import read_path
 
 def main(path: str, output_file: str, opt_dic:Dict)->pd.DataFrame:
-######################################    MED    ######################################
+    """Takes path, dict from config file and output filename as parameter and returns a csv file"""
     try:
         tim_stamp = time()
         listd = [i for i in ldir(f"{path}") if i[0] != "."] #Listdir whithout dotfile
@@ -43,7 +43,7 @@ def main(path: str, output_file: str, opt_dic:Dict)->pd.DataFrame:
                     if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
                         raise RuntimeError(
                             f"""Vous avez choisi d'arreter l'éxécution après l'erreur suivante:
-                            {err}""")
+                            {err}""") from err
             else :
                 print(f"""Le fichier {listd[i]} n'est pas analysé.""")
     except FileNotFoundError as e:
@@ -64,7 +64,7 @@ if __name__ == "__main__":
     # parser.add_argument("-v","--verbose", type=str, help= """Verbose mode""")
 
     args = parser.parse_args()
-    #On charge les paramètre utilisateur
+    #load user parameters
     with open(args.option, "r") as ymlfile:
         opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
     parser = argparse.ArgumentParser(prog="med_to_csv",

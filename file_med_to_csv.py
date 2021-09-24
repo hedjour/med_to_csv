@@ -1,26 +1,25 @@
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-Module qui lit les fichiers d'expériences Med Associates pour être utilisé par main.py
+Module that reads files from Med Associates experiments to be used in expe_med_to_csv.py
 
-Fichiers lus:
+Files read:
 -------------
             \n
             data med/*\n
 """
 import argparse
+from pprint import pprint
+from typing import Dict, List
+from os import path as ptah, listdir
 import yaml
 import pandas as pd
-from os import path as ptah, listdir
-from typing import Dict, List
-from pprint import pprint
 from labelled_file import lab_selector, parse_labelled
 from column_file import col_selector, parse_col
 from global_parser_fun import global_selector
 
 def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
-    """Fonction qui lit le fichier texte subject en format labelisé ou une cln et retourne un dict 
-    ou une liste de dic"""
+    """Reads subject text files labelled or not and returns a dict or a list of dict"""
     infos_lab = opt_dic["infos_lab"] if "infos_lab" in opt_dic.keys() else None
     infos_col = opt_dic["infos_col"] if "infos_col" in opt_dic.keys() else None
     infos_opt = opt_dic["options"] if "options" in opt_dic.keys() else {"remove_zero_ending":False}
@@ -50,7 +49,7 @@ def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
 
 def read_folder(path_folder: str, infos_col:Dict = None,
                 remove_zero_ending:bool=False )-> List[Dict]:
-    "This function call read_file for each text file in the directory"
+    """Calls read_file for each text file in the directory"""
     listd = listdir(f"{path_folder}/")
     listd = [i for i in listd if "ubject" in i]
     lenfolder = len(listd)
@@ -66,18 +65,17 @@ def read_folder(path_folder: str, infos_col:Dict = None,
     return list_return, lab
 
 def read_file(path_file:str, infos_col:Dict = None, remove_zero_ending:bool= False) -> List[Dict]:
-        # Reading file
-    file = open(path_file, "r")
-    list_ligns = file.readlines()
-    list_ligns = [i[:-1] for i in list_ligns[:]] #remove the \n ending lines
-    file.close()
+    """Reads one file and returns a list of dict """
+    with open(path_file, "r") as file:
+        list_ligns = file.readlines()
+        list_ligns = [i[:-1] for i in list_ligns[:]]
     if list_ligns[0][0].lower() in "abcdefghijklmnopqrstuvwxyz":
-        #File labelled
+        #Labelled file
         res = parse_labelled(list_ligns)
         lab = True
     else :
         #File 1 column
-        if infos_col == None :
+        if infos_col is None :
             raise RuntimeError("""Paramétrage Incorrect I have found 1col file
                                And have no information about how read it""")
         res = parse_col(list_ligns, infos_col, remove_zero_ending)
@@ -98,7 +96,7 @@ if __name__ == "__main__":
                         help= """Path output of the csv file""")
 
     args = parser.parse_args()
-    #Charge user's parameters
+    #Load user parameters
     with open(args.option, "r") as ymlfile:
         opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
     # Reading the path
