@@ -78,10 +78,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
-
+This program parses MedAssociates data files and transforms them into a tidy csv file, containing the information needed and given by each user
 
 ### Built With
 
@@ -106,7 +103,7 @@ This is an example of how to list things you need to use the software and how to
    ```sh
       git clone https://sourcesup.renater.fr/anonscm/git/medanalysis/medanalysis.git
    ```
-2. Install pip packages
+2. Install the required pip packages
    ```sh
       pip install numpy argparse yaml pandas
    ```
@@ -116,12 +113,14 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Two files are usable with two commands
+Two files are usable with the following commands
 ### file_med_to_csv
+Runs on raw data files and returns a csv file
   ```sh
     ./expe_med_to_csv.py pathdir_to_dir_that_contains_medassociate_file config_file.yml output_csv_file
-  ```
+  ``` 
 ### expe_med_to_csv
+Runs on the experiment directory that contains the directories containing the raw data files and returns a csv file
   ```sh
     ./file_med_to_csv.py path_to_medassociate_file config_file.yml output_csv_file
   ```
@@ -142,10 +141,29 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
    * Values are: 
      * for infos_col: row number - 1 (Start index :0)
      * for infos_lab: letters used in medAssociate exercise
-     * for infos_opt: 
-3. 
-4. 
+     * for infos_opt: for adding further options (see next point)
 
+3. Options:
+   * remove_zero_ending : True or False to keep or remove Zeros at the end of arrays
+   * Cut : for cutting an output on a special character usually a dot into 2 columns. The value must be a list of list of 4 elements :
+     * key to cut
+     * separator usually the dot character
+     * Col names of first sub-element
+     * Col names of second sub-element
+   * Eval : for some columns the values must be the result of a Python command line (e.g to get information in a path). It's necessarly a python dictionary with Key as column name and value a short command line as a string.
+
+4. The following Keys are med associate keywords only usable with labelled file :
+   * Start Date (automatically added)
+   * End Date
+   * Subject
+   * Experiment
+   * Group
+   * Box
+   * Start Time (automatically added)
+   * End Time
+   * MSN: Medassociate exercice names
+
+Note: Templates are available in the config.yml file
 <!-- ROADMAP -->
 ## Roadmap
 
