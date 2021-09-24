@@ -18,11 +18,11 @@ from labelled_file import lab_selector, parse_labelled
 from column_file import col_selector, parse_col
 from global_parser_fun import global_selector
 
-def read_path(path: str, opt_dic:Dict) -> pd.DataFrame:
+def read_path(path: str, opt:Dict) -> pd.DataFrame:
     """Reads subject text files labelled or not and returns a dict or a list of dict"""
-    infos_lab = opt_dic["infos_lab"] if "infos_lab" in opt_dic.keys() else None
-    infos_col = opt_dic["infos_col"] if "infos_col" in opt_dic.keys() else None
-    infos_opt = opt_dic["options"] if "options" in opt_dic.keys() else {"remove_zero_ending":False}
+    infos_lab = opt["infos_lab"] if "infos_lab" in opt.keys() else None
+    infos_col = opt["infos_col"] if "infos_col" in opt.keys() else None
+    infos_opt = opt["options"] if "options" in opt.keys() else {"remove_zero_ending":False}
     infos_opt["path_file"] = path
     print("\n Labelled options :")
     pprint(infos_lab)

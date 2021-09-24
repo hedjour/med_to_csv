@@ -13,7 +13,7 @@ import yaml
 import pandas as pd
 from file_med_to_csv import read_path
 
-def main(path: str, output_file: str, opt_dic:Dict)->pd.DataFrame:
+def main(path: str, output_file: str, opt:Dict)->pd.DataFrame:
     """Takes path, dict from config file and output filename as parameter and returns a csv file"""
     try:
         tim_stamp = time()
@@ -34,7 +34,7 @@ def main(path: str, output_file: str, opt_dic:Dict)->pd.DataFrame:
                 try:
                     #+ and not .append to concatenate list and not make list of list of list of dic
                     # list_data = list_data + read_path(f"{path}/{listd[i]}", opt_dic)
-                    output_lst = output_lst + [read_path(f"{path}/{listd[i]}", opt_dic)]
+                    output_lst = output_lst + [read_path(f"{path}/{listd[i]}", opt)]
                     output_df = pd.concat(output_lst)
                 except Exception as err:
                     rep = input(
@@ -73,4 +73,4 @@ if __name__ == "__main__":
     # Auto is based on weight table to determine if animals are out.""")
 
     # print(f"path={args.path}, notes={args.notes}, sortie={args.sortie}, echo={args.verbose}")
-    main(path=args.path, output_file = args.output, opt_dic=opt_dic)
+    main(path=args.path, output_file = args.output, opt=opt_dic)
