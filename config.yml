@@ -70,6 +70,6 @@ infos_lab:
   base_value: ["Z", 30, "end"]
 
 options:
-  no_zero_ending_array: True #Or False
+  remove_zero_ending: True #Or False
   cut : [["base_value", ".", "time_stamp", "shock_step"]]
   eval: {"prog":"path_file.split('/')[-1]"}

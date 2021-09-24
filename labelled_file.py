@@ -55,7 +55,7 @@ def parse_labelled(list_ligns:List)-> Dict or List(Dict):
     return dic_subject if len(list_res)<2 else list_res
 
 
-def lab_selector(lst_dic:List[Dict], infos:dict) -> List[Dict]:
+def lab_selector(lst_dic:List[Dict], infos:dict, remove_zero_ending:bool) -> List[Dict]:
     lst_out=[]
     for dic_file in lst_dic :
         dic_selected={}
@@ -68,8 +68,12 @@ def lab_selector(lst_dic:List[Dict], infos:dict) -> List[Dict]:
             elif len(val) == 2:
                 dic_selected[key] = dic_file[val[0]][val[1]]
             elif len(val) == 3:
-                dic_selected[key] = dic_file[val[0]][val[1]:val[2]] if val[2] != "end" \
+                tmp_lst = dic_file[val[0]][val[1]:val[2]] if val[2] != "end" \
                     else dic_file[val[0]][val[1]:]
+                if remove_zero_ending :
+                    while tmp_lst[-1] in "0" and len(tmp_lst) > 1:
+                        tmp_lst = tmp_lst[:-1]
+                dic_selected[key] = tmp_lst
             else:
                 raise SyntaxError(f"This value is not correctly defined : {val}")
         # On cherche la taille de la liste la plus grande

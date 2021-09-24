@@ -11,12 +11,6 @@ def global_selector(lst_dic:List[Dict], infos_opt:Dict) -> List[Dict]:
     out_lst = []
     path_file = infos_opt["path_file"]
     for dicexperience in lst_dic :
-        if infos_opt["no_zero_ending_array"] :
-            for key, val in dicexperience.items():
-                print(dicexperience)
-                if len(dict.fromkeys(val)) > 1 :
-                    while val[-1] in "0" and len(val) > 1:
-                        val = val[:-1]
         if "eval" in infos_opt.keys() :
             for key, val in infos_opt["eval"].items() :
                 dicexperience[key] = eval(val)
