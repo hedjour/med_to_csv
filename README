@@ -59,7 +59,13 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li>
+      <a href="#usage">Usage</a></li>
+      <ul>
+        <li><a href="#file_med_to_csv">file_med_to_csv</a></li>
+        <li><a href="#expe_med_to_csv">expe_med_tp_csv</a></li>
+        <li><a href="#config-file">Config file</a></li>
+      </ul>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -110,19 +116,35 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Two file are usable with two commands
+Two files are usable with two commands
+### file_med_to_csv
   ```sh
-    ./expe_med_to_csv.py dir_to_dir_contains_med_associate_file config_file.yml output_csv_file
+    ./expe_med_to_csv.py pathdir_to_dir_that_contains_medassociate_file config_file.yml output_csv_file
   ```
+### expe_med_to_csv
   ```sh
-    ./file_med_to_csv.py 
+    ./file_med_to_csv.py path_to_medassociate_file config_file.yml output_csv_file
   ```
 
-## Config file
+### Config file
 
-The config file is a necessary file to give the setup of your data to the soft.
-You can found as exemple the config.yml which represent all possibilities of set up.
+The config file is a necessary file that gives the setup of your data to the soft.
+You can find as an example the config.yml which contains all possibilities of setup.
 You can mixe 1 col file dir and labelled dir file in experiment dir.
+
+1. There are three types of parameters:
+   * info_col : One column file
+   * info_lab : labelled file
+   * options : further options
+
+2. You need to indicate the information in this format: "Key : Value"
+   * Keys are the column names that you want in the output file
+   * Values are: 
+     * for infos_col: row number - 1 (Start index :0)
+     * for infos_lab: letters used in medAssociate exercise
+     * for infos_opt: 
+3. 
+4. 
 
 <!-- ROADMAP -->
 ## Roadmap
