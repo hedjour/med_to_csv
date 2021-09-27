@@ -15,7 +15,7 @@ def global_selector(lst_dic:List[Dict], infos_opt:Dict) -> List[Dict]:
     for dicexperience in lst_dic :
         if "eval" in infos_opt.keys() :
             for key, val in infos_opt["eval"].items() :
-                dicexperience[key] = eval(val)
+                dicexperience[key] = eval(val) #TODO need to be remplaced by ast.litteral_eval
         if "cut" in infos_opt.keys() :
             for lst_tmp in infos_opt["cut"]:
                 keys=lst_tmp[0]
