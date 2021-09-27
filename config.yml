@@ -1,39 +1,29 @@
 #! This file is for the set up of xxx_med_to_csv program.
+# Check the README file for more details on how to fill this config.
 #* Three types of parameters:
 #   - "infos_col" : for 1 column output 
 #   - "infos_lab" : for labelled output
 #   - "infos_opt" : for further options
-#* You need to indicate the information in this format:
+#* Information should be in this format:
 #   Keys : values , where : 
 #       - Keys are the column names that you want in the output file
 #       - Values are, for infos_col: row number - 1 (Start index :0)
 #                     for infos_lab: letters used in medAssociate exercise
-#                     for infos_opt: 
+#                     for infos_opt: see next points
+#* - cut: for cutting an output on a character "." into 2 columns :
+#     The value must be a list of list of 4 elements :
+# [key to cut, separator (.), Col names of 1st sub-element, Col names of 2nd sub-element]
+#* - eval: Result of a Python command line. It's a python
+#         dictionnary with Key as column name and Value a short command line as a string.
+# For example this option can be used to get information in path (see examples below)
+#* - remove_zero_ending: True or False. Remove the zeros at the end of an array
 #! Warning to get a global array in a var set your key as :
 #  Key : ["LETTER", first-index (start at 0), "number to last index"]
 #     example:  my_key : ["Z", 0, 120]
 #     Note: If the last index is the end of the array, write "end" instead of the number
 #     example: my_key : ["Z", 0, "end"]
-#* cut and eval Keys are special keys
-# - cut: for cutting an output on a special character usually a dot into 2 columns :
-#     The value must be a list of list of 4 elements :
-#           - key to cut
-#           - separator generaly the dot character
-#           - Col names of first sub-element
-#           - Col names of second sub-element
-# - eval: for some column must be the result of a Python command line. It's necessarly a python
-#         dictionnary with Key as column name and value a short command line as a string.
-# For example this option can be used to get information in path (see examples below)
 #* The following Keys are med associate keywords only usable with labelled file :
-#   - Start Date
-#   - End Date
-#   - Subject
-#   - Experiment
-#   - Group
-#   - Box
-#   - Start Time
-#   - End Time
-#   - MSN: Medassociate exercice names
+# Start Date, End Date, Subject, Experiment, Group, Box, Start Time, End Time, MSN
 #! Notes: Start Date and Start Time are automaticaly added to the results.
 
 #Here are two templates with examples

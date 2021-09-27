@@ -141,7 +141,7 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
    * Values are: 
      * for infos_col: row number - 1 (Start index :0)
      * for infos_lab: letters used in medAssociate exercise
-     * for infos_opt: for adding further options (see next point)
+     * for infos_opt: (see next point)
 
 3. Options:
    * remove_zero_ending : True or False to keep or remove Zeros at the end of arrays
