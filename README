@@ -136,7 +136,7 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
     * info_lab : labelled file
     * options : further options
 
-2. For the two first type of parameters.
+2. For the first two types of parameters.
     You need to indicate the information in this format: "Key : Value"
     * Keys are the column names that you want in the output file
     * Values are:
@@ -169,7 +169,10 @@ Note: Templates are available in the config.yml file
 ## Roadmap
 <!-- See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues). -->
 * Made a easy installable version
+* Add a GUI and CLI usage
 * Add possibility of filtering directories
+* Add possibility for labelled file to not precise the yml file and use yml in param path whith same
+ names of MPC name get from MSN
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -181,8 +184,6 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-
 
 <!-- LICENSE -->
 ## License
