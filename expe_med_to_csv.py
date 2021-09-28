@@ -23,7 +23,7 @@ def main(path: str, output_file: str, opt:Dict)->pd.DataFrame:
         nb_dirs = len(listd)
         output_lst=[]
         if len(listd) < 1 :
-            raise SyntaxError("Be carreful your directory is empty")
+            raise SyntaxError("Be careful your directory is empty")
         for i in range(nb_dirs):
             dtsp = time()-tim_stamp
             tim_stamp = time()

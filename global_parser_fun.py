@@ -27,3 +27,19 @@ def global_selector(lst_dic:List[Dict], infos_opt:Dict) -> List[Dict]:
                 dicexperience[sep_names[1]] = [i[1] if len(i)!= 1 else nan for i in res_sep]
         out_lst.append(dicexperience.copy())
     return out_lst
+
+def listdic_equalizer(list_dic:List[Dict]) -> List[Dict]:
+# Search for the longest list
+    lst_out=[]
+    for dic_selected in list_dic:
+        n_listmax = max([len(i) if isinstance(i, list) else 1 for i in dic_selected.values()])
+        # Align keys on the longest list
+        for key, val in dic_selected.items():
+            if not isinstance(val, list):
+                dic_selected[key] = [val] * n_listmax
+            elif len(val) != n_listmax:
+                dic_selected[key] = val + [nan] * (n_listmax - len(val))
+            else:
+                pass
+        lst_out.append(dic_selected.copy())
+    return lst_out

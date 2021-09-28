@@ -82,19 +82,9 @@ def lab_selector(lst_dic:List[Dict], infos:dict, remove_zero_ending:bool) -> Lis
                 dic_selected[key] = tmp_lst
             else:
                 raise SyntaxError(f"This value is not correctly defined : {val}")
-        # Search for the longest list
-        n_listmax = max([len(i) if isinstance(i, list) else 1 for i in dic_selected.values()])
         #Manage the date
         dic_selected["start_date"] = datetime.strptime(dic_file["Start Date"], "%m/%d/%y")
         dic_selected["start_time"] = dic_file["Start Time"]
-        # Align keys on the longest list
-        for key, val in dic_selected.items():
-            if not isinstance(val, list):
-                dic_selected[key] = [val] * n_listmax
-            elif len(val) != n_listmax:
-                dic_selected[key] = val + [nan] * (n_listmax - len(val))
-            else:
-                pass
         lst_out.append(dic_selected.copy())
     # end of for on dic list
     return lst_out

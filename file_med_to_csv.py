@@ -15,8 +15,8 @@ from os import path as ptah, listdir
 import yaml
 import pandas as pd
 from labelled_file import lab_selector, parse_labelled
-from column_file import col_selector, parse_col
-from global_parser_fun import global_selector
+from column_file import parse_col
+from global_parser_fun import global_selector, listdic_equalizer
 
 def read_path(path: str, opt:Dict) -> pd.DataFrame:
     """Reads subject text files labelled or not and returns a dict or a list of dict"""
@@ -43,10 +43,11 @@ def read_path(path: str, opt:Dict) -> pd.DataFrame:
     if lab:
         sel_res = lab_selector(lst_res, infos_lab, infos_opt["remove_zero_ending"])
     else:
-        sel_res = col_selector(lst_res)
+        sel_res = lst_res
     sel_res = global_selector(sel_res, infos_opt)
+    eq_res = listdic_equalizer(sel_res)
     out_lst = []
-    out_lst = out_lst + [pd.DataFrame(i)for i in sel_res]
+    out_lst = out_lst + [pd.DataFrame(i)for i in eq_res]
     return pd.concat(out_lst)
 
 def read_folder(path_folder: str, infos_col:Dict = None,
