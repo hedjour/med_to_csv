@@ -23,6 +23,8 @@ def read_path(path: str, opt:Dict) -> pd.DataFrame:
     infos_lab = opt["infos_lab"] if "infos_lab" in opt.keys() else None
     infos_col = opt["infos_col"] if "infos_col" in opt.keys() else None
     infos_opt = opt["options"] if "options" in opt.keys() else {"remove_zero_ending":False}
+    infos_opt["remove_zero_ending"] = False if "remove_zero_ending" not in infos_opt.keys() \
+                                            else infos_opt["remove_zero_ending"]
     infos_opt["path_file"] = path
     print("\n Labelled options :")
     pprint(infos_lab)
