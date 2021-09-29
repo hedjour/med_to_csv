@@ -5,11 +5,9 @@
         This software read medassociate files to compile a csv file at first time for foodpunish
         experiment
 """
-import argparse
 from typing import Dict
 from time import time
 from os import listdir as ldir, path as ptah
-import yaml
 import pandas as pd
 from file_med_to_csv import read_path
 

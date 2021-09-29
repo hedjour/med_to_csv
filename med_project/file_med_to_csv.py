@@ -8,11 +8,9 @@ Files read:
             \n
             data med/*\n
 """
-import argparse
 from pprint import pprint
 from typing import Dict, List
 from os import path as ptah, listdir
-import yaml
 import pandas as pd
 from labelled_file import lab_selector, parse_labelled
 from column_file import parse_col
