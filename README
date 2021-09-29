@@ -82,7 +82,8 @@ This program parses MedAssociates data files and transforms them into a tidy csv
 
 ### Built With
 
-* [https://www.python.org/](Python 3)
+* [Python 3](https://www.python.org/)
+<!-- * [Pandas](https://pandas.pydata.org/) -->
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -97,7 +98,7 @@ This is an example of how to list things you need to use the software and how to
       pip install numpy argparse yaml pandas
   ```
 
-### Installation
+### Installation from sources
 
 1. Clone the repo
    ```sh
@@ -194,8 +195,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
-* Jean-Emmanuel Longueville - jean.emmanuel.longueville(@)univ-poitiers.fr
-* Myriam Hanna - myriam.hanna(@)univ-poitiers.fr
+* Jean-Emmanuel Longueville - jean.emmanuel.longueville@univ-poitiers.fr
+* Myriam Hanna - myriam.hanna@univ-poitiers.fr
 * Marcello Solinas
 
 <!-- Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name) -->
