@@ -85,23 +85,3 @@ def read_file(path_file:str, infos_col:Dict = None, remove_zero_ending:bool= Fal
         lab = False
     res = [res] if isinstance(res, Dict) else res
     return res, lab
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog="med_to_csv",
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("path", type=str,
-                        help="""Path to the group directory which contains data files from :
-                                - Medassociate
-                                - Imetronic""")
-    parser.add_argument("option", type=str,
-                        help= """Path to option config file.""")
-    parser.add_argument("file", type=str,
-                        help= """Path output of the csv file""")
-
-    args = parser.parse_args()
-    #Load user parameters
-    with open(args.option, "r") as ymlfile:
-        opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
-    # Reading the path
-    df_res = read_path(args.path, opt_dic)
-    df_res.to_csv(args.file, index=False)

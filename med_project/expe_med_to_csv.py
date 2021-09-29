@@ -51,26 +51,3 @@ def main(path: str, output_file: str, opt:Dict)->pd.DataFrame:
     if output_file is not None :
         output_df.to_csv(output_file, sep=";", index=False)
     return output_df
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog="med_to_csv",
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("path", type=str,
-                        help="""Path to the group directory which contains data files from :
-                                - Medassociate
-                                - Imetronic""")
-    parser.add_argument("option", type=str, help= """Path to option config file.""")
-    parser.add_argument("output", type=str,   help= """Path output of the csv file""")
-    # parser.add_argument("-v","--verbose", type=str, help= """Verbose mode""")
-
-    args = parser.parse_args()
-    #load user parameters
-    with open(args.option, "r") as ymlfile:
-        opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
-    parser = argparse.ArgumentParser(prog="med_to_csv",
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-
-    # Auto is based on weight table to determine if animals are out.""")
-
-    # print(f"path={args.path}, notes={args.notes}, sortie={args.sortie}, echo={args.verbose}")
-    main(path=args.path, output_file = args.output, opt=opt_dic)

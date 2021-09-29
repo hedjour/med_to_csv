@@ -29,6 +29,6 @@ setup(
         "License :: OSI Approved :: ",
     ],
     entry_points = {
-        'console_scripts':  ['med_tocsv-run = med_project.expe_med_to_csv:main'],
+        'console_scripts':  ['med_tocsv-run = med_project.main_cli:main'],
     }
 )
