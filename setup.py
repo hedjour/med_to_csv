@@ -13,8 +13,8 @@ with open("README", 'r') as f:
 setup(
     name = "med_tocsv",
     version = "1.0",
-    author = "Jean-Emmanuel Longueville",
-    author_email = "J-E@univ-poitiers.fr",
+    author = "Jean-Emmanuel Longueville, Myriam Hanna",
+    author_email = "jean.emmanuel.longueville(@)univ-poitiers.fr",
     description = "A module that converts MedAssociates data to csv files",
     license = "",
     url = "https://sourcesup.renater.fr/anonscm/git/medanalysis/medanalysis.git",
@@ -29,6 +29,6 @@ setup(
         "License :: OSI Approved :: ",
     ],
     entry_points = {
-        'console_scripts':  ['med_tocsv-run = med_project.expe_med_to_csv:main']
+        'console_scripts':  ['med_tocsv-run = med_project.expe_med_to_csv:main'],
     }
 )
