@@ -12,9 +12,9 @@ from pprint import pprint
 from typing import Dict, List
 from os import path as ptah, listdir
 import pandas as pd
-from labelled_file import lab_selector, parse_labelled
-from column_file import parse_col
-from global_parser_fun import global_selector, listdic_equalizer
+from med_project.labelled_file import lab_selector, parse_labelled
+from med_project.column_file import parse_col
+from med_project.global_parser_fun import global_selector, listdic_equalizer
 
 def read_path(path: str, opt:Dict) -> pd.DataFrame:
     """Reads subject text files labelled or not and returns a dict or a list of dict"""
