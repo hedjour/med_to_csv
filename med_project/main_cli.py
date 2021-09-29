@@ -12,6 +12,7 @@ import med_project.file_med_to_csv as file
 
 
 def main() :
+    """main function, calls expe_med_to_csv or file_med_to_csv depending on the path"""
     parser = argparse.ArgumentParser(prog="med_to_csv",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("path", type=str,
