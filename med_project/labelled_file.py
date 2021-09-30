@@ -6,7 +6,6 @@ Module that parse labelled file
 from typing import Dict, List
 from datetime import datetime
 from string import ascii_uppercase as LETTERS
-from numpy import nan
 
 
 def parse_labelled(list_ligns:List)-> Dict or List(Dict):
