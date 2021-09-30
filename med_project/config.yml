@@ -68,5 +68,7 @@ infos_lab:
 
 options:
   remove_zero_ending: True #Or False
+  #https://docs.python.org/3/howto/regex.html
+  filter: "shock"
   cut : [["base_value", ".", "time_stamp", "shock_step"]]
   eval: {"prog":"path_file.split('/')[-1]"}

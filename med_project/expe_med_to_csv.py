@@ -9,6 +9,7 @@ from typing import Dict
 from time import time
 from os import listdir as ldir, path as ptah
 import pandas as pd
+import re
 from med_project.file_med_to_csv import read_path
 
 def main(path: str, output_file: str, opt:Dict)->pd.DataFrame:
@@ -16,8 +17,9 @@ def main(path: str, output_file: str, opt:Dict)->pd.DataFrame:
     try:
         tim_stamp = time()
         listd = [i for i in ldir(f"{path}") if i[0] != "."] #Listdir whithout dotfile
-        listd = [i for i in listd if "PR" not in i]
-        listd = [i for i in listd if "sh"  in i]
+        if "filter" in opt["options"].keys() :
+            f = re.compile(opt["options"]["filter"])
+            listd = [x for x in listd if f.search(x)]
         nb_dirs = len(listd)
         output_lst=[]
         if len(listd) < 1 :
