@@ -81,5 +81,5 @@ def read_file(path_file:str, infos_col:Dict = None, remove_zero_ending:bool= Fal
                                And have no information about how read it""")
         res = parse_col(list_ligns, infos_col, remove_zero_ending)
         lab = False
-    res = [res] if isinstance(res, Dict) else res
+    res = [res] if isinstance(res, dict) else res
     return res, lab
