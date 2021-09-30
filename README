@@ -170,11 +170,12 @@ Note: Templates are available in the config.yml file
 <!-- ROADMAP -->
 ## Roadmap
 <!-- See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues). -->
-* Made a easy installable version
-* Add a GUI and CLI usage
-* Add possibility of filtering directories
 * Add possibility for labelled file to not precise the yml file and use yml in param path whith same
- names of MPC name get from MSN
+ names of MPC name get from MSN []
+* Add a GUI  []
+* Add possibility of filtering directories [x]
+* Add CLI usage [x]
+* Made an easy installable version for Mac | Windows | Gnu-Linux [x]
 
 <!-- CONTRIBUTING -->
 ## Contributing
