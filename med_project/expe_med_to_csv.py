@@ -18,8 +18,7 @@ def main(path: str, output_file: str, opt:Dict)->pd.DataFrame:
         tim_stamp = time()
         listd = [i for i in ldir(f"{path}") if i[0] != "."] #Listdir whithout dotfile
         if "filter" in opt["options"].keys() :
-            f = re.compile(opt["options"]["filter"])
-            listd = [x for x in listd if f.search(x)]
+            listd = list(filter(re.compile(opt["options"]["filter"]).search, listd))
         nb_dirs = len(listd)
         output_lst=[]
         if len(listd) < 1 :
