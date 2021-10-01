@@ -21,7 +21,8 @@ setup(
     packages= find_packages(),
     install_requires=['pandas',
                       'numpy',
-                      'argparse'],
+                      'argparse',
+                      'yaml'],
     long_description=long_description,
     classifiers=[
         "Development Status :: 3 - Alpha",
