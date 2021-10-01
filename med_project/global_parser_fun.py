@@ -7,7 +7,7 @@ from numpy import nan
 
 def global_selector(lst_dic:List[Dict], infos_opt:Dict) -> List[Dict]:
     """
-    Function that splits values following the 'cut' option and 
+    Function that splits values following the 'cut' option and
     applies the 'eval' option of the config file
     """
     out_lst = []
@@ -29,7 +29,7 @@ def global_selector(lst_dic:List[Dict], infos_opt:Dict) -> List[Dict]:
     return out_lst
 
 def listdic_equalizer(list_dic:List[Dict]) -> List[Dict]:
-# Search for the longest list
+    """Search for the longest list"""
     lst_out=[]
     for dic_selected in list_dic:
         n_listmax = max([len(i) if isinstance(i, list) else 1 for i in dic_selected.values()])
