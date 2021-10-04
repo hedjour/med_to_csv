@@ -9,18 +9,20 @@ from os import path as ptah
 import yaml
 import med_project.expe_med_to_csv as expe
 import med_project.file_med_to_csv as file
+from gooey import Gooey, GooeyParser
 
+@Gooey
 def main() :
     """main function, calls expe_med_to_csv or file_med_to_csv depending on the path"""
-    parser = argparse.ArgumentParser(prog="med_to_csv",
+    parser = GooeyParser(prog="med_to_csv",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("path", type=str,
                         help="""Path to the group directory which contains data files from :
-                                - Medassociate""")
+                                - Medassociate""", widget="DirChooser")
     parser.add_argument("option", type=str, 
-                        help= """Path to option config file.""")
+                        help= """Path to option config file.""", widget="FileChooser")
     parser.add_argument("output", type=str,   
-                        help= """Path output of the csv file""")
+                        help= """Path output of the csv file""", widget="FileSaver")
     # parser.add_argument("-v","--verbose", type=str, help= """Verbose mode""")
 
     args = parser.parse_args()

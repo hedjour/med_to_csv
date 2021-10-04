@@ -30,6 +30,7 @@ setup(
         "License :: OSI Approved :: ",
     ],
     entry_points = {
-        'console_scripts':  ['med_tocsv-run = med_project.main_cli:main'],
+        'console_scripts':  ['med_to_csv-cli = med_project.main_cli:main',
+                             'med_to_csv-gui = med_project.main_gui:main'],
     }
 )
