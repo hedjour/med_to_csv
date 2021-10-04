@@ -22,7 +22,8 @@ setup(
     install_requires=['pandas',
                       'numpy',
                       'argparse',
-                      'yaml'],
+                      'yaml',
+                      'gooey',],
     long_description=long_description,
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -31,6 +32,6 @@ setup(
     ],
     entry_points = {
         'console_scripts':  ['med_to_csv-cli = med_project.main_cli:main',
-                             'med_to_csv-gui = med_project.main_gui:main'],
+                             'med_to_csv-gui = med_project.main_gui:main',]
     }
 )
