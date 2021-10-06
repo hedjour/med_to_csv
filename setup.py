@@ -7,7 +7,7 @@ except ImportError:
 # Used for the long_description.  It's nice, because now 1) we have a top level
 # README file and 2) it's easier to type in the README file than to put a raw
 # string in below ...
-with open("README", 'r') as f:
+with open("README.md", 'r') as f:
     long_description = f.read()
 
 setup(
@@ -22,7 +22,7 @@ setup(
     install_requires=['pandas',
                       'numpy',
                       'argparse',
-                      'yaml',
+                      'pyaml',
                       'gooey',],
     long_description=long_description,
     classifiers=[
