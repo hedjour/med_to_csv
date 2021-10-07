@@ -106,7 +106,7 @@ This is an example of how to list things you need to use the software and how to
 * pip
   ```sh
       pip install numpy argparse yaml pandas
-      pip install Gooey #For graphical interface
+      pip install Gooey #For graphical use
   ```
 
 ### Installation
@@ -118,8 +118,13 @@ This is an example of how to list things you need to use the software and how to
 2. Install the required pip packages
    ```sh
       pip install numpy argparse yaml pandas
-      pip install Gooey #For graphical interface
+      pip install Gooey #For graphical use
    ```
+3. Install software
+  ```sh
+      python setup.py install #On gnu-linux |MacOs Systems
+      python setup.py install --user #On windows Sytems
+  ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -235,13 +240,13 @@ Project Link: [https://github.com/hedjour/med_to_csv](https://github.com/hedjour
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+* [IRESP](https://iresp.net/)
+* [LNEC](https://lnec.labo.univ-poitiers.fr/)
+* []() 
 
-* []()
-* []()
-* []()
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
