@@ -1,35 +1,27 @@
 .. role:: raw-html(raw)
    :format: html
 
-   
 |Contributors| |Forks| |Stargazers| |Issues| |MIT License|
 
-.. raw:: html
+.. _top:
 
-   <div id="top"></div>
-   <h3 align="center">MedAssociates to CSV file</h3>
+MedAssociates to CSV file
+==========================
 
-     <p align="center">
-       A simple way to parse MedAssociate output file in tidy data :
-       <ul>
-         <li> 1 row = 1 observation
-         <li> 1 col = 1 var
-       </ul>
-       <br />
-       <a href="https://github.com/hedjour/med_to_csv"><strong>Explore the docs »</strong></a>
-       <br />
-       <br />
-       <a href="https://github.com/hedjour/med_to_csv">View Demo</a>
-       ·
-       <a href="https://github.com/hedjour/med_to_csv/issues">Report Bug</a>
-       ·
-       <a href="https://github.com/hedjour/med_to_csv/issues">Request Feature</a>
-     </p>
-   </div>
+A simple way to parse MedAssociate output file in tidy data :
+   * 1 row = 1 observation
+   * 1 col = 1 var
+   
 
+`Explore the docs » <https://github.com/hedjour/med_to_csv>`_
 
-:raw-html:`<!-- TABLE OF CONTENTS -->`
+`View Demo <https://github.com/hedjour/med_to_csv>`_ ·
+`Report Bug <https://github.com/hedjour/med_to_csv/issues>`_ ·
+`Request Feature <https://github.com/hedjour/med_to_csv/issues>`_
 
+.. TABLE OF CONTENTS
+.. .. contents:: Table of Contents
+..    :depth: 2
 
 .. raw:: html
 
@@ -65,13 +57,10 @@
    </details>
 
 
-:raw-html:`<!-- ABOUT THE PROJECT -->`
-
 About The Project
 -----------------
 
 This program parses MedAssociates data files and transforms them into tidy csv files, containing the information needed and given by each user
-
 
 .. raw:: html
 
@@ -85,13 +74,12 @@ Built With
 * `Python 3 <https://www.python.org/>`_
 * `Gooey <https://github.com/chriskiehl/Gooey>`_
 
+.. `back to top <#top>_`
 
 .. raw:: html
 
    <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-:raw-html:`<!-- GETTING STARTED -->`
 
 Getting Started
 ---------------
@@ -127,23 +115,15 @@ Installation
       pip install numpy argparse yaml pandas
       pip install Gooey #For graphical interface
 
-#. Install software
-
-   .. code-block:: bash
-
-      python setup.py install #On gnu-linux |MacOs Systems
-      python setup.py install --user #On windows Sytems
-  
 
 .. raw:: html
 
    <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-:raw-html:`<!-- USAGE EXAMPLES -->`
 
-Usage
------
+Usage Exemple
+---------------------
 
 Graphical User Interface
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -173,14 +153,12 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
 
 #. There are three types of parameters:
 
-
    * info_col : One column file
    * info_lab : labelled file
    * options : further options
 
 #. For the first two types of parameters.
-    You need to indicate the information in this format: "Key : Value"
-
+   You need to indicate the information in this format: "Key : Value"
 
    * Keys are the column names that you want in the output file
    * Values are:
@@ -190,7 +168,6 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
      * for infos_opt: (see next point)
 
 #. Options:
-
 
    * remove_zero_ending : True or False to keep or remove Zeros at the end of arrays
    * Cut : for cutting an output on a special character usually a dot into 2 columns. The value must be a list of list of 4 elements :
@@ -203,7 +180,6 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
    * Eval : for some columns the values must be the result of a Python command line (e.g to get information in a path). It's necessarly a python dictionary with Key as column name and value a short command line as a string.
 
 #. The following Keys are med associate keywords only usable with labelled file :
-
 
    * Start Date (automatically added)
    * End Date
@@ -223,7 +199,6 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
    <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-:raw-html:`<!-- ROADMAP -->`
 
 Roadmap
 -------
@@ -242,8 +217,6 @@ Roadmap
    <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-:raw-html:`<!-- CONTRIBUTING -->`
-
 Contributing
 ------------
 
@@ -259,13 +232,10 @@ Don't forget to give the project a star! Thanks again!
 #. Push to the Branch (\ ``git push origin feature/AmazingFeature``\ )
 #. Open a Pull Request
 
-
 .. raw:: html
 
    <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-:raw-html:`<!-- LICENSE -->`
 
 License
 -------
@@ -277,8 +247,6 @@ Distributed under the xxx License. See ``LICENSE.txt`` for more information.
 
    <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-:raw-html:`<!-- CONTACT -->`
 
 Contact
 -------
@@ -296,15 +264,13 @@ Project Link: `https://github.com/hedjour/med_to_csv <https://github.com/hedjour
    <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-:raw-html:`<!-- ACKNOWLEDGMENTS -->`
-
 Acknowledgments
 ---------------
 
 
-* ` <>`_
-* ` <>`_
-* ` <>`_
+* `IRESP <https://iresp.net/>`_
+* `LNEC <https://lnec.labo.univ-poitiers.fr/>`_
+.. * ` <>`_
 
 
 .. raw:: html
@@ -312,8 +278,8 @@ Acknowledgments
    <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-:raw-html:`<!-- MARKDOWN LINKS & IMAGES -->`
-:raw-html:`<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->`
+.. MARKDOWN LINKS & IMAGES 
+.. https://www.markdownguide.org/basic-syntax/#reference-style-links
 
 .. |Contributors| image:: https://img.shields.io/github/contributors/hedjour/med_to_csv.svg?style=for-the-badge
    :target: https://github.com/hedjour/med_to_csv/graphs/contributors

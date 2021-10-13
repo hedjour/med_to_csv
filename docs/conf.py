@@ -32,6 +32,7 @@ release = '0.9'
 # ones.
 extensions = [
     'sphinx_rtd_theme', #For traduction
+    'sphinx.ext.autosectionlabel',
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon"
 ]

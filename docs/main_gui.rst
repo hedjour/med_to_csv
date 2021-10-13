@@ -1,5 +1,5 @@
-Main Command line interface 
-============================
+Graphique User Interface
+====================================
 
 How to use it
 ---------------------
@@ -11,6 +11,5 @@ This software version use Gooey module.
 
 You can find it `here <https://github.com/chriskiehl/Gooey>`_
 
-
-Detail
----------
+.. TODO Add some print 
+.. TODO Add an icons to the program

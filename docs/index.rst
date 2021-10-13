@@ -14,8 +14,6 @@ Welcome to med_to_csv's documentation!
    ./main_cli
    ./main_gui
    ./config_file
-   ./expe_med
-   ./file_med
    .. ./faq
    ./license
 
