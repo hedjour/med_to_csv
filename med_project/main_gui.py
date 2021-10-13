@@ -58,7 +58,7 @@ You miss to give me your data
         }]
     )
 def main() :
-    """main function, calls expe_med_to_csv or file_med_to_csv depending on the path"""
+    """main function, to display a select file/directory window"""
     parser = GooeyParser(prog="med_to_csv", 
                          formatter_class=argparse.ArgumentDefaultsHelpFormatter,
                          description = """This software wrangling your data to a unique csv file.
