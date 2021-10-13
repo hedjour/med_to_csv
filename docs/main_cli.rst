@@ -10,7 +10,7 @@ How to use it
 
 
 
-Detail
+Details
 ---------
 
 .. automodule:: med_project.main_cli
