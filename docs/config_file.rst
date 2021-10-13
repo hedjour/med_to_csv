@@ -1,12 +1,12 @@
 Config file yaml
 =================
 
-Introduction to setting :
--------------------------
+Setting up
+---------------
 
-The config file is a necessary file that gives the setup of your data to the soft.
-You can find as an example the config.yml which contains all possibilities of setup.
-You can mixe 1 col file dir and labelled dir file in experiment dir.
+The config file is a necessary file that gives the setup of your data to the software.
+You can find an example in the config.yml file which contains all possibilities of setup.
+You can mix one-column files folders and labelled files folders in one experiment folder.
 
 #. There are three types of parameters:
 
@@ -51,8 +51,8 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
 
 .. note:: Templates are available in the config.yml file or see below
 
-Templates :
-------------
+Templates 
+----------
 
 .. code-block:: yaml
 
