@@ -127,6 +127,13 @@ Installation
       pip install numpy argparse yaml pandas
       pip install Gooey #For graphical interface
 
+#. Install software
+
+   .. code-block:: bash
+
+      python setup.py install #On gnu-linux |MacOs Systems
+      python setup.py install --user #On windows Sytems
+  
 
 .. raw:: html
 
@@ -164,16 +171,14 @@ You can find as an example the config.yml which contains all possibilities of se
 You can mixe 1 col file dir and labelled dir file in experiment dir.
 
 
-#. 
-   There are three types of parameters:
+#. There are three types of parameters:
 
 
    * info_col : One column file
    * info_lab : labelled file
    * options : further options
 
-#. 
-   For the first two types of parameters.
+#. For the first two types of parameters.
     You need to indicate the information in this format: "Key : Value"
 
 
@@ -184,8 +189,7 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
      * for infos_lab: letters used in medAssociate exercise
      * for infos_opt: (see next point)
 
-#. 
-   Options:
+#. Options:
 
 
    * remove_zero_ending : True or False to keep or remove Zeros at the end of arrays
@@ -198,8 +202,7 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
 
    * Eval : for some columns the values must be the result of a Python command line (e.g to get information in a path). It's necessarly a python dictionary with Key as column name and value a short command line as a string.
 
-#. 
-   The following Keys are med associate keywords only usable with labelled file :
+#. The following Keys are med associate keywords only usable with labelled file :
 
 
    * Start Date (automatically added)
