@@ -23,9 +23,9 @@ BOOM = r"""
           | ;  :|
 ______.,-#%&$@%#&#~,._____
     KAA-BOOOOOOM -
-Oups your data have desapear
-    OH  good new 
-You miss to give me your data
+Oops your data have disappeared
+    OH good news 
+You missed to give me your data
 """
 
 
@@ -61,10 +61,10 @@ def main() :
     """main function, to display a select file/directory window"""
     parser = GooeyParser(prog="med_to_csv", 
                          formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-                         description = """This software wrangling your data to a unique csv file.
+                         description = """This software transforms your data to a unique csv file.
                          
 For more information about the config file please see the README.md file.
-You must to indicate a path or a file with your data in other case the software will return an error.
+You must indicate a path or a file with your data otherwise the software will return an error.
 """)
     parser.add_argument("option", type=str, 
                         help= """Path to option config file.""", widget="FileChooser")
