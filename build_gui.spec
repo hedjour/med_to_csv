@@ -34,3 +34,7 @@ exe = EXE(pyz,
           console=False,
           windowed=True,
           icon=os.path.join(gooey_root, 'images', 'program_icon.ico'))
+
+app = BUNDLE(exe,
+         name='portable_med_to_csv_gui.app',
+         bundle_identifier=None)
