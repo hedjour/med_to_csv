@@ -10,11 +10,12 @@ Welcome to med_to_csv's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   ./introduction
    ./install
    ./main_cli
    ./main_gui
    ./config_file
-   .. ./faq
+   ./faq
    ./license
 
 

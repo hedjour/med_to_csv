@@ -6,7 +6,7 @@ Setting up
 
 The config file is a necessary file that gives the setup of your data to the software.
 You can find an example in the config.yml file which contains all possibilities of setup.
-You can mix one-column files folders and labelled files folders in one experiment folder.
+You can mix one-column files directories and labelled files directories in one experiment folder.
 
 #. There are three types of parameters:
 
@@ -15,9 +15,10 @@ You can mix one-column files folders and labelled files folders in one experimen
    * options : further options
 
 
-   .. important:: The options parameters is required
+   .. important:: Either info_col or info_lab are required, if your data contains a mix 
+       of one-column files and labelled files you can mention both parameters 
 
-#. For the first two types of parameters.
+#. For the first two types of parameters
     You need to indicate the information in this format: "Key : Value"
 
     * Keys are the column names that you want in the output file
@@ -30,7 +31,7 @@ You can mix one-column files folders and labelled files folders in one experimen
 #. Options:
 
    * remove_zero_ending : True or False to keep or remove Zeros at the end of arrays
-   * Cut : for cutting an output on a special character usually a dot into 2 columns. The value must be a list of list of 4 elements :
+   * cut : for cutting an output on a special character usually a dot into 2 columns. The value must be a list of list of 4 elements :
 
      * key to cut
      * separator usually the dot character
