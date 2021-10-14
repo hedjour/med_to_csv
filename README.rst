@@ -270,8 +270,7 @@ Acknowledgments
 
 * `IRESP <https://iresp.net/>`_
 * `LNEC <https://lnec.labo.univ-poitiers.fr/>`_
-.. * ` <>`_
-
+* `Logo FreeVector.com <https://www.freevector.com/smiling-rat-logo>`_
 
 .. raw:: html
 

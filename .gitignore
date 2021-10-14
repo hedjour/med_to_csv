@@ -7,12 +7,9 @@ Datas/*
 Exports/*
 .vscode/*
 *.csv
-*.png
 *.html
 *.pdf
 *.docx
-*.R
-*.Rmd
 *.csv
 *.docx
 *.ods
