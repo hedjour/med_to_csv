@@ -17,20 +17,22 @@ You can mix one-column files directories and labelled files directories in one e
 
    .. important:: Either info_col or info_lab are required, if your data contains a mix 
        of one-column files and labelled files you can mention both parameters 
+       
+#. For the first two types of parameters:
+   
+   You need to indicate the information in this format: "Key : Value"
+    
+   * Keys are the column names that you want in the output file
+   * Values are:
 
-#. For the first two types of parameters
-    You need to indicate the information in this format: "Key : Value"
-
-    * Keys are the column names that you want in the output file
-    * Values are:
-
-      * for infos_col: row number - 1 (Start index :0)
-      * for infos_lab: letters used in medAssociate exercise
-      * for infos_opt: (see next point)
+     * for infos_col: row number - 1 (Start index :0)
+     * for infos_lab: letters used in medAssociate exercise
+     * for infos_opt: (see next point)
 
 #. Options:
 
    * remove_zero_ending : True or False to keep or remove Zeros at the end of arrays
+   * filter : a string or regex present in the directories name to filter by. 
    * cut : for cutting an output on a special character usually a dot into 2 columns. The value must be a list of list of 4 elements :
 
      * key to cut
@@ -40,6 +42,7 @@ You can mix one-column files directories and labelled files directories in one e
    * Eval : for some columns the values must be the result of a Python command line (e.g to get information in a path). It's necessarly a python dictionary with Key as column name and value a short command line as a string.
 
 #. The following Keys are med associate keywords only usable with labelled file :
+
    * Start Date (automatically added)
    * End Date
    * Subject
