@@ -34,7 +34,8 @@ setup(
         'console_scripts':  ['med_to_csv-cli = med_to_csv.main_cli:main',
                              'med_to_csv-gui = med_to_csv.main_gui:main',]
         },
-    package_data={
-        'med_to_csv': ['med_to_csv/img/*', "img/"]
-        },
+    data_files=[
+        ('lib/python3.9/dist-packages/med_to_csv/img',
+            ['med_to_csv/img/config_icon.png','med_to_csv/img/program_icon.png' ])
+        ],
 )
