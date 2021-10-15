@@ -8,8 +8,8 @@ gooey_root = os.path.dirname(gooey.__file__)
 gooey_languages = Tree(os.path.join(gooey_root, 'languages'), prefix = 'gooey/languages')
 gooey_images = Tree(os.path.join(gooey_root, 'images'), prefix = 'gooey/images')
 
-a = Analysis(['med_project/main_gui.py'],
-             datas = [('med_project/img', 'img')],
+a = Analysis(['med_to_csv/main_gui.py'],
+             datas = [('med_to_csv/img', 'img')],
              pathex=['c:\\Python27\\Scripts'],
              hiddenimports=[],
              hookspath=None,

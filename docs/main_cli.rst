@@ -22,5 +22,5 @@ Run the following command on the file or directory containing the datas
 Details
 ---------
 
-.. automodule:: med_project.main_cli
+.. automodule:: med_to_csv.main_cli
    :members:

@@ -1,9 +1,9 @@
 Welcome to med_to_csv's documentation!
 ======================================
-.. .. automodule:: med_project.main_cli
+.. .. automodule:: med_to_csv.main_cli
 ..    :members:
 
-.. .. automodule:: med_project.main_gui
+.. .. automodule:: med_to_csv.main_gui
 ..    :members:
 
 .. toctree::

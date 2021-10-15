@@ -14,7 +14,7 @@ path = "/home/jelongueville/Documents/Doctorants/Stevenson/Paper Food Punishment
 path_folder = f"{path}071220 s31/"
 path_file = f"{path_folder}/{listdir(path_folder)[2]}"
 #Param1cln
-toto = './med_project/config.yml'
+toto = './med_to_csv/config.yml'
 with open(toto, "r") as ymlfile:
     opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
 

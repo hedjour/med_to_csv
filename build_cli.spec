@@ -4,7 +4,7 @@
 block_cipher = None
 
 
-a = Analysis(['med_project/main_cli.py'],
+a = Analysis(['med_to_csv/main_cli.py'],
             pathex=['/home/jelongueville/Documents/Routines/med_to_csv'],
             binaries=[],
             datas=[],

@@ -30,8 +30,11 @@ setup(
         "Topic :: Utilities",
         "License :: OSI Approved :: ",
     ],
-    entry_points = {
-        'console_scripts':  ['med_to_csv-cli = med_project.main_cli:main',
-                             'med_to_csv-gui = med_project.main_gui:main',]
-    }
+    entry_points={
+        'console_scripts':  ['med_to_csv-cli = med_to_csv.main_cli:main',
+                             'med_to_csv-gui = med_to_csv.main_gui:main',]
+        },
+    package_data={
+        'med_to_csv': ['med_to_csv/img/*', "img/"]
+        },
 )

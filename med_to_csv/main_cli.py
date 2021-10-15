@@ -7,8 +7,8 @@ Main module to run the right script with the given options
 import argparse
 from os import path as ptah
 import yaml
-import med_project.expe_med_to_csv as expe
-import med_project.file_med_to_csv as file
+import med_to_csv.expe_med_to_csv as expe
+import med_to_csv.file_med_to_csv as file
 
 def main() :
     """main function, calls expe_med_to_csv or file_med_to_csv depending on the path"""

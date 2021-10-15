@@ -10,7 +10,7 @@ from time import time
 from os import listdir as ldir, path as ptah
 import pandas as pd
 import re
-from med_project.file_med_to_csv import read_path
+from med_to_csv.file_med_to_csv import read_path
 
 def main(path: str, output_file: str, opt:Dict)->pd.DataFrame:
     """Takes path, dict from config file and output filename as parameter and returns a csv file"""
