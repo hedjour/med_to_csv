@@ -95,7 +95,7 @@ This is an example of how to list things you need to use the software and how to
 
    .. code-block:: bash
 
-      pip install numpy argparse yaml pandas
+      pip install numpy argparse pyaml pandas
       pip install Gooey #For graphical interface
 
 Installation
