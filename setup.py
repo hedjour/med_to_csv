@@ -11,7 +11,7 @@ with open("README.md", 'r') as f:
     long_description = f.read()
 
 setup(
-    name = "med_tocsv",
+    name = "med_to_csv",
     version = "1.0",
     author = "Jean-Emmanuel Longueville, Myriam Hanna",
     author_email = "jean.emmanuel.longueville(@)univ-poitiers.fr",

@@ -1,0 +1,2 @@
+include med_to_csv/*
+include ./README.rst
