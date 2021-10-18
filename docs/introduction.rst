@@ -18,7 +18,7 @@ How does it work
 Since med associates allows to fill freely the information needed, the resulting data layout
 will differ from user to user. In this software, the user should specify **which** information 
 to keep and **where** this information is present, in a `config file <./config_file.html>`_ 
-written in YAML. The CSV file created will be in a table format where 
+written in YAML. The software generates a CSV file in a table format where 
 each variable mentionned by the user forms a column and each observation forms a row.
 
 .. note:: If arrays are present, unique values are repeated to match the length of longest array.

@@ -27,7 +27,6 @@ You can mix one-column files directories and labelled files directories in one e
 
      * for infos_col: row number - 1 (Start index :0)
      * for infos_lab: letters used in medAssociate exercise
-     * for infos_opt: (see next point)
 
 #. Options:
 
@@ -37,9 +36,9 @@ You can mix one-column files directories and labelled files directories in one e
 
      * key to cut
      * separator usually the dot character
-     * Col names of first sub-element
-     * Col names of second sub-element
-   * Eval : for some columns the values must be the result of a Python command line (e.g to get information in a path). It's necessarly a python dictionary with Key as column name and value a short command line as a string.
+     * column name of first sub-element
+     * column name of second sub-element
+   * eval : for some columns the values must be the result of a Python command line (e.g to get information in a path). It's necessarly a python dictionary with Key as column name and value a short command line as a string.
 
 #. The following Keys are med associate keywords only usable with labelled file :
 
