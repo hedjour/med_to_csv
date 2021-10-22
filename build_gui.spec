@@ -10,7 +10,7 @@ gooey_images = Tree(os.path.join(gooey_root, 'images'), prefix = 'gooey/images')
 
 a = Analysis(['med_to_csv/main_gui.py'],
              datas = [('med_to_csv/img', 'img')],
-             pathex=['c:\\Python27\\Scripts'],
+             pathex=['c:\\Python3\\Scripts'],
              hiddenimports=[],
              hookspath=None,
              runtime_hooks=None,

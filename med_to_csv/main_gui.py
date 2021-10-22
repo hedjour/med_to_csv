@@ -7,8 +7,8 @@ Main module to run the right script with the given options
 import argparse
 from os import path as ptah
 import yaml
-import med_to_csv.expe_med_to_csv as expe
-import med_to_csv.file_med_to_csv as file
+import med_to_csv.expe_med_to_csv as expe_med
+import med_to_csv.file_med_to_csv as file_med
 from gooey import Gooey, GooeyParser
 BOOM = r"""
      _.-^^---....,,--
@@ -77,10 +77,11 @@ Option to indicate a path to the group directory which contains data files from 
     parser.add_argument("-f", "--file", type=str,
                         help="""Option to indicate a unique file and not a directory.""",
                         widget="FileChooser", 
-                        gooey_options={ 'validator': {
-                            'test': 'user_input is None and args.path is None',
-                            'message': 'Choose a file or a directory'
-                            } })
+                        # gooey_options={ 'validator': {
+                        #     'test': 'user_input is None and args.path is None',
+                        #     'message': 'Choose a file or a directory'
+                        #     } }
+                        )
     # parser.add_argument("-v","--verbose", type=str, help= """Verbose mode""")
 
     args = parser.parse_args()
@@ -89,11 +90,15 @@ Option to indicate a path to the group directory which contains data files from 
         opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
     parser = argparse.ArgumentParser(prog="med_to_csv",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    
+    print(f"File : {args.file} | Path :{args.path}")
     if args.file is not None:
-        df_res = file.read_path(args.path, opt_dic)
+        print("arg.file")
+        df_res = file_med.read_path(args.file, opt_dic)
         df_res.to_csv(args.file, index=False)
     elif args.path is not None :
-        expe.main(path=args.path, output_file = args.output, opt=opt_dic)
+        print("arg.ptah")
+        expe_med.main(path=args.path, output_file = args.output, opt=opt_dic)
     else:
         raise Exception(BOOM)
 

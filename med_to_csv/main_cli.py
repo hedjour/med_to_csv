@@ -7,8 +7,8 @@ Main module to run the right script with the given options
 import argparse
 from os import path as ptah
 import yaml
-import med_to_csv.expe_med_to_csv as expe
-import med_to_csv.file_med_to_csv as file
+import med_to_csv.expe_med_to_csv as expe_med
+import med_to_csv.file_med_to_csv as file_med
 
 def main() :
     """main function, calls expe_med_to_csv or file_med_to_csv depending on the path"""
@@ -31,9 +31,9 @@ def main() :
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     if ptah.isdir(args.path):
         # print(f"path={args.path}, notes={args.notes}, sortie={args.sortie}, echo={args.verbose}")
-        expe.main(path=args.path, output_file = args.output, opt=opt_dic)
+        expe_med.main(path=args.path, output_file = args.output, opt=opt_dic)
     else:
-        df_res = file.read_path(args.path, opt_dic)
+        df_res = file_med.read_path(args.path, opt_dic)
         df_res.to_csv(args.file, index=False)
 
 if __name__ == "__main__":
