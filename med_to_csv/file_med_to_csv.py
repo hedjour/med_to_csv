@@ -77,7 +77,7 @@ def read_file(path_file:str, infos_col:Dict = None, remove_zero_ending:bool= Fal
     else :
         #File 1 column
         if infos_col is None :
-            raise RuntimeError("""Paramétrage Incorrect I have found 1col file
+            raise RuntimeError("""Incorrect settings: I found 1column file
                                And have no information about how read it""")
         res = parse_col(list_ligns, infos_col, remove_zero_ending)
         lab = False

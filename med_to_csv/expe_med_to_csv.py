@@ -26,8 +26,8 @@ def main(path: str, output_file: str, opt:Dict)->pd.DataFrame:
         for i in range(nb_dirs):
             dtsp = time()-tim_stamp
             tim_stamp = time()
-            chn = f"""\n\nMED : {listd[i]} dossier {i}/{nb_dirs-1}    {"-"*i}{"."*(nb_dirs-i-1)}
-            Temps restant estimé : {int(dtsp*(nb_dirs-i))//60}:{int(dtsp*(nb_dirs-i))%60} """
+            chn = f"""\n\nMED : {listd[i]} Folder {i}/{nb_dirs-1}    {"-"*i}{"."*(nb_dirs-i-1)}
+            Estimating Time Remaining  : {int(dtsp*(nb_dirs-i))//60}:{int(dtsp*(nb_dirs-i))%60} """
             print(chn+"\n"*1)
             if ptah.isdir(f"{path}/{listd[i]}") :
                 try:
@@ -37,16 +37,16 @@ def main(path: str, output_file: str, opt:Dict)->pd.DataFrame:
                     output_df = pd.concat(output_lst)
                 except Exception as err:
                     rep = input(
-                        f"""Un problème est survenu pendant le traitement des données:
-                        {err}\n \nVoulez-vous quand même continuer?""")
+                        f"""A problem has occured while processing the data :
+                        {err}\n \nContinue anyways?""")
                     if not(rep.replace(" ", "").lower() in ["oui", "yes", "o", "y"]):
                         raise RuntimeError(
-                            f"""Vous avez choisi d'arreter l'éxécution après l'erreur suivante:
+                            f"""You have chosen to stop the execution after the following error:
                             {err}""") from err
             else :
-                print(f"""Le fichier {listd[i]} n'est pas analysé.""")
+                print(f"""The file {listd[i]} won't be analyzed""")
     except FileNotFoundError as e:
-        print(f"ATTENTION! PAS DE DOSSIER MED DÉTÉCTÉ!({e})")
+        print(f"WARNING! NO MED DIRECTORY DETECTED({e})")
     if output_file is not None :
         output_df.to_csv(output_file, sep=";", index=False)
     return output_df
