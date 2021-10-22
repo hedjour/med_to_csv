@@ -4,6 +4,7 @@ docs/_build/*
 build/*
 dist/*
 Datas/*
+Test/*
 Exports/*
 .vscode/*
 *.csv
