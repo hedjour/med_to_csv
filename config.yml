@@ -46,6 +46,7 @@ infos_col:
   resp_cur_sk_dur: 100
   final_sk_dur: 101
   base_value: [120,"end"]
+  
 infos_lab:
   subject: "Subject"
   box: "Box"
