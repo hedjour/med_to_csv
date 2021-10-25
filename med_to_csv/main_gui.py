@@ -92,13 +92,17 @@ Option to indicate a path to the group directory which contains data files from 
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     
     print(f"File : {args.file} | Path :{args.path}")
+    if args.output is not None and args.output[-3:] != "csv":
+        output_file = f"{args.output}.csv"
+    else:
+        output_file = args.output
     if args.file is not None:
         print("arg.file")
         df_res = file_med.read_path(args.file, opt_dic)
         df_res.to_csv(args.file, index=False)
     elif args.path is not None :
         print("arg.ptah")
-        expe_med.main(path=args.path, output_file = args.output, opt=opt_dic)
+        expe_med.main(path=args.path, output_file = output_file, opt=opt_dic)
     else:
         raise Exception(BOOM)
 

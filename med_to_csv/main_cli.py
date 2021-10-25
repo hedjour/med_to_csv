@@ -24,6 +24,10 @@ def main() :
     # parser.add_argument("-v","--verbose", type=str, help= """Verbose mode""")
 
     args = parser.parse_args()
+    if args.output is not None and args.output[-3:] != "csv":
+        output_file = f"{args.output}.csv"
+    else:
+        output_file = args.output
     #load user parameters
     with open(args.option, "r") as ymlfile:
         opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
@@ -31,10 +35,10 @@ def main() :
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     if ptah.isdir(args.path):
         # print(f"path={args.path}, notes={args.notes}, sortie={args.sortie}, echo={args.verbose}")
-        expe_med.main(path=args.path, output_file = args.output, opt=opt_dic)
+        expe_med.main(path=args.path, output_file = output_file, opt=opt_dic)
     else:
         df_res = file_med.read_path(args.path, opt_dic)
-        df_res.to_csv(args.file, index=False)
+        df_res.to_csv(output_file, index=False)
 
 if __name__ == "__main__":
     main()
