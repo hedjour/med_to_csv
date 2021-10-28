@@ -68,8 +68,8 @@ def main(path: str=None, notes: bool=None, sortie: str=None, echo: bool=True):
         engine = create_engine(BDD_LINKS, echo=echo)
         con = engine.connect()
     except ConnectionError :
-        f"""Le liens avec la bdd : {BDD_LINKS.split("@")[1]} n'a pu être établi.
-        Veuillez le corriger dans param."""
+        print(f"""Le liens avec la bdd : {BDD_LINKS.split("@")[1]} n'a pu être établi.
+        Veuillez le corriger dans param.""")
     print("Connecté! on commence à travailler" if echo else "")
     id_xp = ask_exp_id(con)
     if notes is None:
