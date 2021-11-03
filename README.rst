@@ -39,6 +39,7 @@ A simple way to parse MedAssociate output file in tidy data :
          <ul>
            <li><a href="#prerequisites">Prerequisites</a></li>
            <li><a href="#installation">Installation</a></li>
+           <li><a href="#make-executable">Make Executable</a> </li>
          </ul>
        </li>
        <li>
@@ -120,7 +121,22 @@ Installation
 
    <p align="right">(<a href="#top">back to top</a>)</p>
 
+Make Executable
+^^^^^^^^^^^^^^^^
 
+To make a gui onefile executable run these commands in terminal.
+
+   .. code-block:: bash
+
+      cd path/to/directory_of_git_clone
+      pyinstaller build_gui.spec 
+
+To make a cli onefile executable run these commands in terminal.
+
+   .. code-block:: bash
+
+      cd path/to/directory_of_git_clone
+      pyinstaller build_cli.spec
 
 Usage Exemple
 ---------------------
