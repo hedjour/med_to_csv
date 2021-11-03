@@ -146,18 +146,18 @@ Graphical User Interface
 
 Run the application and follow the steps on the interface
 
-.. code-block:: sh
+   .. code-block:: bash
 
-       ./main_gui
+      ./main_gui
 
 Command Line Interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Runs on the experiment directory that contains the directories containing the raw data files or on the file itself and returns a csv file 
 
-.. code-block:: sh
+   .. code-block:: bash
 
-       ./main_cli.py path_to_medassociate_file config_file.yml output_csv_file
+      ./main_cli.py path_to_medassociate_file config_file.yml output_csv_file
 
 Config file
 ^^^^^^^^^^^
@@ -222,11 +222,6 @@ Roadmap
 
 * Add possibility for labelled file to not precise the yml file and use yml in param path whith same
   names of MPC name get from MSN []
-* Add a GUI  [x]
-* Add possibility of filtering directories [x]
-* Add CLI usage [x]
-* Made an easy installable version for Mac | Windows | Gnu-Linux [x]
-
 
 .. raw:: html
 
