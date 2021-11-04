@@ -1,0 +1,35 @@
+name: Build GUI MacOS
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        required: False
+        description: 'test build tags'
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Gooey
+      run: |
+          pip install gooey
+          pip install Pyinstaller
+    
+    - name: Install user dependencies
+      run: |
+          if [ -f requirements.txt ]; then
+              pip install -r requirements.txt
+          fi # [ -f requirements.txt ]
+
+    - name: Make package
+      run: |
+          pyinstaller --clean -y --dist ./dist/mac build_gui.spec
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ecm_mac
+        path: ./dist/mac

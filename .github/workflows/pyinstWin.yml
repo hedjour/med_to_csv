@@ -1,0 +1,25 @@
+name: Build GUI Windows
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        required: False
+        description: 'test build tags'
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Package Application
+      uses: JackMcKew/pyinstaller-action-windows@main
+      with:
+        path: .
+        spec: build_gui.spec
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ecm_win
+        path: ./dist/windows
