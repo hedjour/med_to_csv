@@ -26,10 +26,17 @@ with open(toto, "r") as ymlfile:
     opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
 
 # test stevenson
-toto = '../../Doctorants/Stevenson/Cholesterol/config.yml'    
+toto = '../../Doctorants/Stevenson/Cholesterol/config.yml'
 with open(toto, "r") as ymlfile:
     opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
 
 path = "../../Doctorants/Stevenson/Cholesterol/G2\ 2021/"
 path_folder = f"{path}{listdir(path)[0]}/"
 path_to_file = f"{path_folder}/{listdir(path_folder)[2]}"
+
+path_folder = "./Datas_Test/"
+path = path_folder
+path_to_file = f"{path_folder}/{listdir(path_folder)[0]}"
+toto = f"{path_folder}/{listdir(path_folder)[1]}"
+with open(toto, "r") as ymlfile:
+    opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)

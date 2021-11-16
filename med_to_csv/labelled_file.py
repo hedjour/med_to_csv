@@ -5,6 +5,7 @@ Module that parse labelled file
 """
 from typing import Dict, List
 from datetime import datetime
+from re import compile as recompile
 from string import ascii_uppercase as LETTERS
 
 
@@ -76,7 +77,7 @@ def lab_selector(lst_dic:List[Dict], infos:dict, remove_zero_ending:bool) -> Lis
                 tmp_lst = dic_file[val[0]][val[1]:val[2]] if val[2] != "end" \
                     else dic_file[val[0]][val[1]:]
                 if remove_zero_ending :
-                    while tmp_lst[-1] in "0" and len(tmp_lst) > 1:
+                    while bool(recompile(r"0.0+").match(tmp_lst[-1])) and len(tmp_lst) > 1:
                         tmp_lst = tmp_lst[:-1]
                 dic_selected[key] = tmp_lst
             else:
