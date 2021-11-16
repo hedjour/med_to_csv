@@ -11,7 +11,7 @@ def global_selector(lst_dic:List[Dict], infos_opt:Dict) -> List[Dict]:
     applies the 'eval' option of the config file
     """
     out_lst = []
-    path_file = infos_opt["path_file"]
+    path_file = infos_opt["path_file"] # Can be used by eval
     for dicexperience in lst_dic :
         if "eval" in infos_opt.keys() :
             for key, val in infos_opt["eval"].items() :
