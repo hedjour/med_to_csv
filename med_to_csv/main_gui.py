@@ -23,9 +23,9 @@ BOOM = r"""
           | ;  :|
 ______.,-#%&$@%#&#~,._____
     KAA-BOOOOOOM -
-Oups your data have desapear
-    OH  good new 
-You miss to give me your data
+Oops your data have disappeared
+    OH  good news 
+You forgot to give me your data
 """
 
 @Gooey( program_name= "med_to_csv",
@@ -61,10 +61,10 @@ def main() :
     """main function, to display a select file/directory window"""
     parser = GooeyParser(prog="med_to_csv", 
                          formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-                         description = """This software wrangling your data to a unique csv file.
+                         description = """This software converts med associates data files into a unique csv file.
                          
-For more information about the config file please see the README or documentation.
-You must to indicate a path or a file with your data in other case the software will return an error.
+For more information about the config file please check the README or documentation.
+You must indicate a path or a file with your data otherwise the software will return an error.
 """)
     parser.add_argument("option", type=str, 
                         help= """Path to option config file.""", widget="FileChooser")
@@ -72,7 +72,7 @@ You must to indicate a path or a file with your data in other case the software 
                         help= """Path output of the csv file""", widget="FileSaver")
     parser.add_argument("-p","--path", type=str,
                         help="""
-Option to indicate a path to the group directory which contains data files from : Medassociate
+Option to indicate a path to the group directory which contains data files from : Medassociates
                         """, widget="DirChooser")
     parser.add_argument("-f", "--file", type=str,
                         help="""Option to indicate a unique file and not a directory.""",
