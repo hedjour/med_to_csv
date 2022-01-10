@@ -9,8 +9,9 @@ Requirements
 
 Installation
 -------------
+Open a terminal and copy the following command lines.
 
-#. Clone the repo
+#. Clone the repository
 
    .. code-block:: bash
       

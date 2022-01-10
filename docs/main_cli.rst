@@ -4,7 +4,7 @@ Command line interface
 How to use it
 ---------------------
 You can use med_to_csv in CLI or GUI.
-Here we develop the cli interface.
+Here we develop the CLI interface.
 This interface takes 3 parameters :
 
 * 1st is the path to your directory or file output of Medassociate

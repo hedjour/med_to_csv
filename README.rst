@@ -61,7 +61,7 @@ A simple way to parse MedAssociate output file in tidy data :
 About The Project
 -----------------
 
-This program parses MedAssociates data files and transforms them into tidy csv files, containing the information needed and given by each user
+This program parses MedAssociates data files and transforms them into tidy csv files, containing the information selected by the user
 
 .. raw:: html
 
@@ -103,7 +103,7 @@ Installation
 ^^^^^^^^^^^^
 
 
-#. Clone the repo
+#. Clone the repository
 
    .. code-block:: bash
       
@@ -138,8 +138,8 @@ To make a cli onefile executable run these commands in terminal.
       cd path/to/directory_of_git_clone
       pyinstaller build_cli.spec
 
-Usage Exemple
----------------------
+Example
+-----------------
 
 Graphical User Interface
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -153,7 +153,7 @@ Run the application and follow the steps on the interface
 Command Line Interface
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Runs on the experiment directory that contains the directories containing the raw data files or on the file itself and returns a csv file 
+The software runs on the experiment directory that contains the directories containing the raw data files or on the file itself and returns a csv file 
 
    .. code-block:: bash
 
@@ -162,15 +162,15 @@ Runs on the experiment directory that contains the directories containing the ra
 Config file
 ^^^^^^^^^^^
 
-The config file is a necessary file that gives the setup of your data to the soft.
+The config file is a necessary file that specifies the setup of your data to the software.
 You can find as an example the config.yml which contains all possibilities of setup.
-You can mixe 1 col file dir and labelled dir file in experiment dir.
+You can mix 1 col file dir and annotated directory file in experiment dir.
 
 
 #. There are three types of parameters:
 
    * info_col : One column file
-   * info_lab : labelled file
+   * info_lab : annotated file
    * options : further options
 
 #. For the first two types of parameters.
@@ -193,9 +193,9 @@ You can mixe 1 col file dir and labelled dir file in experiment dir.
      * Col names of first sub-element
      * Col names of second sub-element
 
-   * Eval : for some columns the values must be the result of a Python command line (e.g to get information in a path). It's necessarly a python dictionary with Key as column name and value a short command line as a string.
+   * Eval : for some columns the values must be the result of a Python command line (e.g to get information in a path). It must be a python dictionary with Key as column name and value a short command line as a string.
 
-#. The following Keys are med associate keywords only usable with labelled file :
+#. The following Keys are med associate keywords only usable with annotated file :
 
    * Start Date (automatically added)
    * End Date
@@ -220,8 +220,8 @@ Roadmap
 -------
 
 
-* Add possibility for labelled file to not precise the yml file and use yml in param path whith same
-  names of MPC name get from MSN []
+* Add possibility for annotated file to not specify the YAML file and use YAML in parameter path with the same
+  names as MPC name obtained from MSN []
 
 .. raw:: html
 
@@ -231,9 +231,9 @@ Roadmap
 Contributing
 ------------
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+If you have any suggestion that would improve this software, please fork the repository and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
 
@@ -279,8 +279,10 @@ Acknowledgments
 ---------------
 
 
-* `IRESP <https://iresp.net/>`_
+* `IRESP <https://iresp.net/>: This work was supported by a grant from the IRESP « IRESP-19-ADDICTIONS-20 » to MS`_
 * `LNEC <https://lnec.labo.univ-poitiers.fr/>`_
+* `Université de Poitiers <https://univ-poitiers.fr>`
+* `INSERM <https://inserm.fr>`
 * `Logo FreeVector.com <https://www.freevector.com/smiling-rat-logo>`_
 
 .. raw:: html

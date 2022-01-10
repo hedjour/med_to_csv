@@ -1,12 +1,17 @@
 Config file yaml
 =================
 
-Setting up
+Set up
 ---------------
 
-The config file is a necessary file that gives the setup of your data to the software.
-You can find an example in the config.yml file which contains all possibilities of setup.
-You can mix one-column files directories and labelled files directories in one experiment folder.
+The config file is a necessary file that gives the setup of your data for the software.
+You can find an example in the config.yml file which contains all possibilities of setup. 
+Med-PC can create different types of files:
+
+#. One-column file, where the data is represented in only one column, and 
+#. Annotated file, where the data is labelled by the letters from the Med-Associate script
+
+.. note:: You can mix directories of one-column files and directories of annotated files in one folder.
 
 #. There are three types of parameters:
 
@@ -18,27 +23,27 @@ You can mix one-column files directories and labelled files directories in one e
    .. important:: Either info_col or info_lab are required, if your data contains a mix 
        of one-column files and labelled files you can mention both parameters 
        
-#. For the first two types of parameters:
+#. For the first two types of parameters (info_col or info_lab):
    
    You need to indicate the information in this format: "Key : Value"
     
    * Keys are the column names that you want in the output file
    * Values are:
 
-     * for infos_col: row number - 1 (Start index :0)
+     * for infos_col: row number - 1 (Python starts index at 0)
      * for infos_lab: letters used in medAssociate exercise
 
 #. Options:
 
-   * remove_zero_ending : True or False to keep or remove Zeros at the end of arrays
-   * filter : a string or regex present in the directories name to filter by. 
-   * cut : for cutting an output on a special character usually a dot into 2 columns. The value must be a list of list of 4 elements :
+   * remove_zero_ending : True or False to keep or remove Zeros at the end of arrays. In the Med-PC language, the number of slots in an array is defined by the user. If the number of value is < number of slot, then MedPC will add 0 for missing values. If you do not want these data in your csv file, specify the option True in your yaml file.
+   * filter : a string present in the directories name present in the file directories name that you want to use to select a subgroup of datafiles or directories. For example, you can name test session with the string “test” and use it to filter data excluding data that does not contain the string “test” in their name.
+   * cut : Some users “tag” data in an array in “TimeStamp.CodeEvent”. For example, they can add a decimal to the time stamp of the event to indicate a specific condition. These data can be retrieved in two separate columns using this option. The value must be a list of list of 4 elements :
 
      * key to cut
-     * separator usually the dot character
-     * column name of first sub-element
-     * column name of second sub-element
-   * eval : for some columns the values must be the result of a Python command line (e.g to get information in a path). It's necessarly a python dictionary with Key as column name and value a short command line as a string.
+     * separator: usually the dot character
+     * column name of first part (eg: TimeStamp)
+     * column name of second part (eg: CodeEvent)
+     * eval : for some columns the values must be the result of a Python command line (e.g to get information in a path). This must be a python dictionary with Key (column name) and value (short command in a string format).
 
 #. The following Keys are med associate keywords only usable with labelled file :
 
