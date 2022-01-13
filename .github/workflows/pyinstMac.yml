@@ -31,5 +31,5 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: ecm_mac
+        name: med_to_csv_mac
         path: ./dist/mac

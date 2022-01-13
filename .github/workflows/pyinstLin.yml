@@ -39,5 +39,5 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: ecm_linux
+        name: med_to_csv_linux
         path: ./dist/linux
