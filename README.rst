@@ -251,7 +251,7 @@ Don't forget to give the project a star! Thanks again!
 License
 -------
 
-Distributed under the xxx License. See ``LICENSE.txt`` for more information.
+Distributed under the GPL v3.0 License. See ``LICENSE.txt`` for more information.
 
 
 .. raw:: html
