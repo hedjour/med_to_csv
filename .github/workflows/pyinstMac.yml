@@ -1,4 +1,4 @@
-name: Build GUI MacOS
+name: Build GUI MacOS bin with Pyinstaller
 
 on:
   workflow_dispatch:

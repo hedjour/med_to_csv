@@ -1,4 +1,4 @@
-name: Test Build GUI bin with Pyinstaller
+name: Build GUI GNU-Linux bin with Pyinstaller
 
 on:
   workflow_dispatch:

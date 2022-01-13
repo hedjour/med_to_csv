@@ -1,4 +1,4 @@
-name: Build GUI Windows
+name: Build GUI Windows bin with Pyinstaller
 on:
   workflow_dispatch:
     inputs:
