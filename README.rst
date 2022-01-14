@@ -279,10 +279,10 @@ Acknowledgments
 ---------------
 
 
-* `IRESP <https://iresp.net/>: This work was supported by a grant from the IRESP « IRESP-19-ADDICTIONS-20 » to MS`_
+* `IRESP <https://iresp.net/>`_: This work was supported by a grant from the IRESP « IRESP-19-ADDICTIONS-20 » to MS
 * `LNEC <https://lnec.labo.univ-poitiers.fr/>`_
-* `Université de Poitiers <https://univ-poitiers.fr>`
-* `INSERM <https://inserm.fr>`
+* `Université de Poitiers <https://univ-poitiers.fr>`_
+* `INSERM <https://inserm.fr>`_
 * `Logo FreeVector.com <https://www.freevector.com/smiling-rat-logo>`_
 
 .. raw:: html
