@@ -302,7 +302,7 @@ Acknowledgments
 .. |Issues| image:: https://img.shields.io/github/issues/hedjour/med_to_csv.svg?style=for-the-badge
    :target: https://github.com/hedjour/med_to_csv/issues
 .. |GPLv3.0 License| image:: https://img.shields.io/github/license/hedjour/med_to_csv.svg?style=for-the-badge
-   :target: https://github.com/hedjour/med_to_csv/blob/master/LICENSE.txt
+   :target: https://github.com/hedjour/med_to_csv/blob/master/LICENSE
 .. |Doc| image:: https://readthedocs.org/projects/med-to-csv/badge/?version=latest
    :target: https://med-to-csv.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
