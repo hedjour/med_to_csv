@@ -13,7 +13,7 @@ A simple way to parse MedAssociate output file in tidy data :
    * 1 col = 1 var
    
 
-`Explore the docs » <https://github.com/hedjour/med_to_csv>`_
+`Explore the docs » <https://med-to-csv.readthedocs.io/>`_
 
 `View Demo <https://github.com/hedjour/med_to_csv>`_ ·
 `Report Bug <https://github.com/hedjour/med_to_csv/issues>`_ ·
