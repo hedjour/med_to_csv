@@ -16,7 +16,7 @@ setup(
     author = "Jean-Emmanuel Longueville, Myriam Hanna",
     author_email = "jean.emmanuel.longueville(@)univ-poitiers.fr",
     description = "A module that converts MedAssociates data to csv files",
-    license = "",
+    license = "GPLv3.0",
     url = "https://sourcesup.renater.fr/anonscm/git/medanalysis/medanalysis.git",
     packages= find_packages(),
     install_requires=['pandas',
