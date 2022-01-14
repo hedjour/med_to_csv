@@ -1,7 +1,7 @@
 .. role:: raw-html(raw)
    :format: html
 
-|Contributors| |Forks| |Stargazers| |Issues| |MIT License|
+|Contributors| |Forks| |Stargazers| |Issues| |GPLv3.0 License| |Doc|
 
 .. _top:
 
@@ -301,5 +301,8 @@ Acknowledgments
    :target: https://github.com/hedjour/med_to_csv/stargazers
 .. |Issues| image:: https://img.shields.io/github/issues/hedjour/med_to_csv.svg?style=for-the-badge
    :target: https://github.com/hedjour/med_to_csv/issues
-.. |MIT License| image:: https://img.shields.io/github/license/hedjour/med_to_csv.svg?style=for-the-badge
+.. |GPLv3.0 License| image:: https://img.shields.io/github/license/hedjour/med_to_csv.svg?style=for-the-badge
    :target: https://github.com/hedjour/med_to_csv/blob/master/LICENSE.txt
+.. |Doc| image:: https://readthedocs.org/projects/med-to-csv/badge/?version=latest
+   :target: https://med-to-csv.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
