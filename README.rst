@@ -4,8 +4,8 @@
 |Contributors| |Forks| |Stargazers| |Issues| |GPLv3.0 License| |Doc|
 
 .. _top:
-![GitHub Light](./docs/img/intro_light.png#gh-dark-mode-only)
-![GitHub Dark](./docs/img/intro_dark.png#gh-light-mode-only)
+![GitHub Light](/docs/img/intro_light.png#gh-dark-mode-only)
+![GitHub Dark](/docs/img/intro_dark.png#gh-light-mode-only)
 
 MedAssociates to CSV file
 ==========================
