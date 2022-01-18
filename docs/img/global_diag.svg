@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="55cm" height="31cm" viewBox="-614 -1 1081 606" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs/>
+  <g id="Arrière-plan">
+    <g>
+      <path style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" d="M -329.76 175.921 C -258.434,196.022 -222.771,196.022 -151.444,175.921 C -80.1183,155.819 -44.4552,155.819 26.871,175.921 L 26.871,296.53 C -44.4552,276.429 -80.1183,276.429 -151.444,296.53 C -222.771,316.632 -258.434,316.632 -329.76,296.53 L -329.76,175.921z"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-151.444" y="240.106">
+        <tspan x="-151.444" y="240.106">med_associate_to_csv Software</tspan>
+      </text>
+    </g>
+    <g>
+      <path style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" d="M -285.901 1.70316 L -23.2005,1.70316 L -23.2005,108.37 C -75.7405,90.592 -102.011,90.592 -154.551,108.37 C -207.091,126.148 -233.361,126.148 -285.901,108.37 L -285.901,1.70316z"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-154.551" y="34.0285">
+        <tspan x="-154.551" y="34.0285">Yaml configuration file.</tspan>
+        <tspan x="-154.551" y="50.0285">more information</tspan>
+        <tspan xml:space="preserve" x="-154.551" y="66.0285"> in the documentation.</tspan>
+      </text>
+    </g>
+    <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-154.551" y="63.9254">
+      <tspan x="-154.551" y="63.9254"></tspan>
+    </text>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 4; stroke: #7ccbe3" x1="-401.715" y1="170.557" x2="-340.495" y2="200.774"/>
+      <polygon style="fill: #7ccbe3; fill-opacity: 1; stroke-opacity: 1; stroke-width: 4; stroke: #7ccbe3" fill-rule="evenodd" points="-333.77,204.094 -344.95,204.151 -340.495,200.774 -340.524,195.184 "/>
+    </g>
+    <g>
+      <path style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #7ccbe3" fill-rule="evenodd" d="M -609.548 209.05 L -393.344,209.05 L -393.344,312.047 C -436.585,294.881 -458.205,294.881 -501.446,312.047 C -544.687,329.213 -566.307,329.213 -609.548,312.047 L -609.548,209.05z"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-607.548" y="247.846">
+        <tspan x="-607.548" y="247.846">Annotated sessions files</tspan>
+        <tspan x="-607.548" y="263.846">(Multiple animals in one file)</tspan>
+      </text>
+    </g>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 4; stroke: #7ccbe3" x1="-392.361" y1="267.382" x2="-341.73" y2="266.57"/>
+      <polygon style="fill: #7ccbe3; fill-opacity: 1; stroke-opacity: 1; stroke-width: 4; stroke: #7ccbe3" fill-rule="evenodd" points="-334.231,266.45 -344.15,271.609 -341.73,266.57 -344.31,261.611 "/>
+    </g>
+    <g>
+      <rect style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #f49f9f" x="71.3504" y="122.443" width="393" height="254" rx="0" ry="0"/>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #f49f9f" x1="110.65" y1="122.443" x2="110.65" y2="376.443"/>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 2; stroke: #f49f9f" x1="71.3504" y1="147.843" x2="464.35" y2="147.843"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="287.5" y="218.024">
+        <tspan x="287.5" y="218.024">OUTPUT CSV :</tspan>
+        <tspan x="287.5" y="234.024">Date | Session|Animal| + Selected var in yaml</tspan>
+        <tspan xml:space="preserve" x="287.5" y="250.024"> renamed like defined.</tspan>
+        <tspan x="287.5" y="266.024"></tspan>
+        <tspan x="287.5" y="282.024"></tspan>
+        <tspan x="287.5" y="298.024">1 row = 1 observation</tspan>
+        <tspan x="287.5" y="314.024">1 col =  1 variable</tspan>
+      </text>
+    </g>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 4; stroke: #90ee90" x1="-153.82" y1="109.19" x2="-152.947" y2="163.269"/>
+      <polygon style="fill: #90ee90; fill-opacity: 1; stroke-opacity: 1; stroke-width: 4; stroke: #90ee90" fill-rule="evenodd" points="-152.826,170.768 -157.986,160.85 -152.947,163.269 -147.988,160.689 "/>
+    </g>
+    <g>
+      <line style="fill: none; stroke-opacity: 1; stroke-width: 6; stroke: #f40707" x1="27.863" y1="250.786" x2="57.149" y2="249.882"/>
+      <polygon style="fill: #f40707; fill-opacity: 1; stroke-opacity: 1; stroke-width: 6; stroke: #f40707" fill-rule="evenodd" points="64.6454,249.65 54.8046,254.956 57.149,249.882 54.4957,244.961 "/>
+    </g>
+    <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="315.865" y="183.674">
+      <tspan x="315.865" y="183.674"></tspan>
+    </text>
+    <g>
+      <path style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #7ccbe3" fill-rule="evenodd" d="M -611.732 56.2593 L -380.532,56.2593 L -380.532,164.571 L -496.132,191.649 L -611.732,164.571 L -611.732,56.2593z"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-609.732" y="74.296">
+        <tspan x="-609.732" y="74.296">Experiment Folder which contains :</tspan>
+        <tspan x="-609.732" y="90.296">- Session 1 Folder</tspan>
+        <tspan xml:space="preserve" x="-609.732" y="106.296">   ---&gt; containing Annotated or not</tspan>
+        <tspan xml:space="preserve" x="-609.732" y="122.296">           animal's files</tspan>
+        <tspan x="-609.732" y="138.296">...</tspan>
+        <tspan x="-609.732" y="154.296">- Session n Folder</tspan>
+      </text>
+    </g>
+    <g>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-490.833" y="491.904">
+        <tspan x="-490.833" y="491.904"></tspan>
+      </text>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-255.214" y="489.801">
+        <tspan x="-255.214" y="489.801"></tspan>
+      </text>
+      <rect style="fill: #d8e5e5; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" x="-607.283" y="355.051" width="505.767" height="248.993" rx="0" ry="0"/>
+      <path style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" d="M -585.333 375.704 L -396.333,375.704 L -396.333,574.904 C -434.133,541.704 -453.033,541.704 -490.833,574.904 C -528.633,608.104 -547.533,608.104 -585.333,574.904 L -585.333,375.704z"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-490.833" y="390.585">
+        <tspan x="-490.833" y="390.585"></tspan>
+        <tspan x="-490.833" y="406.585">Unannotated file</tspan>
+        <tspan x="-490.833" y="422.585">like this :</tspan>
+        <tspan x="-490.833" y="438.585"></tspan>
+        <tspan x="-490.833" y="454.585">11</tspan>
+        <tspan x="-490.833" y="470.585">33</tspan>
+        <tspan x="-490.833" y="486.585">18</tspan>
+        <tspan x="-490.833" y="502.585">...</tspan>
+        <tspan x="-490.833" y="518.585">1.5</tspan>
+        <tspan x="-490.833" y="534.585"></tspan>
+      </text>
+      <path style="fill: #ffffff; fill-opacity: 1; stroke-opacity: 1; stroke-width: 2; stroke: #000000" fill-rule="evenodd" d="M -359.632 373.601 L -150.796,373.601 L -150.796,572.801 C -192.563,539.601 -213.447,539.601 -255.214,572.801 C -296.981,606.001 -317.865,606.001 -359.632,572.801 L -359.632,373.601z"/>
+      <text font-size="12.7998" style="fill: #000000; fill-opacity: 1; stroke: none;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-255.214" y="388.482">
+        <tspan x="-255.214" y="388.482"></tspan>
+        <tspan x="-255.214" y="404.482">Annotated files</tspan>
+        <tspan x="-255.214" y="420.482">like this :</tspan>
+        <tspan x="-255.214" y="436.482"></tspan>
+        <tspan x="-255.214" y="452.482">File: Path of your file&#13;</tspan>
+        <tspan x="-255.214" y="468.482"></tspan>
+        <tspan x="-255.214" y="484.482">Start Date: 12/01/01&#13;&#13;</tspan>
+        <tspan x="-255.214" y="500.482">...&#13;</tspan>
+        <tspan x="-255.214" y="516.482">Z:&#13;</tspan>
+        <tspan xml:space="preserve" x="-255.214" y="532.482">     0:   68.0000   18.</tspan>
+      </text>
+      <text font-size="22.5778" style="fill: #ff0000; fill-opacity: 1; stroke: none;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:700" x="-585.333" y="375.704">
+        <tspan x="-585.333" y="375.704">Légende</tspan>
+        <tspan x="-585.333" y="403.926"></tspan>
+      </text>
+    </g>
+  </g>
+</svg>
