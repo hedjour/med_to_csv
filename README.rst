@@ -5,8 +5,8 @@
 
 .. _top:
 
-.. image:: /docs/img/intro_light.png#gh-dark-mode-only
-.. image:: /docs/img/intro_dark.png#gh-light-mode-only
+.. image:: /docs/img/intro_light.png#gh-light-mode-only
+.. image:: /docs/img/intro_dark.png#gh-dark-mode-only
 
 MedAssociates to CSV file
 ==========================
