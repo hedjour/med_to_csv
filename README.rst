@@ -5,7 +5,6 @@
 
 .. _top:
 
-.. image:: /docs/img/intro_dark.png
 .. image:: /docs/img/intro_light.png#gh-dark-mode-only
 .. image:: /docs/img/intro_dark.png#gh-light-mode-only
 
