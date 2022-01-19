@@ -5,7 +5,9 @@
 
 .. _top:
 
-|lightintro| |darkintro|
+.. image:: /docs/img/intro_dark.png
+.. image:: /docs/img/intro_light.png#gh-dark-mode-only
+.. image:: /docs/img/intro_dark.png#gh-light-mode-only
 
 MedAssociates to CSV file
 ==========================
@@ -308,5 +310,3 @@ Acknowledgments
 .. |Doc| image:: https://readthedocs.org/projects/med-to-csv/badge/?version=latest
    :target: https://med-to-csv.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
-.. |lightintro| image:: docs/img/intro_light.png#gh-dark-mode-only
-.. |darkintro| image:: docs/img/intro_dark.png#gh-light-mode-only
