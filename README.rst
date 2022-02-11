@@ -118,6 +118,13 @@ Installation
 
       pip install numpy argparse yaml pandas
       pip install Gooey #For graphical interface
+      cd yourrepopath
+      python setup.py install 
+      
+   or
+   .. code-block:: bash
+      
+      pip install .
 
 
 .. raw:: html
