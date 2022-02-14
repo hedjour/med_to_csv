@@ -121,6 +121,7 @@ Installation
       cd path/to/directory_of_git_clone
 and one of the two lines below :
    .. code-block:: bash
+      
       python setup.py install 
       python setup.py install --user #For windows users
 or
