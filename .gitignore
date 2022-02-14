@@ -7,6 +7,7 @@ Datas/*
 Test/*
 Exports/*
 .vscode/*
+Local_*
 *.csv
 *.html
 *.pdf
