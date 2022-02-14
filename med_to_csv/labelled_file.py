@@ -22,6 +22,8 @@ def parse_labelled(list_ligns:List)-> Dict or List(Dict):
     while num < len(list_ligns):
         row = list_ligns[num]
         row_split = row.rsplit(" ")
+        print(f"""
+              Num : {num}\n And :\n{row}""")
         #Useless first row
         if "File" in row or row == "" :
             pass
@@ -57,6 +59,9 @@ def parse_labelled(list_ligns:List)-> Dict or List(Dict):
             #End of else File / MED Values / Scalarray
         num += 1
         # End of for row
+    #We manage the case of more than one subject and get the last item of the list
+    if not first_animal : 
+        list_res.append(dic_subject.copy())
     return dic_subject if len(list_res)<2 else list_res
 
 
