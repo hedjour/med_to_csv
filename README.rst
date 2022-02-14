@@ -118,10 +118,12 @@ Installation
 
       pip install numpy argparse yaml pandas
       pip install Gooey #For graphical interface
-      cd yourrepopath
+      cd path/to/directory_of_git_clone
+and one of the two lines below :
+   .. code-block:: bash
       python setup.py install 
-      
-   or
+      python setup.py install --user #For windows users
+or
    .. code-block:: bash
       
       pip install .
@@ -131,8 +133,8 @@ Installation
 
    <p align="right">(<a href="#top">back to top</a>)</p>
 
-Make Executable
-^^^^^^^^^^^^^^^^
+Make Executable (Portable)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To make a gui onefile executable run these commands in terminal.
 

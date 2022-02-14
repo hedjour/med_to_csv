@@ -30,4 +30,7 @@ Open a terminal and copy the following command lines.
 
       python setup.py install #On gnu-linux |MacOs Systems
       python setup.py install --user #On windows Sytems
-  
+or
+   .. code-block:: bash
+      
+      pip install .
