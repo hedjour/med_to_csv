@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Longueville"
+  given-names: "Jean-Emmanuel"
+  orcid: " https://orcid.org/0000-0002-9057-1602 "
+- family-names: "Hanna"
+  given-names: "Myriam"
+  # orcid: ""
+- family-names: "Mulac"
+  given-names: "Nino"
+  # orcid: ""
+- family-names: "Solinas"
+  given-names: "Marcello"
+  orcid: " https://orcid.org/0000-0002-0664-5964"
+title: "med_to_csv Software"
+version: 0.9.1
+doi: 10.5281/zenodo.6241131
+date-released: 2022-02-23
+url: "https://github.com/hedjour/med_to_csv"

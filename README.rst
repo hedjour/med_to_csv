@@ -1,7 +1,7 @@
 .. role:: raw-html(raw)
    :format: html
 
-|Contributors| |Forks| |Stargazers| |Issues| |GPLv3.0 License| |Doc|
+|Contributors| |Forks| |Stargazers| |Issues| |GPLv3.0 License| |Doc| |DOI|
 
 .. _top:
 
@@ -319,3 +319,5 @@ Acknowledgments
 .. |Doc| image:: https://readthedocs.org/projects/med-to-csv/badge/?version=latest
    :target: https://med-to-csv.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
+.. |DOI| image:: https://zenodo.org/badge/447657017.svg
+   :target: https://zenodo.org/badge/latestdoi/447657017
