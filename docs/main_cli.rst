@@ -1,7 +1,7 @@
 Command line interface 
 ==================================
 
-How to use it
+How to use CLI
 ---------------------
 You can use med_to_csv in CLI or GUI.
 Here we develop the CLI interface.
@@ -18,6 +18,8 @@ Run the following command on the file or directory containing the datas
 .. code-block:: bash
 
     med_to_csv_cli my_results my_config_file.yml output_file.csv
+
+    .. warning:: Your path must contain only ASCII characters  (No : éèàï)
 
 Details
 ---------

@@ -72,7 +72,8 @@ You must indicate a path or a file with your data otherwise the software will re
                         help= """Path output of the csv file""", widget="FileSaver")
     parser.add_argument("-p","--path", type=str,
                         help="""
-Option to indicate a path to the group directory which contains data files from : Medassociates
+Option to indicate a path to the group directory which contains data files from : Medassociates \n
+Warning the path must contain only ASCII characters (No : éèàï)
                         """, widget="DirChooser")
     parser.add_argument("-f", "--file", type=str,
                         help="""Option to indicate a unique file and not a directory.""",

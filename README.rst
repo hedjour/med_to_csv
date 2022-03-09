@@ -172,6 +172,8 @@ The software runs on the experiment directory that contains the directories cont
 
       ./main_cli.py path_to_medassociate_file config_file.yml output_csv_file
 
+   .. warning:: Your path must contain only ASCII characters  (No : éèàï)
+
 Config file
 ^^^^^^^^^^^
 

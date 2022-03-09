@@ -1,11 +1,11 @@
 Graphique User Interface (GUI)
 ====================================
 
-How to use it
+How to use GUI
 ---------------------
 .. code-block:: bash
 
-    med_to_csv_gui
+   med_to_csv_gui
 
 This software version use Gooey module.
 
@@ -34,6 +34,8 @@ contains the different folders containing the raw data) OR you enter the **file*
    :width: 1100px
    :height: 800px
    :scale: 60%
+
+   .. warning:: Your path must contain only ASCII characters  (No : éèàï)
 
 Then click on **start** and watch the software run. 
 
