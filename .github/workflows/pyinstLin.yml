@@ -1,6 +1,9 @@
 name: Build GUI GNU-Linux bin with Pyinstaller
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       tags:
