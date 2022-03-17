@@ -10,23 +10,7 @@ import yaml
 import med_to_csv.expe_med_to_csv as expe_med
 import med_to_csv.file_med_to_csv as file_med
 from gooey import Gooey, GooeyParser
-BOOM = r"""
-     _.-^^---....,,--
- _--                  --_
-<                        >
-|                        |
- \._                   _./
-    ```--. . , ; .--'''
-          | |   |
-       .-=||  | |=-.
-       `-=#$%&%$#=-'
-          | ;  :|
-______.,-#%&$@%#&#~,._____
-    KAA-BOOOOOOM -
-Oops your data have disappeared
-    OH  good news 
-You forgot to give me your data
-"""
+import med_to_csv.path_verif as pv
 
 @Gooey( program_name= "med_to_csv",
         image_dir=f'{ptah.dirname(ptah.realpath(__file__))}/img/',
@@ -57,6 +41,7 @@ You forgot to give me your data
                 }]
         }]
     )
+
 def main() :
     """main function, to display a select file/directory window"""
     parser = GooeyParser(prog="med_to_csv", 
@@ -73,10 +58,11 @@ You must indicate a path or a file with your data otherwise the software will re
     parser.add_argument("-p","--path", type=str,
                         help="""
 Option to indicate a path to the group directory which contains data files from : Medassociates \n
-Warning the path must contain only ASCII characters (No : éèàï)
+Warning the path must contain only ASCII characters (No special character: éèàï)
                         """, widget="DirChooser")
     parser.add_argument("-f", "--file", type=str,
-                        help="""Option to indicate a unique file and not a directory.""",
+                        help="""Option to indicate a unique file and not a directory.\n
+Warning the path must contain only ASCII characters (No special character: éèàï)""",
                         widget="FileChooser", 
                         # gooey_options={ 'validator': {
                         #     'test': 'user_input is None and args.path is None',
@@ -86,6 +72,12 @@ Warning the path must contain only ASCII characters (No : éèàï)
     # parser.add_argument("-v","--verbose", type=str, help= """Verbose mode""")
 
     args = parser.parse_args()
+    #We test the presence of special characters:
+    if not pv.test_ascii(args.option) :
+        pv.print_error(args.option)
+    elif not pv.test_ascii(args.output) :
+        pv.print_error(args.option)
+
     #load user parameters
     with open(args.option, "r") as ymlfile:
         opt_dic = yaml.load(ymlfile, Loader=yaml.SafeLoader)
@@ -98,14 +90,18 @@ Warning the path must contain only ASCII characters (No : éèàï)
     else:
         output_file = args.output
     if args.file is not None:
-        print("arg.file")
+        print("args.file")
+        if not pv.test_ascii(args.file) :
+            pv.print_error(args.file)
         df_res = file_med.read_path(args.file, opt_dic)
         df_res.to_csv(output_file, index=False)
     elif args.path is not None :
-        print("arg.ptah")
+        print("args.ptah")
+        if not pv.test_ascii(args.path) :
+            pv.print_error(args.path)
         expe_med.main(path=args.path, output_file = output_file, opt=opt_dic)
     else:
-        raise Exception(BOOM)
+        raise Exception(pv.BOOM)
 
 if __name__ == "__main__":
     main()
