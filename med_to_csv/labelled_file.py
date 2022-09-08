@@ -82,7 +82,6 @@ def lab_selector(lst_dic:List[Dict], infos:dict, remove_zero_ending:bool) -> Lis
                 tmp_lst = dic_file[val[0]][val[1]:val[2]] if val[2] != "end" \
                     else dic_file[val[0]][val[1]:] if len(dic_file[val[0]]) > 0 \
                     else ['nan']
-                print(tmp_lst[0])
                 if remove_zero_ending and tmp_lst[0] != "nan":
                     while bool(recompile(r"0.0+").match(tmp_lst[-1])) and len(tmp_lst) > 1:
                         tmp_lst = tmp_lst[:-1]
