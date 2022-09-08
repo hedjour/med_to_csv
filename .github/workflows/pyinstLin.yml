@@ -27,6 +27,7 @@ jobs:
 
     - name: Install Gooey
       run: |
+          pip install attrdict3
           pip install gooey
           pip install Pyinstaller
     
