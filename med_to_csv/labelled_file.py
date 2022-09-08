@@ -7,7 +7,7 @@ from typing import Dict, List
 from datetime import datetime
 from re import compile as recompile
 from string import ascii_uppercase as LETTERS
-
+from math import isnan
 
 def parse_labelled(list_ligns:List)-> Dict or List(Dict):
     """
@@ -22,8 +22,8 @@ def parse_labelled(list_ligns:List)-> Dict or List(Dict):
     while num < len(list_ligns):
         row = list_ligns[num]
         row_split = row.rsplit(" ")
-        print(f"""
-              Num : {num}\n And :\n{row}""")
+        # print(f"""
+        #       Num : {num}\n And :\n{row}""")
         #Useless first row
         if "File" in row or row == "" :
             pass
@@ -80,9 +80,10 @@ def lab_selector(lst_dic:List[Dict], infos:dict, remove_zero_ending:bool) -> Lis
                 dic_selected[key] = dic_file[val[0]][val[1]]
             elif len(val) == 3:
                 tmp_lst = dic_file[val[0]][val[1]:val[2]] if val[2] != "end" \
-                    else dic_file[val[0]][val[1]:] if len(dic_file[val[0]] > 0) \
-                    else float('nan') #TODO Need to be test
-                if remove_zero_ending :
+                    else dic_file[val[0]][val[1]:] if len(dic_file[val[0]]) > 0 \
+                    else ['nan']
+                print(tmp_lst[0])
+                if remove_zero_ending and tmp_lst[0] != "nan":
                     while bool(recompile(r"0.0+").match(tmp_lst[-1])) and len(tmp_lst) > 1:
                         tmp_lst = tmp_lst[:-1]
                 dic_selected[key] = tmp_lst
