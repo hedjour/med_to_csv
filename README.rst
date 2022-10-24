@@ -151,6 +151,16 @@ To make a cli onefile executable run these commands in terminal.
       cd path/to/directory_of_git_clone
       pyinstaller build_cli.spec
 
+Data organisation
+-------------------
+
+The file is just an output of MedAssociate software.
+The path directorie must contains the sub_directories of sessions that containing
+the raw data files and returns a csv file.
+   .. warning:: 
+      Your raw data directories must only contain med output files.
+
+
 Example
 -----------------
 
@@ -242,6 +252,14 @@ Roadmap
 
    <p align="right">(<a href="#top">back to top</a>)</p>
 
+FAQ
+-----
+If you get the  
+   .. code-block:: python
+
+         A problem has occured while processing the data :  local variable 'lab_folder' referenced before assignment
+
+Have you filled your sub_directories with med associates output files ?
 
 Contributing
 ------------

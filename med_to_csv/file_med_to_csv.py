@@ -32,13 +32,13 @@ def read_path(path: str, opt:Dict) -> pd.DataFrame:
     pprint(infos_opt)
     # charge(opt_path)
     if ptah.isdir(path):
-        lst_res, lab = read_folder(path, infos_col, infos_opt["remove_zero_ending"])
+        lst_res, lab_path = read_folder(path, infos_col, infos_opt["remove_zero_ending"])
     elif ptah.isfile(path):
-        lst_res , lab = read_file(path, infos_col, infos_opt["remove_zero_ending"])
+        lst_res , lab_path = read_file(path, infos_col, infos_opt["remove_zero_ending"])
     else :
         raise RuntimeError("""Your path is neither a file or a directory oO
                            You must be a biologist only there can be this kind of stuff""")
-    if lab:
+    if lab_path:
         sel_res = lab_selector(lst_res, infos_lab, infos_opt["remove_zero_ending"])
     else:
         sel_res = lst_res
@@ -52,18 +52,15 @@ def read_folder(path_folder: str, infos_col:Dict = None,
                 remove_zero_ending:bool=False )-> List[Dict]:
     """Calls read_file for each text file in the directory"""
     listd = listdir(f"{path_folder}/")
-    listd = [i for i in listd if "ubject" in i]
+    # listd = [i for i in listd if "ubject" in i] #Clean listd of other files
     lenfolder = len(listd)
     list_return = []
     for number_file in range(lenfolder):
-        try:
-            print(f"File: {number_file+1}/{lenfolder}, \"Animal {listd[number_file].split()[1]}\"")
-            list_return = list_return + read_file(f"{path_folder}/{listd[number_file]}",
-                                                  infos_col, remove_zero_ending)[0]
-            lab = read_file(f"{path_folder}/{listd[number_file]}", infos_col, remove_zero_ending)[1]
-        except IndexError as error:
-            raise "The file name must ending by subject 'animal name'" from error
-    return list_return, lab
+        print(f"File: {number_file+1}/{lenfolder}")
+        file, lab_folder = read_file(f"{path_folder}/{listd[number_file]}",
+                                                infos_col, remove_zero_ending)
+        list_return = list_return + file
+    return list_return, lab_folder
 
 def read_file(path_file:str, infos_col:Dict = None, remove_zero_ending:bool= False) -> List[Dict]:
     """Reads one file and returns a list of dict """
@@ -73,13 +70,13 @@ def read_file(path_file:str, infos_col:Dict = None, remove_zero_ending:bool= Fal
     if list_ligns[0][0].lower() in "abcdefghijklmnopqrstuvwxyz":
         #Labelled file
         res = parse_labelled(list_ligns)
-        lab = True
+        lab_file = True
     else :
         #File 1 column
         if infos_col is None :
             raise RuntimeError("""Incorrect settings: I found 1column file
                                And have no information about how read it""")
         res = parse_col(list_ligns, infos_col, remove_zero_ending)
-        lab = False
+        lab_file = False
     res = [res] if isinstance(res, dict) else res
-    return res, lab
+    return res, lab_file
