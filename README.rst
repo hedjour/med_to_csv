@@ -155,10 +155,34 @@ Data organisation
 -------------------
 
 The file is just an output of MedAssociate software.
-The path directorie must contains the sub_directories of sessions that containing
-the raw data files and returns a csv file.
+The path directorie can contains the sub_directories of sessions that containing
+the raw data files, or just Medassociate files.
+
    .. warning:: 
       Your raw data directories must only contain med output files.
+
+Example of data organisation for batch run
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: 
+
+   Experiment directorie/
+   └── dir 01
+      ├── file_med_associates_to_compil
+      ├── file_med_associates_to_compil
+      └── file_med_associates_to_compil
+   └── dir 02
+      ├── file_med_associates_to_compil
+      ├── file_med_associates_to_compil
+      └── file_med_associates_to_compil
+   
+   or
+
+   Experiment directorie/
+   ├── file_med_associates_to_compil
+   ├── file_med_associates_to_compil
+   └── file_med_associates_to_compil
+
 
 
 Example
@@ -317,6 +341,7 @@ Acknowledgments
 * `Université de Poitiers <https://univ-poitiers.fr>`_
 * `INSERM <https://inserm.fr>`_
 * `Logo FreeVector.com <https://www.freevector.com/smiling-rat-logo>`_
+*  Thanks to our old contributors as Ekter, Myriam Hanna.
 
 .. raw:: html
 

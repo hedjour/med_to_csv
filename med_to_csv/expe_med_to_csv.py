@@ -43,6 +43,9 @@ def main(path: str, output_file: str, opt:Dict)->pd.DataFrame:
                         raise RuntimeError(
                             f"""You have chosen to stop the execution after the following error:
                             {err}""") from err
+            elif ptah.isfile(f"{path}/{listd[i]}") :
+                output_df = read_path(f"{path}/", opt)
+                break
             else :
                 print(f"""The file {listd[i]} won't be analyzed""")
     except FileNotFoundError as e:
