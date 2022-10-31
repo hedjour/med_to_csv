@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     
     - name: Install dependencies
       run: |
@@ -41,7 +41,7 @@ jobs:
       run: |
           pyinstaller --clean -y --dist ./dist/linux build_gui.spec
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: med_to_csv_linux
         path: ./dist/linux
