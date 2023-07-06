@@ -72,22 +72,25 @@ def lab_selector(lst_dic:List[Dict], infos:dict, remove_zero_ending:bool) -> Lis
         dic_selected={}
         for key, val in infos.items():
             # print(f"make_dic_select key | val : {key} | {val} ")
-            if key in "cuteval":
-                pass
-            elif not isinstance(val, list):
-                dic_selected[key] = dic_file[val]
-            elif len(val) == 2:
-                dic_selected[key] = dic_file[val[0]][val[1]]
-            elif len(val) == 3:
-                tmp_lst = dic_file[val[0]][val[1]:val[2]] if val[2] != "end" \
-                    else dic_file[val[0]][val[1]:] if len(dic_file[val[0]]) > 0 \
-                    else ['nan']
-                if remove_zero_ending and tmp_lst[0] != "nan":
-                    while bool(recompile(r"0.0+").match(tmp_lst[-1])) and len(tmp_lst) > 1:
-                        tmp_lst = tmp_lst[:-1]
-                dic_selected[key] = tmp_lst
-            else:
-                raise SyntaxError(f"This value is not correctly defined : {val}")
+            try:
+                if key in "cuteval":
+                    pass
+                elif not isinstance(val, list):
+                    dic_selected[key] = dic_file[val]
+                elif len(val) == 2:
+                    dic_selected[key] = dic_file[val[0]][val[1]]
+                elif len(val) == 3:
+                    tmp_lst = dic_file[val[0]][val[1]:val[2]] if val[2] != "end" \
+                        else dic_file[val[0]][val[1]:] if len(dic_file[val[0]]) > 0 \
+                        else ['nan']
+                    if remove_zero_ending and tmp_lst[0] != "nan":
+                        while bool(recompile(r"0.0+").match(tmp_lst[-1])) and len(tmp_lst) > 1:
+                            tmp_lst = tmp_lst[:-1]
+                    dic_selected[key] = tmp_lst
+                else:
+                    raise SyntaxError(f"This value is not correctly defined : {val}")
+            except IndexError:
+                dic_selected[key] = 'nan'
         #Manage the date
         dic_selected["start_date"] = datetime.strptime(dic_file["Start Date"], "%m/%d/%y")
         dic_selected["start_time"] = dic_file["Start Time"]
