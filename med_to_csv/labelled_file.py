@@ -24,8 +24,8 @@ def parse_labelled(list_ligns:List)-> Dict or List(Dict):
         row_split = row.rsplit(" ")
         # print(f"""
         #       Num : {num}\n And :\n{row}""")
-        #Useless first row
-        if "File" in row or row == "" :
+        #Useless first row if empty
+        if row == "" :
             pass
         elif "Start Date" in row :
             if not first_animal : #We manage the case of more than one subject

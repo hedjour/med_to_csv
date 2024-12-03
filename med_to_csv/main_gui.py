@@ -11,6 +11,7 @@ import med_to_csv.expe_med_to_csv as expe_med
 import med_to_csv.file_med_to_csv as file_med
 from gooey import Gooey, GooeyParser
 import med_to_csv.path_verif as pv
+#from scalene import scalene_profiler #for profiler
 
 @Gooey( program_name= "med_to_csv",
         image_dir=f'{ptah.dirname(ptah.realpath(__file__))}/img/',
@@ -104,4 +105,8 @@ Warning the path must contain only ASCII characters (No special character: éè�
         raise Exception(pv.BOOM)
 
 if __name__ == "__main__":
+    # Turn profiling on
+    #scalene_profiler.start()
     main()
+    # Turn profiling off
+    #scalene_profiler.stop()
