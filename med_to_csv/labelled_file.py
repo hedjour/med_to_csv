@@ -66,24 +66,26 @@ def parse_labelled(list_ligns:List)-> Dict or List(Dict):
 
 def lab_selector(lst_dic:List[Dict], infos:dict, remove_zero_ending:bool) -> List[Dict]:
     """function that returns a list of dictionaries containing lists of equal size """
+    print("Debug RUN LAB selector")
     lst_out=[]
-    file_value = ""
+    first_animal = True
     for dic_file in lst_dic :
         dic_selected={}
         for key, val in infos.items():
-            # print(f"make_dic_select key | val : {key} | {val} ")
+            print(f"make_dic_select key | val : {key} | {val} ") # Here Key is output key and val input Key values
             try:
                 if key in "cuteval":
                     pass
                 elif not isinstance(val, list):
-                    if key  == "File" :
-                        try : 
-                            dic_selected[key] = dic_file[val]
-                            file_value = dic_file[val]
-                        except KeyError:
-                            dic_selected[key] = file_value
+                    if val  == "File" and first_animal :
+                        dic_selected[key] = dic_file[val]
+                        file_value = dic_file[val]
+                        first_animal = False
+                    elif  val  == "File" and not first_animal:
+                        dic_selected[key] = file_value
                     else:
                         dic_selected[key] = dic_file[val]
+                        
                 elif len(val) == 2:
                     dic_selected[key] = dic_file[val[0]][val[1]]
                 elif len(val) == 3:
