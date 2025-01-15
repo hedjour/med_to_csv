@@ -22,7 +22,7 @@ copyright = '2021, Jean-Emmanuel Longueville, Myriam Hanna, Nino Mulac, Marcello
 author = 'Jean-Emmanuel Longueville, Myriam Hanna, Nino Mulac, Marcello Solinas'
 
 # The full version, including alpha/beta/rc tags
-release = '0.9'
+release = '1.1'
 
 
 # -- General configuration ---------------------------------------------------

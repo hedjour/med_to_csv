@@ -7,7 +7,6 @@ from typing import Dict, List
 from datetime import datetime
 from re import compile as recompile
 from string import ascii_uppercase as LETTERS
-from math import isnan
 
 def parse_labelled(list_ligns:List)-> Dict or List(Dict):
     """
@@ -68,6 +67,7 @@ def parse_labelled(list_ligns:List)-> Dict or List(Dict):
 def lab_selector(lst_dic:List[Dict], infos:dict, remove_zero_ending:bool) -> List[Dict]:
     """function that returns a list of dictionaries containing lists of equal size """
     lst_out=[]
+    file_value = ""
     for dic_file in lst_dic :
         dic_selected={}
         for key, val in infos.items():
@@ -76,7 +76,14 @@ def lab_selector(lst_dic:List[Dict], infos:dict, remove_zero_ending:bool) -> Lis
                 if key in "cuteval":
                     pass
                 elif not isinstance(val, list):
-                    dic_selected[key] = dic_file[val]
+                    if key  == "File" :
+                        try : 
+                            dic_selected[key] = dic_file[val]
+                            file_value = dic_file[val]
+                        except KeyError:
+                            dic_selected[key] = file_value
+                    else:
+                        dic_selected[key] = dic_file[val]
                 elif len(val) == 2:
                     dic_selected[key] = dic_file[val[0]][val[1]]
                 elif len(val) == 3:

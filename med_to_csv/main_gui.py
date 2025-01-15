@@ -30,7 +30,7 @@ import med_to_csv.path_verif as pv
                     'menuTitle': 'About',
                     'name': 'med_to_csv',
                     'description': 'MedAssociate output file to CSV file',
-                    'version': '1.0.0',
+                    'version': '1.1',
                     'copyright': '2021',
                     'website': 'https://github.com/hedjour/',
                     'developer': """

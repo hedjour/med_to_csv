@@ -12,7 +12,7 @@ with open("README.rst", 'r') as f:
 
 setup(
     name = "med_to_csv",
-    version = "1.0",
+    version = "1.1",
     author = "Jean-Emmanuel Longueville, Myriam Hanna",
     author_email = "jean.emmanuel.longueville(@)univ-poitiers.fr",
     description = "A module that converts MedAssociates data to csv files",
