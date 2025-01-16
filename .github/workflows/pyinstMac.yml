@@ -1,4 +1,4 @@
-name: Build GUI MacOS bin with Pyinstaller
+ame: Build GUI MacOS bin with Pyinstaller
 
 on:
   push:
@@ -7,32 +7,43 @@ on:
   workflow_dispatch:
     inputs:
       tags:
-        required: False
+        required: false
         description: 'test build tags'
 
 jobs:
   build:
     runs-on: macos-latest
-
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: Install Gooey
-      run: |
+      - name: Install wxPython dependencies
+        run: |
+          brew install pkg-config
+          brew install wxwidgets
+
+      - name: Install Gooey
+        run: |
+          pip3 install --upgrade pip
+          pip3 install wxPython
           pip3 install gooey
-          pip3 install Pyinstaller
-    
-    - name: Install user dependencies
-      run: |
-          if [ -f requirements.txt ]; then
-              pip3 install -r requirements.txt
-          fi # [ -f requirements.txt ]
+          pip3 install pyinstaller
 
-    - name: Make package
-      run: |
+      - name: Install user dependencies
+        run: |
+          if [ -f requirements.txt ]; then
+            pip3 install -r requirements.txt
+          fi
+
+      - name: Make package
+        run: |
           pyinstaller --clean -y --dist ./dist/mac build_gui.spec
 
-    - uses: actions/upload-artifact@v4
-      with:
-        name: med_to_csv_mac
-        path: ./dist/mac
+      - uses: actions/upload-artifact@v4
+        with:
+          name: med_to_csv_mac
+          path: ./dist/mac
