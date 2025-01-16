@@ -1,4 +1,4 @@
-ame: Build GUI MacOS bin with Pyinstaller
+name: Build GUI MacOS bin with Pyinstaller
 
 on:
   push:
