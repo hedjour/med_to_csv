@@ -130,7 +130,7 @@ jobs:
       - name: List downloaded files
         run: ls -R dist
       - name: Create Release
-        uses: softprops/action-gh-release@v1.2.0
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
