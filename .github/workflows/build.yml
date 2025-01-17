@@ -65,9 +65,9 @@ jobs:
 
       - name: Install user dependencies
         run: |
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          fi
+          if (Test-Path -Path "requirements.txt") {
+              pip install -r requirements.txt
+          }
 
       - name: Make package
         run: |
