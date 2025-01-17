@@ -118,16 +118,16 @@ jobs:
           path: ./dist/mac
 
   create-release:
-    needs: [build-linux, build-windows, build-macos]  # Attend que tous les builds soient terminés
+    needs: [build-linux, build-windows, build-macos]
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')  # Seulement si c'est un tag
+    if: startsWith(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@v4
 
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
-          path: all-artifacts
+          path: dist
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
@@ -147,7 +147,4 @@ jobs:
             Téléchargez le binaire correspondant à votre système d'exploitation.
           draft: false
           prerelease: false
-          files: |
-            all-artifacts/med_to_csv_windows/*
-            all-artifacts/med_to_csv_linux/*
-            all-artifacts/med_to_csv_mac/*
+          files: dist/**/*
