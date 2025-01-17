@@ -1,0 +1,93 @@
+name: Build GUI Applications
+
+on:
+  push:
+    tags:
+      - 'v*'  # Se déclenche pour les tags de version
+  pull_request:
+    branches:
+      - main  # Se déclenche pour les PRs vers main
+  workflow_dispatch:  # Garde la possibilité de lancer manuellement
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            artifact_name: med_to_csv_windows
+            
+          - os: macos-latest
+            artifact_name: med_to_csv_mac
+            
+          - os: ubuntu-latest
+            artifact_name: med_to_csv_linux
+            
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Configuration Windows
+      - name: Windows Setup
+        if: matrix.os == 'windows-latest'
+        run: |
+          python -m pip install --upgrade pip
+          pip install gooey
+          pip install pyinstaller
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          
+      # Configuration macOS
+      - name: macOS Setup
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew install pkg-config
+          brew install wxwidgets
+          pip3 install --upgrade pip
+          pip3 install wxPython
+          pip3 install gooey
+          pip3 install pyinstaller
+          if [ -f requirements.txt ]; then pip3 install -r requirements.txt; fi
+          
+      # Configuration Linux
+      - name: Linux Setup
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt update
+          sudo apt upgrade -y
+          sudo apt install -y \
+            libwxbase3.2-1 \
+            libwxgtk3.2-1 \
+            libwxgtk-media3.2-1 \
+            libwxgtk-webview3.2-1 \
+            python3-wxgtk4.0 \
+            python3-wxgtk-media4.0 \
+            python3-wxgtk-webview4.0 \
+            libgtk-3-dev \
+            python3-pip \
+            python-is-python3
+          pip install attrdict3
+          pip install gooey
+          pip install pyinstaller
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          
+      # Build commun pour toutes les plateformes
+      - name: Build Package
+        run: |
+          pyinstaller --clean -y --dist ./dist/${{ matrix.os }} build_gui.spec
+          
+      # Upload des artifacts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: ./dist/${{ matrix.os }}
+          
+      # Création de la release si c'est un tag
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: ./dist/${{ matrix.os }}/*
+          draft: false
+          prerelease: false

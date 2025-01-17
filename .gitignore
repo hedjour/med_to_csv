@@ -20,3 +20,4 @@ Local_*
 *.code-workspace
 *.egg-info
 Debug*
+backup_workflows/*
