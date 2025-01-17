@@ -77,3 +77,40 @@ jobs:
         with:
           name: med_to_csv_windows
           path: ./dist/windows
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install wxPython dependencies
+        run: |
+          brew install pkg-config
+          brew install wxwidgets
+
+      - name: Install Gooey
+        run: |
+          pip3 install --upgrade pip
+          pip3 install wxPython
+          pip3 install gooey
+          pip3 install pyinstaller
+
+      - name: Install user dependencies
+        run: |
+          if [ -f requirements.txt ]; then
+            pip3 install -r requirements.txt
+          fi
+
+      - name: Make package
+        run: |
+          pyinstaller --clean -y --dist ./dist/mac build_gui.spec
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: med_to_csv_mac
+          path: ./dist/mac
