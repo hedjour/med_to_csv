@@ -1,4 +1,4 @@
-name: Build GUI bin with Pyinstaller
+name: Build GUI Applications
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:  # Permet le déclenchement manuel
 
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -51,3 +51,29 @@ jobs:
         with:
           name: med_to_csv_linux
           path: ./dist/linux
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Gooey
+        run: |
+          python -m pip install --upgrade pip
+          pip install gooey
+          pip install Pyinstaller
+
+      - name: Install user dependencies
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Make package
+        run: |
+          pyinstaller --clean -y --dist ./dist/windows build_gui.spec
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: med_to_csv_windows
+          path: ./dist/windows
