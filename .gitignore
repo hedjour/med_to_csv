@@ -1,5 +1,6 @@
 __pycache__/*
 med_to_csv/__pycache__/*
+.github/backup_workflows/*
 docs/_build/*
 build/*
 dist/*
@@ -18,3 +19,4 @@ Local_*
 *.zip
 *.code-workspace
 *.egg-info
+Debug*
