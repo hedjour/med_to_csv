@@ -68,8 +68,8 @@ def lab_selector(lst_dic:List[Dict], infos:dict, remove_zero_ending:bool) -> Lis
     """function that returns a list of dictionaries containing lists of equal size """
     print("Debug RUN LAB selector")
     lst_out=[]
-    first_animal = True
     for dic_file in lst_dic :
+        first_animal = True
         dic_selected={}
         for key, val in infos.items():
             print(f"make_dic_select key | val : {key} | {val} ") # Here Key is output key and val input Key values
