@@ -1,0 +1,22 @@
+AUTHOR: Longueville, Jean-Emmanuel;
+AUTHOR: Hanna, Myriam;
+AUTHOR: Solinas, Marcello
+TITLE: med_to_csv: A simple way to parse MedAssociate output file in tidy data
+ABSTRACT: Ce programme analyse les fichiers de données MedAssociates et les transforme en fichiers CSV organisés selon les principes du tidy data (1 ligne = 1 observation, 1 colonne = 1 variable). L'outil permet à l'utilisateur de sélectionner les informations à extraire et propose une interface graphique et en ligne de commande. Il supporte les fichiers annotés et les fichiers à une colonne, avec des options de configuration via des fichiers YAML pour personnaliser l'extraction des données.
+ABSTRACT_EN: This program parses MedAssociates data files and transforms them into tidy CSV files, containing the information selected by the user. The tool follows tidy data principles (1 row = 1 observation, 1 col = 1 variable) and provides both graphical and command-line interfaces. It supports annotated files and single-column files, with YAML configuration options to customize data extraction.
+KEYWORD: MedAssociates; analyse de données; Python; CSV; tidy data; interface graphique; neurosciences comportementales
+KEYWORD_EN: MedAssociates; data analysis; Python; CSV; tidy data; graphical interface; behavioral neuroscience
+AFFILIATION: Université de Poitiers
+LABORATORY: Laboratoire de Neurosciences Expérimentales et Cliniques (LNEC)
+DOMAIN: info
+LANGUAGE: fr
+DOCUMENT_TYPE: SOFT
+PROGRAMMING_LANGUAGE: Python
+LICENSE: GPL v3.0
+VERSION: 1.0
+PLATFORM: Cross-platform
+YEAR: 2024
+MONTH: 07
+COLLABORATOR: Hanna, Myriam; Solinas, Marcello
+FUNDING: IRESP-19-ADDICTIONS-20
+GITHUB_URL: https://github.com/hedjour/med_to_csv
