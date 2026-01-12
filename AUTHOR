@@ -1,5 +1,6 @@
 AUTHOR: Longueville, Jean-Emmanuel;
 AUTHOR: Hanna, Myriam;
+AUTHOR: Mulac, Nino;
 AUTHOR: Solinas, Marcello
 TITLE: med_to_csv: A simple way to parse MedAssociate output file in tidy data
 ABSTRACT: Ce programme analyse les fichiers de données MedAssociates et les transforme en fichiers CSV organisés selon les principes du tidy data (1 ligne = 1 observation, 1 colonne = 1 variable). L'outil permet à l'utilisateur de sélectionner les informations à extraire et propose une interface graphique et en ligne de commande. Il supporte les fichiers annotés et les fichiers à une colonne, avec des options de configuration via des fichiers YAML pour personnaliser l'extraction des données.
