@@ -92,7 +92,7 @@ jobs:
 
       - name: Install wxPython dependencies
         run: |
-          brew install pkg-config
+          brew update
           brew install wxwidgets
 
       - name: Install Gooey
