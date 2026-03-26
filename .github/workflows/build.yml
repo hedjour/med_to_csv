@@ -1,6 +1,6 @@
 name: Build GUI Applications
-# git tag v1.2.8
-# git push origin v1.2.8
+# git tag v1.2.9.debug1
+# git push origin v1.2.9.debug1
 
 on:
   push:
@@ -103,8 +103,8 @@ jobs:
       - name: Create DMG for macOS
         run: |
           cd dist/med_to_csv_mac
-          hdiutil create -volname "portable_med_to_csv_gui" -srcfolder portable_med_to_csv_gui_mac.app -ov -format UDZO portable_med_to_csv_gui_mac.dmg
-          rm -rf portable_med_to_csv_gui_mac.app  # Optionnel : supprime le dossier .app
+          hdiutil create -volname "portable_med_to_csv_gui" -srcfolder portable_med_to_csv_gui_mac -ov -format UDZO portable_med_to_csv_gui_mac.dmg
+          rm -rf portable_med_to_csv_gui_mac  # Optionnel : supprime le dossier .app
       - uses: actions/upload-artifact@v4
         with:
           name: med_to_csv_mac
