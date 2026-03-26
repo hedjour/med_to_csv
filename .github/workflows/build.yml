@@ -103,8 +103,12 @@ jobs:
       - name: Create DMG for macOS
         run: |
           cd dist/mac
-          hdiutil create -volname "portable_med_to_csv_gui" -srcfolder portable_med_to_csv_gui_mac -ov -format UDZO portable_med_to_csv_gui_mac.dmg
-          rm -rf portable_med_to_csv_gui_mac  # Optionnel : supprime le dossier .app
+          hdiutil create \
+            -volname "portable_med_to_csv_gui" \
+            -srcfolder portable_med_to_csv_gui.app \
+            -ov -format UDZO \
+            portable_med_to_csv_gui_mac.dmg
+          rm -rf portable_med_to_csv_gui.app
       - uses: actions/upload-artifact@v4
         with:
           name: med_to_csv_mac
