@@ -15,7 +15,7 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4
       
       - name: Install dependencies
         run: |
@@ -48,14 +48,14 @@ jobs:
       - name: Rename Linux binary
         run: |
           mv ./dist/linux/portable_med_to_csv_gui ./dist/linux/portable_med_to_csv_gui_linux
-      - uses: actions/upload-artifact@v4.3.1
+      - uses: actions/upload-artifact@v4
         with:
           name: med_to_csv_linux
           path: ./dist/linux
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4
       - name: Install Gooey
         run: |
           python -m pip install --upgrade pip
@@ -69,14 +69,14 @@ jobs:
       - name: Make package
         run: |
           pyinstaller --clean -y --dist ./dist/windows build_gui.spec
-      - uses: actions/upload-artifact@v4.3.1
+      - uses: actions/upload-artifact@v4
         with:
           name: med_to_csv_windows
           path: ./dist/windows
   build-macos:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4
       
       - name: Set up Python
         uses: actions/setup-python@v5.1.0
@@ -100,10 +100,12 @@ jobs:
       - name: Make package
         run: |
           pyinstaller --clean -y --dist ./dist/mac build_gui.spec
-      - name: Rename macOS binary
+      - name: Create DMG for macOS
         run: |
-          mv ./dist/mac/portable_med_to_csv_gui ./dist/mac/portable_med_to_csv_gui_mac.app
-      - uses: actions/upload-artifact@v4.3.1
+          cd dist/med_to_csv_mac
+          hdiutil create -volname "portable_med_to_csv_gui" -srcfolder portable_med_to_csv_gui_mac.app -ov -format UDZO portable_med_to_csv_gui_mac.dmg
+          rm -rf portable_med_to_csv_gui_mac.app  # Optionnel : supprime le dossier .app
+      - uses: actions/upload-artifact@v4
         with:
           name: med_to_csv_mac
           path: ./dist/mac
@@ -112,7 +114,7 @@ jobs:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@v4
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
