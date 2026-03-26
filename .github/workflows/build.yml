@@ -102,7 +102,7 @@ jobs:
           pyinstaller --clean -y --dist ./dist/mac build_gui.spec
       - name: Rename macOS binary
         run: |
-          mv ./dist/mac/portable_med_to_csv_gui.app ./dist/mac/portable_med_to_csv_gui_mac.app
+          mv ./dist/mac/portable_med_to_csv_gui ./dist/mac/portable_med_to_csv_gui_mac.app
       - uses: actions/upload-artifact@v4.3.1
         with:
           name: med_to_csv_mac
