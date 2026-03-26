@@ -102,7 +102,7 @@ jobs:
           pyinstaller --clean -y --dist ./dist/mac build_gui.spec
       - name: Create DMG for macOS
         run: |
-          cd dist/med_to_csv_mac
+          cd dist/mac
           hdiutil create -volname "portable_med_to_csv_gui" -srcfolder portable_med_to_csv_gui_mac -ov -format UDZO portable_med_to_csv_gui_mac.dmg
           rm -rf portable_med_to_csv_gui_mac  # Optionnel : supprime le dossier .app
       - uses: actions/upload-artifact@v4
@@ -122,7 +122,7 @@ jobs:
       - name: List downloaded files
         run: ls -R dist
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -140,5 +140,5 @@ jobs:
           prerelease: false
           files: |
             dist/med_to_csv_linux/*
-            dist/med_to_csv_mac/*
+            dist/med_to_csv_mac/*.dmg
             dist/med_to_csv_windows/*
